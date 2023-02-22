@@ -5,13 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <link rel="stylesheet" href="./src/assets/css/styles.css">
     <title>Document</title>
 </head>
 
 <body>
+    <div class="app-container">
+        <div class="main">
+            <div class="logo-container">
+                <h1>Guess Number</h1>
+            </div>
+            <div class="game-container">
+                <div class="user-input">
+                    <label for="">Enter a number between 0 and 100</label>
+                    <input id="guessinput" type="text">
+                    <button id="submit">submit</button>
+                </div>
+                <div class="show-result">
+                    <div id="result-box">
+                    </div>
+                    
 
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <script src="./src/assets/js/guessNumber.js"></script>
 </body>
 
 </html>
