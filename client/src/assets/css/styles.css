@@ -109,6 +109,7 @@ input {
   border-radius: 25px;
   margin-bottom: 2vh;
   text-align: center;
+  font-size: 14pt;
 }
 
 #result-box {
