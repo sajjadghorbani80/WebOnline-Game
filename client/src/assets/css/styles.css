@@ -1,133 +1,134 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif
+  font-family: "Poppins", sans-serif;
 }
 
 .app-container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e7e9f6;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e7e9f6;
 }
 
 .main {
-    background-color: #ffffff;
-    width: 50%;
-    height: 80vh;
-    text-align: center;
-    border-radius: 4%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  background-color: #ffffff;
+  width: 50%;
+  height: 80vh;
+  text-align: center;
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .logo-container {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background-color: #694cd2; */
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #694cd2; */
 }
 
 .game-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70%;
-    /* background-color: bisque; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+  /* background-color: bisque; */
 }
 
 .user-input {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 label {
-    width: 40%;
-    text-align: left;
-    color: #817e7e;
-    margin-bottom: 2vh;
-    font-size: 11pt;
+  width: 40%;
+  text-align: left;
+  color: #817e7e;
+  margin-bottom: 2vh;
+  font-size: 11pt;
 }
 
 .show-result {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  height: 65%;
+  padding-top: 5%;
 }
 
 h1 {
-    font-family: lobster;
-    font-size: 45pt;
-    color: #694AD3;
+  font-family: lobster;
+  font-size: 45pt;
+  color: #694ad3;
+}
+h2 {
+  font-size: 14pt;
+  font-weight: 300;
+  margin-bottom: 2%;
 }
 
 p {
-    font-size: 12pt;
-    padding: 1%;
-    width: 100%;
-    margin-bottom: 2%;
-    border-bottom: 1px dashed #d5cece;
+  padding: 1%;
+  width: 100%;
+  font-size: 14pt;
+  font-weight: 300;
 }
 
 button {
-    background-color: #694cd2;
-    color: #ffffff;
-    width: 40%;
-    height: 25%;
-    outline: none;
-    border: none;
-    border-radius: 25px;
-    margin-bottom: 2vh;
-    font-size: 14pt;
+  background-color: #694cd2;
+  color: #ffffff;
+  width: 40%;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
 }
 
 input {
-    display: block;
-    width: 40%;
-    background-color: #f4f3f8;
-    height: 25%;
-    outline: none;
-    border: none;
-    border-radius: 25px;
-    margin-bottom: 2vh;
-    text-align: center;
-
+  display: block;
+  width: 40%;
+  background-color: #f4f3f8;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  text-align: center;
 }
 
 #result-box {
-    width: 40%;
-    background-color: #f4f4f6;
-    border-radius: 25px 25px 0 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 2%;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: start;
-}
-
-
-@font-face {
-    font-family: 'lobster';
-    src: url('../fonts/Lobster/Lobster_1.3.otf');
+  width: 40%;
+  background-color: #f4f4f6;
+  border-radius: 25px 25px 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: start;
 }
 
 @font-face {
-    font-family: 'roboto-reg';
-    src: url('../fonts/roboto-slab/RobotoSlab-Regular.ttf');
+  font-family: "lobster";
+  src: url("../fonts/Lobster/Lobster_1.3.otf");
+}
+
+@font-face {
+  font-family: "roboto-reg";
+  src: url("../fonts/roboto-slab/RobotoSlab-Regular.ttf");
 }
