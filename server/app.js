@@ -3,8 +3,12 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 import {chance, checkanswer} from './src/services/guess-number.js';
+/*
+Alternative for __dirname in Node.js when using ES6 modules
+*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 const app = express();
 const port = 80;
 

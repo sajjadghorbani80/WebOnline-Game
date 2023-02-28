@@ -2,10 +2,13 @@
 /* eslint-disable require-jsdoc */
 let chance = 5;
 const randomNum = (Math.random() * 100).toFixed(0);
-
+/*
+This is the logic of the guess number game
+that Compares the game number with user guess
+and return the game result
+*/
 function checkanswer(guess) {
   chance--;
-  console.log(randomNum);
   if (chance <0) {
     return `You lose, play again. My number was ${randomNum}`;
   };
