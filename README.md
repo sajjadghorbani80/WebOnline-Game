@@ -1,7 +1,6 @@
 <h2>:video_game: Web Online Game Project</h2>
 <br><br><br>
 <h2>:hammer_and_wrench: Requirements for run project</h2>
-IDE: <a href="https://code.visualstudio.com" target="_blank">Visual Stodio Code</a><br>
 <ul>
 <li>Visual Studio Code</li>
 <li>Node.js</li>
@@ -12,9 +11,8 @@ IDE: <a href="https://code.visualstudio.com" target="_blank">Visual Stodio Code<
 <ul>
 <li>Download and install Node.js from <a href="https://nodejs.org/en/download/">here</a></li>
 <li>Install npm with this command on terminal Visual Studio Code:</li>
-```bash
-npm i
-```
+<code> npm i </code> 
+
 <li>In terminal go to server folder with this command:</li>
 ```bash
 cd server
