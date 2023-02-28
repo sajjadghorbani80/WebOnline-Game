@@ -1,13 +1,14 @@
 # :video_game: Web Online Game Project
 This is the first version of the game project where you can guess the number. Upon starting the server, a random number from 0 to 100 is generated, which you are allowed to guess up to 5 times. If you guess the number correctly, you will be shown the message of winning, otherwise, after the chance is over, it will show the message that you have lost. Also, every time you guess the wrong number, your chances decrease by one number.
 
+<br>
 
 ## :hammer_and_wrench: Requirements for run project
 1. Node.js
 2. npm
+<br>
 
-
-## :question: Run the project
+## :arrow_forward: Run the project
 
 1. Download and install Node.js from [here](https://nodejs.org/en/download/)</li>
 2. Clone the project in your systeam with this command in terminal:
