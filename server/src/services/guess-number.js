@@ -1,6 +1,11 @@
 /* eslint-disable require-jsdoc */
 let chance = 5;
 const randomNumber = (Math.random() * 100).toFixed(0);
+/*
+This is the logic of the number guessing game
+that Compares the game number with user guess
+and return correct message
+*/
 export function guessNumber(guess) {
   console.log(randomNumber);
   if (chance == 0) {
