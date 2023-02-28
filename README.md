@@ -20,8 +20,8 @@ npm i
 ```bash
 cd server
 ```
-3. <li>after that for run project write this command:</li>
+3. after that for run project write this command:
 ```bash
 node app.js
-‍‍‍‍```
+```
 4. Go to this <a href="http://localhost/" target="_blanck">url</a> and here we go:smiley::muscle:
