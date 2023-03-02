@@ -1,4 +1,6 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 import {guessNumber} from './src/services/guess-number.js';
@@ -22,6 +24,6 @@ app.post('/guessNumber', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(process.env.PORT || port, () => {
+  console.log(`Example app listening on port ${process.env.PORT || port}`);
 });
