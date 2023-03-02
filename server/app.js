@@ -1,4 +1,6 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 import {guessNumber} from './src/services/guess-number.js';
@@ -7,13 +9,13 @@ const port = 80;
 app.use(express.json());
 
 /*
-Add static file to Server
-There is no __dirname in ES module
+add static files
+there is no __dirname in ES6 modules
 */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 app.use('/', express.static(join(__dirname, '../client')));
+
 
 app.post('/guessNumber', (req, res) => {
   const guess = req.body.data;
@@ -21,7 +23,7 @@ app.post('/guessNumber', (req, res) => {
   res.status(200).send(result);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-  console.log(`http://127.0.0.1/`);
+
+app.listen(process.env.PORT || port, () => {
+  console.log(`Example app listening on port ${process.env.PORT || port}`);
 });
