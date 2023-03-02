@@ -1,71 +1,135 @@
-body {
-  background: linear-gradient(to right, #7f53ac, #657ced);
-  font-family: 'Poppins', sans-serif;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
-  text-transform: capitalize;
-  border: none;
-  outline: none;
-}
-h1 {
-  font: size 30px;
-  font-weight: 600;
 }
 
-.box {
-  position: absolute;
-  padding: 100px;
-  top: 20%;
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.app-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e7e9f6;
+}
+
+.main {
+  background-color: #ffffff;
   width: 50%;
-  height: 50vh;
+  height: 80vh;
   text-align: center;
-  background: rgb(255, 255, 255);
-  box-shadow: 0 15px 25px rgba(61, 61, 61, 0.349);
-  box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.inputs {
-  width: 90px;
-  font-weight: 600;
-  padding: 20px 0;
-  font-size: 28px;
-  text-align: center;
-  margin-top: 30px;
-  border-radius: 5px;
-  border: 2px solid #202020;
-  color: #663399;
+.logo-container {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #694cd2; */
 }
 
-.inputs::placeholder {
-  text-align: center;
-  font-size: 16pt;
+.game-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+  /* background-color: bisque; */
 }
 
-.submit {
-  width: 160px;
-  padding: 15px 0;
-  border-radius: 5px;
-  background-color: #663399;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 30px;
-  margin-top: 10px;
+.user-input {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.submit:hover {
-  background-color: #5a12a1;
-  color: #ffffff;
+label {
+  width: 40%;
+  text-align: left;
+  color: #817e7e;
+  margin-bottom: 2vh;
+  font-size: 11pt;
+}
+
+.show-result {
+  width: 100%;
+  height: 65%;
+  padding-top: 5%;
+}
+
+h1 {
+  font-family: lobster;
+  font-size: 45pt;
+  color: #694ad3;
+}
+h2 {
+  font-size: 14pt;
+  font-weight: 300;
+  margin-bottom: 2%;
 }
 
 p {
+  padding: 1%;
+  width: 100%;
   font-size: 14pt;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+button {
+  background-color: #694cd2;
+  color: #ffffff;
+  width: 40%;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
+}
+
+input {
+  display: block;
+  width: 40%;
+  background-color: #f4f3f8;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  text-align: center;
+  font-size: 14pt;
+}
+
+#result-box {
+  width: 40%;
+  background-color: #f4f4f6;
+  border-radius: 25px 25px 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: start;
+}
+
+@font-face {
+  font-family: "lobster";
+  src: url("../fonts/Lobster/Lobster_1.3.otf");
+}
+
+@font-face {
+  font-family: "roboto-reg";
+  src: url("../fonts/roboto-slab/RobotoSlab-Regular.ttf");
 }
