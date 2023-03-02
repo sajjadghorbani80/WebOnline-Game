@@ -10,7 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const port = 80;
+/* A configurable port can be used if port 80 is in use */
+const port = process.env.PORT || 80;
 
 
 app.use(express.json());
@@ -25,5 +26,5 @@ app.post('/guessnumber/checkanswer', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`server running on http://localhost:${port}`);
 });
