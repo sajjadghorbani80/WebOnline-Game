@@ -7,7 +7,7 @@ const ptag3 = document.getElementById('msg3');
 
 function sendRequest() {
   const data = {data: input.value};
-  fetch('/guessNumber', {
+  fetch('/api/guessNumber', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
