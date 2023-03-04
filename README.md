@@ -3,6 +3,22 @@ This is the first version of the game project where you can guess the number. Up
 
 <br>
 
+## :seedling: Development stages of this version
+1. Create Git Repository
+2. Create Branch
+3. Create project structure initial
+4. Install node packages and add them to .gitignore
+5. Create Server with ES modual
+6. Create Front-End
+7. Satart to Implementation 1st game (Guessing number)
+8. Create game service in Back-End
+9. Create route and Get requests
+10. Processing the request and sending the response
+11. Get and display the result
+
+
+<br>
+
 ## :hammer_and_wrench: Requirements for run project
 1. Node.js
 2. npm
