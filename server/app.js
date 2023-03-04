@@ -1,9 +1,9 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-dotenv.config();
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
-import {guessNumber} from './src/services/guess-number.js';
+import {routergame1} from './routes/guessNumberRoters.js';
+dotenv.config();
 const app = express();
 const port = 80;
 app.use(express.json());
@@ -17,11 +17,7 @@ const __dirname = dirname(__filename);
 app.use('/', express.static(join(__dirname, '../client')));
 
 
-app.post('/guessNumber', (req, res) => {
-  const guess = req.body.data;
-  const result = guessNumber(guess);
-  res.status(200).send(result);
-});
+app.use('/', routergame1);
 
 
 app.listen(process.env.PORT || port, () => {
