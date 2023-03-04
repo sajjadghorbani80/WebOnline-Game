@@ -10,7 +10,7 @@ This is the first version of the game project where you can guess the number. Up
 4. Install node packages and add them to .gitignore
 5. Create Server with ES modual
 6. Create Front-End
-7. Satart to Implementation 1st game (Guessing number)
+7. Start to Implementation 1st game (Guessing number)
 8. Create game service in Back-End
 9. Create route and Get requests
 10. Processing the request and sending the response
