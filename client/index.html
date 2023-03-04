@@ -2,36 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/assets/css/styles.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+  <link rel="stylesheet" href="./src/assets/css/styles.css">
+  <title>Guess Number</title>
 </head>
 
 <body>
-    <div class="app-container">
-        <div class="main">
-            <div class="logo-container">
-                <h1>Guess Number</h1>
-            </div>
-            <!--////////////////////////////////////////////////// ‌Game section /////////////////////////////////////////////////// -->
-            <div class="game-container">
-                <div class="user-input">
-                    <label for="">Enter a number between 0 and 100</label>
-                    <input id="guessinput" type="text">
-                    <button id="submit">submit</button>
-                </div>
-                <!--////////////////////////////////////////////////// Show result serction /////////////////////////////////////////////////// -->
-                <div class="show-result">
-                    <div id="result-box">
-                    </div>
-                </div>
-            </div>
-
+  <div class="app-container">
+    <!--////////////////////////////////////////////////// ‌Game Box /////////////////////////////////////////////////// -->
+    <div class="main">
+      <div class="logo-container">
+        <h1>Guess Number</h1>
+      </div>
+      <div class="game-container">
+        <div class="user-input">
+          <h2>I am thinking of a number Between 0-100<br></h2>
+          <h2>Can you Guess it?</h2>
+          <input id="guessinput" type="text">
+          <button id="submit">submit</button>
         </div>
+        <!--Game result and scores shows in this p tags
+          1st p tag: message for game result
+          2nd p tag: message for show the number guessed by the user
+          3rd p tag: message for show remaining chances -->
+        <div class="show-result">
+          <p id="msg1"></p>
+          <p id="msg2"></p>
+          <p id="msg3"></p>
+        </div>
+      </div>
+
     </div>
-    <script src="./src/assets/js/guessNumber.js"></script>
+  </div>
+  <script src="./src/assets/js/guessNumber.js"></script>
 </body>
 
 </html>

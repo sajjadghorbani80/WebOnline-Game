@@ -1,24 +1,24 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-
-const submitBtn = document.getElementById('submit');
-const guessInput = document.getElementById('guessinput');
-const resultBox = document.getElementById('result-box');
-
+const btn = document.getElementById('submit');
+const input = document.getElementById('guessinput');
+const ptag1 = document.getElementById('msg1');
+const ptag2 = document.getElementById('msg2');
+const ptag3 = document.getElementById('msg3');
 
 function sendRequest() {
-  const inputValue = guessInput.value;
-  fetch('/guessnumber/checkanswer', {
+  const data = {data: input.value};
+  fetch('/guessNumber', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({guess: inputValue}),
+    body: JSON.stringify(data),
   })
       .then((response) => response.json())
       .then((data) => {
-        resultBox.innerHTML += `<p>${data.message}</p>`;
+        ptag1.innerHTML = data.msg1;
+        ptag2.innerHTML = data.msg2;
+        ptag3.innerHTML = data.msg3;
       });
 }
-
-submitBtn.addEventListener('click', sendRequest);
+btn.addEventListener('click', sendRequest);
