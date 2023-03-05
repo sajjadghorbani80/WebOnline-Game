@@ -1,12 +1,14 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-export class ReqDto {
+/* eslint-disable linebreak-style */
+class ReqDto {
   guessValue;
   constructor(value) {
     this.guessValue = value;
   }
 }
-/* eslint-disable require-jsdoc */
-export class ResDto {
+
+class ResDto {
   chance;
   randomNumber;
   guess;
@@ -18,3 +20,4 @@ export class ResDto {
     this.status = status;
   }
 }
+export {ReqDto, ResDto};

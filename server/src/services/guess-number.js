@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ResDto} from '../dtos/guessNumberDto.js';
 let chance = 5;
@@ -9,18 +10,21 @@ and return the game result
 */
 export function guessNumber(guess) {
   console.log(randomNumber);
-  let result;
   chance--;
+  const result = new ResDto(chance, null, guess.guessValue, null);
+
   if (chance <= 0) {
-    result = new ResDto(chance, randomNumber, guess.guessValue, 0);
+    result.status = 0;
+    result.randomNumber = randomNumber;
     return result;
   }
   if (guess.guessValue === randomNumber) {
-    result = new ResDto(null, randomNumber, null, 1);
+    result.status = 1;
+    result.randomNumber = randomNumber;
   } else if (guess.guessValue < randomNumber) {
-    result = new ResDto(chance, null, guess.guessValue, 2);
+    result.status = 2;
   } else {
-    result = new ResDto(chance, null, guess.guessValue, 3);
+    result.status = 3;
   }
   return result;
 }
