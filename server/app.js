@@ -5,7 +5,7 @@ dotenv.config();
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 
-import {router as guessNumberRouter} from './src/routes/guessNumberRouter.js';
+import {router as guessNumberRouter} from './routes/guessNumberRouter.js';
 /*
 Alternative for __dirname in Node.js when using ES6 modules
 */

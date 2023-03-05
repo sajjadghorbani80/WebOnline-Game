@@ -1,4 +1,6 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
+import {ResDto} from '../dtos/guessNumberDto.js';
 let chance = 5;
 const randomNumber = (Math.random() * 100).toFixed(0);
 /*
@@ -8,36 +10,21 @@ and return the game result
 */
 export function guessNumber(guess) {
   console.log(randomNumber);
-  if (chance == 0) {
-    const message4 = {
-      msg1: 'You lose :(',
-      msg2: 'the Number was ' + randomNumber,
-      msg3: 'Please refresh the page for start again :D',
-    };
-    return message4;
+  chance--;
+  const result = new ResDto(chance, null, guess.guessValue, null);
+
+  if (chance <= 0) {
+    result.status = 0;
+    result.randomNumber = randomNumber;
+    return result;
   }
-  if (guess === randomNumber) {
-    const message1 = {
-      msg1: 'Yahhhh You won It!!',
-      msg2: 'the Number was ' + randomNumber,
-      msg3: '',
-    };
-    return message1;
-  } else if (guess < randomNumber) {
-    chance -= 1;
-    const message2 = {
-      msg1: 'Your Guess is Too low ',
-      msg2: 'Your Guess ' + guess,
-      msg3: 'Remaining Chances ' + chance,
-    };
-    return message2;
+  if (guess.guessValue === randomNumber) {
+    result.status = 1;
+    result.randomNumber = randomNumber;
+  } else if (guess.guessValue < randomNumber) {
+    result.status = 2;
   } else {
-    chance -= 1;
-    const message3 = {
-      msg1: 'Your Guess is Too High',
-      msg2: 'Your Guess ' + guess,
-      msg3: 'Remaining Chances ' + chance,
-    };
-    return message3;
+    result.status = 3;
   }
+  return result;
 }
