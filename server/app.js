@@ -10,8 +10,6 @@ const app = express();
 const port = process.env.PORT || 80;
 
 app.use(express.json());
-
-import {router as guessNumberRouter} from './routes/guessNumberRouter.js';
 /*
 Alternative for __dirname in Node.js when using ES6 modules
 */
@@ -19,9 +17,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use(express.json());
 app.use('/', express.static(join(__dirname, '../client')));
-
-app.use('/api', guessNumberRouter);
-
 app.use('/api', guessNumber);
 
 
