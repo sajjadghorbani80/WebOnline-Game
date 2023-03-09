@@ -6,130 +6,154 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: black;
 }
 
-.app-container {
+header {
   width: 100%;
-  height: 100vh;
+  height: 8vh;
+  background-color: #0a0f15;
+}
+
+.header-container {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.logo-section {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #e7e9f6;
-}
-
-.main {
-  background-color: #ffffff;
-  width: 50%;
-  height: 80vh;
-  text-align: center;
-  border-radius: 4%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.logo-container {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: #694cd2; */
-}
-
-.game-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 70%;
-  /* background-color: bisque; */
-}
-
-.user-input {
-  width: 100%;
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-label {
-  width: 40%;
-  text-align: left;
-  color: #817e7e;
-  margin-bottom: 2vh;
-  font-size: 11pt;
-}
-
-.show-result {
-  width: 100%;
-  height: 65%;
-  padding-top: 5%;
-}
-
-h1 {
-  font-family: lobster;
-  font-size: 45pt;
-  color: #694ad3;
-}
-h2 {
-  font-size: 14pt;
-  font-weight: 300;
-  margin-bottom: 2%;
-}
-
-p {
-  padding: 1%;
-  width: 100%;
-  font-size: 14pt;
-  font-weight: 300;
-}
-
-button {
-  background-color: #694cd2;
-  color: #ffffff;
-  width: 40%;
-  height: 25%;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  margin-bottom: 2vh;
-  font-size: 14pt;
-}
-
-input {
-  display: block;
-  width: 40%;
-  background-color: #f4f3f8;
-  height: 25%;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  margin-bottom: 2vh;
-  text-align: center;
-  font-size: 14pt;
-}
-
-#result-box {
-  width: 40%;
-  background-color: #f4f4f6;
-  border-radius: 25px 25px 0 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2%;
-  display: flex;
-  flex-direction: column-reverse;
   justify-content: start;
+
 }
 
-@font-face {
-  font-family: "lobster";
-  src: url("../fonts/Lobster/Lobster_1.3.otf");
+.logo {
+  width: 40%;
+}
+.profile-section {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #979aa1;
+}
+.profile-pic {
+  /* background-image: url('../images/profile-pic.jpg'); */
+  width: 20%;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100px; */
+  /* border-radius: 50%; */
+}
+.profile-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  outline: 1px solid gray;
+  padding: 2px;
+}
+.username{
+  margin-right: 2%;
+}
+.menu-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  color: #979aa1;
 }
 
-@font-face {
-  font-family: "roboto-reg";
-  src: url("../fonts/roboto-slab/RobotoSlab-Regular.ttf");
+.underline-active:hover {
+  border-bottom: 5px solid #a02247;
+  color: white;
+}
+
+.menu-nav li {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.search-form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  background: #2a2d32;
+}
+
+.search-input {
+  position: absolute;
+  top: 5px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: white;
+  width: 195px;
+  height: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.search-button {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none !important;
+  cursor: pointer;
+
+}
+main{
+  width: 100%;
+  height: 92vh;
+}
+.game-showbox{
+  width: 100%;
+  height: 60%;
+}
+.card-container{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  width: 30%;
+  height: 90%;
+  background-color: #979aa1;
+  border-radius: 5px;
+}
+.game-slider {
+  width: 100%;
+  height: 40%;
+}
+.w-30 {
+  width: 30%;
+}
+
+.w-10 {
+  width: 10%;
 }
