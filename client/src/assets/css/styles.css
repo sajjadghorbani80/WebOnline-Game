@@ -9,7 +9,7 @@ body {
   background-color: rgb(12, 17, 26);
 }
 
-.app-container {
+header {
   width: 100%;
   height: 8vh;
   background-color: rgb(10, 15, 21);
@@ -27,8 +27,12 @@ body {
 .logo-section {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #e7e9f6;
+  justify-content: start;
+
+}
+
+.logo {
+  width: 40%;
 }
 
 .main {
@@ -107,15 +111,6 @@ label {
   margin-right: 2%;
 }
 
-.menu-nav {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  height: 65%;
-  padding-top: 5%;
-}
 
 h1 {
   font-family: lobster;
@@ -126,15 +121,6 @@ h2 {
   font-size: 14pt;
   font-weight: 300;
   margin-bottom: 2%;
-}
-
-.menu-nav li {
-  width: auto;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10%;
 }
 
 button {
@@ -354,4 +340,103 @@ main {
 @font-face {
   font-family: "BebasNeue";
   src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
+}
+
+.menu-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 100%;
+  color: #979aa1;
+}
+
+.underline-active:hover {
+  border-bottom: 5px solid #a02247;
+  color: white;
+}
+
+.menu-nav li {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10%;
+}
+
+
+.search-form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  background: #2a2d32;
+}
+
+.search-input {
+  position: absolute;
+  top: 5px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: white;
+  width: 195px;
+  height: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.search-button {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none !important;
+  cursor: pointer;
+
+}
+main{
+  width: 100%;
+  height: 92vh;
+}
+.game-showbox{
+  width: 100%;
+  height: 60%;
+}
+.card-container{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  width: 30%;
+  height: 90%;
+  background-color: #979aa1;
+  border-radius: 5px;
+}
+.game-slider {
+  width: 100%;
+  height: 40%;
+}
+.w-30 {
+  width: 30%;
+}
+
+.w-10 {
+  width: 10%;
 }
