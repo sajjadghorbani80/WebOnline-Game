@@ -17,6 +17,49 @@ body {
   background-color: #e7e9f6;
 }
 
+#game-scene {
+  display: none;
+}
+
+#restart-scene {
+  align-items: center;
+}
+
+#start-btn,
+#exit-btn {
+  margin-top: 0;
+}
+
+#home-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+}
+#guide-btn{
+  position: absolute;
+  bottom: 20px;
+  left: 90px;
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+}
+.button-container {
+  width: 40%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  width: 45%;
+  height: 70%;
+  cursor: pointer;
+}
+
 .main {
   background-color: #ffffff;
   width: 50%;
@@ -48,7 +91,7 @@ body {
 
 .user-input {
   width: 100%;
-  height: 35%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,7 +108,7 @@ label {
 
 .show-result {
   width: 100%;
-  height: 65%;
+  height: 60%;
   padding-top: 5%;
 }
 
@@ -92,23 +135,23 @@ button {
   background-color: #694cd2;
   color: #ffffff;
   width: 40%;
-  height: 25%;
+  height: 45%;
   outline: none;
   border: none;
   border-radius: 25px;
-  margin-bottom: 2vh;
+  margin-top: 2vh;
   font-size: 14pt;
+  cursor: pointer;
 }
 
 input {
   display: block;
   width: 40%;
   background-color: #f4f3f8;
-  height: 25%;
+  height: 45%;
   outline: none;
   border: none;
   border-radius: 25px;
-  margin-bottom: 2vh;
   text-align: center;
   font-size: 14pt;
 }
