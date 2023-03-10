@@ -27,11 +27,31 @@ function sendRequest() {
   })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.result);
-        setMessageByCode(data.result);
+        if (data.status==400) {
+          const firstError = data.errors.errors[0].msg;
+          showError(firstError);
+        } else {
+          setMessageByCode(data.result);
+        }
       });
 }
-
+function showError(errorMsg) {
+  console.log(errorMsg);
+  switch (errorMsg) {
+    case 'guessnumber.input.empty':
+      alert('مقدار ورودی نمی‌تواند خالی باشد.');
+      break;
+    case 'guessnumber.input.isNotInt':
+      alert('مقدار ورودی فقط می‌تواند عدد صحیح باشد.');
+      break;
+    case 'guessnumber.input.invalidRange':
+      alert('مقدار ورودی باید عددی بین 0 تا 100 باشد.');
+      break;
+    default:
+      alert('مقدار ورودی نامعتبر است.');
+      break;
+  }
+}
 function setMessageByCode(resultDto) {
   switch (resultDto.status) {
     case 0:

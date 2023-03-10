@@ -3,8 +3,10 @@
 export class ResponseDto {
   status;
   result;
-  constructor(status, result) {
+  errors;
+  constructor(status, result, errors) {
     this.status = status;
     this.result = result;
+    this.errors= errors;
   }
 }
