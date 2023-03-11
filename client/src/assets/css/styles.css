@@ -3,133 +3,102 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: "Poppins", sans-serif;
+  background: #131313;
 }
 
-.app-container {
+.container {
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e7e9f6;
 }
 
-.main {
-  background-color: #ffffff;
-  width: 50%;
+.toolbarContainer {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+}
+.toolBar {
+  width: 92%;
+  background-color: #ffffffa4;
+  border-radius: 10px;
+  margin: 1%;
+}
+
+.content-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.left-container {
+  width: 65%;
   height: 80vh;
-  text-align: center;
-  border-radius: 4%;
+  margin: 1%;
+}
+
+.right-container {
+  width: 25%;
+  height: 80vh;
   display: flex;
-  flex-direction: column;
+  justify-content: right;
+  margin: 1%;
+}
+
+.top {
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  justify-content: right;
+}
+
+.under {
+  width: 100%;
+  height: 35vh;
+  display: flex;
   justify-content: center;
+  margin-top: 3%;
 }
-
-.logo-container {
+.slider {
   width: 100%;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: #694cd2; */
-}
-
-.game-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 70%;
-  /* background-color: bisque; */
-}
-
-.user-input {
-  width: 100%;
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-label {
-  width: 40%;
-  text-align: left;
-  color: #817e7e;
-  margin-bottom: 2vh;
-  font-size: 11pt;
-}
-
-.show-result {
-  width: 100%;
-  height: 65%;
-  padding-top: 5%;
-}
-
-h1 {
-  font-family: lobster;
-  font-size: 45pt;
-  color: #694ad3;
-}
-h2 {
-  font-size: 14pt;
-  font-weight: 300;
-  margin-bottom: 2%;
-}
-
-p {
-  padding: 1%;
-  width: 100%;
-  font-size: 14pt;
-  font-weight: 300;
-}
-
-button {
-  background-color: #694cd2;
-  color: #ffffff;
-  width: 40%;
-  height: 25%;
-  outline: none;
-  border: none;
+  height: 45vh;
+  background-color: #ffffffa4;
   border-radius: 25px;
-  margin-bottom: 2vh;
-  font-size: 14pt;
 }
 
-input {
-  display: block;
-  width: 40%;
-  background-color: #f4f3f8;
-  height: 25%;
-  outline: none;
-  border: none;
+.topPlayer {
+  width: 100%;
+  height: 85vh;
+  background-color: #ffffffa4;
   border-radius: 25px;
-  margin-bottom: 2vh;
-  text-align: center;
-  font-size: 14pt;
 }
+.gameBoxs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.box1 {
+  width: 30%;
+  height: 35vh;
+  background-image: url(../images/guess-the-numbers.jpg);
+  border-radius: 25px;
+  
+}
+.box2 {
+    width: 30%;
+    height: 35vh;
+    background-image: url(../images/guess-the-numbers.jpg);
+    border-radius: 25px;
+  }
+  .box3 {
+    width: 30%;
+    height: 35vh;
+    background-image: url(../images/guess-the-numbers.jpg);
+    border-radius: 25px;
+  }
 
-#result-box {
-  width: 40%;
-  background-color: #f4f4f6;
-  border-radius: 25px 25px 0 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: start;
-}
 
-@font-face {
-  font-family: "lobster";
-  src: url("../fonts/Lobster/Lobster_1.3.otf");
+.img {
+  width: 100%;
+  display: none;
 }
-
-@font-face {
-  font-family: "roboto-reg";
-  src: url("../fonts/roboto-slab/RobotoSlab-Regular.ttf");
-}
+    

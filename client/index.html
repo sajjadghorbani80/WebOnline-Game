@@ -5,39 +5,42 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
   <link rel="stylesheet" href="./src/assets/css/styles.css">
-  <title>Guess Number</title>
+  <title>Home</title>
 </head>
 
 <body>
-  <div class="app-container">
-    <!--////////////////////////////////////////////////// ‌Game Box /////////////////////////////////////////////////// -->
-    <div class="main">
-      <div class="logo-container">
-        <h1>Guess Number</h1>
-      </div>
-      <div class="game-container">
-        <div class="user-input">
-          <h2>I am thinking of a number Between 0-100<br></h2>
-          <h2>Can you Guess it?</h2>
-          <input id="guessinput" type="text">
-          <button id="submit">submit</button>
+  <div class="container">
+    <div class="toolbarContainer">
+      <div class="toolBar"></div>
+    </div>
+    <div class="content-container">
+      <div class="left-container">
+        <div class="top">
+          <div class="slider">
+          </div>
         </div>
-        <!--Game result and scores shows in this p tags
-          1st p tag: message for game result
-          2nd p tag: message for show the number guessed by the user
-          3rd p tag: message for show remaining chances -->
-        <div class="show-result">
-          <p id="msg1"></p>
-          <p id="msg2"></p>
-          <p id="msg3"></p>
-        </div>
-      </div>
+        <div class="under">
+          <div class="gameBoxs">
+            <div class="box1">
+            </div>
+            <div class="box2">
+            </div>
+            <div class="box3">
+            </div>
 
+          </div>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="topPlayer">
+        </div>
+      </div>
     </div>
   </div>
-  <script type="module" src="./src/assets/js/guessNumber.js"></script>
+  </div>
+
+  <a href="./src/views/guessNumber.html" style="color: aliceblue;">click me</a>
 </body>
 
 </html>
