@@ -53,7 +53,7 @@ cd server
 8. Change server port (optional)<br>
 By default, the server uses port 80. Follow the steps below to change it:<br>
 8-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
-8-2. Put the following value inside it:<br>
+8-2. Open it with a Text Editor, then paste the following value inside it and save:<br>
 
 ```bash
 PORT=your arbitrary port
