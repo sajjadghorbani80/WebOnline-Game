@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/*////////////////////////////////////////////// Containers //////////////////////////////////////////////*/
+
+.app-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2e2f30;
+}
+
+.main-left {
+  background-color: #131313;
+  border: #202531a4 solid 2px;
+  width: 50%;
+  height: 80vh;
+  text-align: center;
+  border-radius: 4%;
+  display: flex;
+  justify-content: center;
+  margin-right: 10%;
+  box-shadow: 0 15px 25px #0000004a;
+}
+
+.main-right {
+  background-color: #131313;
+  border: #202531a4 solid 2px;
+  width: 25%;
+  height: 80vh;
+  text-align: center;
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  box-shadow: 0 15px 25px #0000004a;
+}
+
+/*////////////////////////////////////////////// Start styles //////////////////////////////////////////////*/
+
+.startGame {
+  width: 80%;
+  height: 100%;
+}
+
+/* button start game styles */
+.event {
+  width: 20%;
+  height: 50px;
+  background-color: #eb0745;
+  color: #131313;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
+}
+
+.startTitle {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40%;
+}
+
+.startButtons {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+/*////////////////////////////////////////////// Game Styles //////////////////////////////////////////////*/
+
+.logo-container {
+  width: 100%;
+  height: 30%;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+}
+
+.user-input {
+  width: 100%;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-result {
+  width: 100%;
+  height: 55%;
+  padding-top: 2%;
+}
+
+/*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
+
+h1 {
+  font-family: TiltWarp;
+  font-size: 60pt;
+  color: #eb0745;
+}
+h2 {
+  font-size: 22pt;
+  font-weight: 350;
+  margin-bottom: 2%;
+  color: #ffffff;
+}
+
+p {
+  padding: 1%;
+  width: 100%;
+  font-size: 22pt;
+  font-weight: 350;
+  color: #ffffff;
+}
+
+label {
+  width: 40%;
+  text-align: left;
+  color: #817e7e;
+  margin-bottom: 2vh;
+  font-size: 11pt;
+}
+
+.buttons {
+  background-color: #eb0745;
+  color: #131313;
+  width: 40%;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
+}
+
+input {
+  display: block;
+  width: 40%;
+  background-color: #f4f3f8;
+  height: 25%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  text-align: center;
+  font-size: 14pt;
+}
+
+a {
+  color: #131313;
+  text-decoration: none;
+}
+
+/*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
+
+@font-face {
+  font-family: "TiltWarp";
+  src: url("../fonts/TiltWarp-Regular.ttf");
+}

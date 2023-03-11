@@ -1,14 +1,34 @@
+/* eslint-disable linebreak-style */
+// eslint-disable-next-line linebreak-style
 /* eslint-disable new-cap */
 import {Router} from 'express';
 const router = Router();
-import {guessNumber} from '../src/services/guess-number.js';
+import {checkGuess, randomNumberMaker} from '../src/services/guess-number.js';
 import {ReqDto} from '../src/dtos/guessNumberDto.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
+import {validationResult, check} from 'express-validator';
 
-router.post('/guessNumber', (req, res) => {
+const validationRules = [check('guessValue').trim()
+    .escape().notEmpty().withMessage('guessnumber.input.empty').isInt()
+    .withMessage('guessnumber.input.isNotInt')
+    .custom((value)=> value >= 0 && value <=100? true : false)
+    .withMessage('guessnumber.input.invalidRange')];
+
+router.post('/guessnumber/checkGuess', validationRules, (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const response = new ResponseDto(400, null, errors);
+    return res.status(200).send(response);
+  }
   const data = new ReqDto(req.body.guessValue);
-  const result = guessNumber(data);
+  const result = checkGuess(data);
   const response = new ResponseDto(200, result);
+  res.status(200).send(response);
+});
+
+router.get('/guessnumber/restart-game', (req, res)=>{
+  randomNumberMaker();
+  const response = new ResponseDto(200, null);
   res.status(200).send(response);
 });
 
