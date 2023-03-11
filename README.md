@@ -4,20 +4,19 @@ This is the second version of the number guessing game. Improvements have been m
 <br>
 
 ## :seedling: Development stages of this version
-1. Using linter
+1. Use linter (ESLint)
 2. Add comment
 3. Add readme version 1
 4. Use env for config
-5. Using a router
+5. Use express router
 6. Use dto
 7. Implementation of start, restart, exit events
 8. Validation of entries
-9. Translation of messages and errors on the front
+9. Translation of messages and errors in front-end
 10. Use form/submit for old browsers
-11. Responsive front without framework
-12. UI improvements
-13. Additional readme version 2
-14. Merge each item after completion with branch v2
+11. UI improvements+
+12. Add readme version 2
+13. Merge each item after completion with branch v2
 
 
 
@@ -50,8 +49,21 @@ npm i
 ```bash
 cd server
 ```
-8. after that for run project write this command:
+
+8. Change server port (optional)<br>
+By default, the server uses port 80. Follow the steps below to change it:<br>
+8-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
+8-2. Put the following value inside it:<br>
+
+```bash
+PORT=your arbitrary port
+```
+example:
+```bash
+PORT=3000
+```
+9. after that for run project write this command:
 ```bash
 node app.js
 ```
-9. Go to this [localhost](http://localhost/) and here we go:smiley::muscle:
+9. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
