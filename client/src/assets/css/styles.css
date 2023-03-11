@@ -4,12 +4,30 @@
   box-sizing: border-box;
 }
 body {
-  background: #131313;
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(12, 17, 26);
 }
 
 .container {
   width: 100%;
-  height: 100vh;
+  height: 8vh;
+  background-color: rgb(10, 15, 21);
+}
+
+.header-container {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e7e9f6;
 }
 
 .toolbarContainer {
@@ -60,8 +78,106 @@ body {
 }
 .slider {
   width: 100%;
-  height: 45vh;
-  background-color: #ffffffa4;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #694cd2; */
+}
+
+.game-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+  /* background-color: bisque; */
+}
+
+.user-input {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  width: 40%;
+  text-align: left;
+  color: #817e7e;
+  margin-bottom: 2vh;
+  font-size: 11pt;
+}
+
+.profile-section {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #979aa1;
+}
+
+.profile-pic {
+  /* background-image: url('../images/profile-pic.jpg'); */
+  width: 20%;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100px; */
+  /* border-radius: 50%; */
+}
+
+.profile-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  outline: 1px solid gray;
+  padding: 2px;
+}
+
+.username {
+  margin-right: 2%;
+}
+
+.menu-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 65%;
+  padding-top: 5%;
+}
+
+h1 {
+  font-family: lobster;
+  font-size: 45pt;
+  color: #694ad3;
+}
+h2 {
+  font-size: 14pt;
+  font-weight: 300;
+  margin-bottom: 2%;
+}
+
+.menu-nav li {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10%;
+}
+
+button {
+  background-color: #694cd2;
+  color: #ffffff;
+  width: 40%;
+  height: 25%;
+  outline: none;
+  border: none;
   border-radius: 25px;
 }
 
@@ -96,9 +212,197 @@ body {
     border-radius: 25px;
   }
 
-
-.img {
+main {
   width: 100%;
-  display: none;
+  height: 92vh;
+}
+
+.game-showbox {
+  width: 100%;
+  height: 61%;
+  background-image: url('../images/metro-exodus-7c.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-position: center;
+}
+
+.game-showbox::after {
+  display: block;
+  content: "";
+  position: relative;
+  background: linear-gradient(0deg, rgba(12, 17, 26, 1) -1%, rgba(255, 255, 255, 0) 70%);
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+
+.description-box {
+  width: 40%;
+  height: 45%;
+  position: absolute;
+  left: 10%;
+  top: 12%;
+  z-index: 3;
+}
+
+.description-box h1 {
+  color: white;
+  font-size: 44pt;
+  font-family: 'BebasNeue';
+  line-height: 60px;
+}
+
+.game-description {
+  color: white;
+  font-family: 'roboto';
+  text-shadow: 2px 2px black;
+}
+
+.top {
+  height: 70%;
+  width: 100%;
+}
+
+.bottom {
+  height: 30%;
+  width: 100%;
+}
+
+.genres-box {
+  margin-top: 5px;
+  display: flex;
+}
+
+.primary-btn {
+  background-color: #eb0745;
+  color: white;
+  width: 40%;
+  height: 5vh;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.genres-item {
+  width: 20%;
+  background-color: #292F33;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.795);
+  font-family: 'roboto';
+  text-align: center;
+}
+
+.card-container {
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 30%;
+  height: 90%;
+  background-color: #979aa1;
+  border-radius: 10px;
+
+}
+
+.card:nth-child(odd) {
+  scale: 0.8;
+  filter: blur(2px);
+  background-color: #787a7e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+  font-family: Tahoma;
+}
+
+.game-slider {
+  width: 100%;
+  height: 39%;
+}
+
+.card-image-container {
+  width: 100%;
+  height: 100%;
+  /* background-image: url('../images/metro.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+  border-radius: inherit;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.bottom-card-container {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  bottom: 25%;
+  background-color: rgba(128, 128, 128, 0.8);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card-title {
+  width: 50%;
+  height: 100%;
+}
+
+.card-button-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.bottom-card-container a {
+  text-decoration: none;
+  margin-left: 5%;
+  display: block;
+  width: 25%;
+  height: 100%;
+}
+
+.card-button-container a span {
+  display: flex;
+  color: white;
+  font-size: 20px;
+  background-color: #db1349;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url('../fonts/roboto-slab/RobotoSlab-Regular.ttf');
+}
+
+@font-face {
+  font-family: "BebasNeue";
+  src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
 }
     

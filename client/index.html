@@ -1,46 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/assets/css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/1dca7e92a5.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Web Online Game</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./src/assets/css/styles.css">
-  <title>Home</title>
-</head>
-
-<body>
-  <div class="container">
-    <div class="toolbarContainer">
-      <div class="toolBar"></div>
-    </div>
-    <div class="content-container">
-      <div class="left-container">
-        <div class="top">
-          <div class="slider">
+  <body>
+    <div class="app-container">
+      <header>
+        <div class="header-container">
+          <div class="logo-section w-10">
+            <img class="logo" src="./src/assets/images/pslogo.png" alt="" />
+          </div>
+          <div class="menu-section w-30">
+            <ul class="menu-nav">
+              <li class="underline-active">Home</li>
+              <li class="underline-active">Scoreboard</li>
+            </ul>
+          </div>
+          <div class="search-section w-30">
+            <form class="search-form">
+              <input
+                type="search"
+                value=""
+                placeholder="Search"
+                class="search-input"
+              />
+              <button type="submit" class="search-button">
+                <span style="color: white">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </button>
+            </form>
+          </div>
+          <div class="profile-section w-30">
+            <div class="username">
+              <p>Sajjad Ghorbani</p>
+            </div>
+            <img
+              class="profile-circle"
+              src="./src/assets/images/profile-pic.jpg"
+              alt=""
+            />
           </div>
         </div>
-        <div class="under">
-          <div class="gameBoxs">
-            <div class="box1">
+      </header>
+      <main>
+        <div class="game-showbox">
+          <div class="description-box">
+            <div class="top">
+              <h1>Guess<br />Number</h1>
+              <p class="game-description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatem blanditiis sequi fugiat, iure culpa eum dolores,
+                tenetur harum exercitationem quis ut! Incidunt perspiciatis
+                dicta quos minima! Ipsum repellat soluta beatae?
+              </p>
             </div>
-            <div class="box2">
+            <div class="bottom">
+              <div class="genres-box">
+                <h3
+                  style="color: white; font-family: 'roboto'; font-size: 12pt"
+                >
+                  GENRES:
+                </h3>
+                <div class="genres-item">Family</div>
+                <div class="genres-item">Casual</div>
+              </div>
+              <br />
+              <div>
+                <a href="/src/views/guessNumber.html">
+                  <button class="primary-btn">
+                      <i class="fa-solid fa-play"></i>
+                    Play
+                  </button>
+                </a>
+                <a href="#">
+                  <button class="primary-btn" style="width: 10%">
+                    <i class="fa-solid fa-trophy"></i>
+                  </button>
+              </a>
+              </div>
             </div>
-            <div class="box3">
-            </div>
-
           </div>
         </div>
-      </div>
-      <div class="right-container">
-        <div class="topPlayer">
+        <div class="game-slider">
+          <div class="card-container">
+            <div class="card">
+              <p>Coming Soon...</p>
+            </div>
+            <div class="card">
+              <div class="card-image-container">
+                <img src="./src/assets/images/metro.jpg" alt="" />
+              </div>
+              <div class="bottom-card-container">
+                <div class="card-title" style="color: white">
+                  <h3 style="font-size: 11pt; font-family: roboto">
+                    Guess Number
+                  </h3>
+                  <p style="font-family: roboto">+3</p>
+                </div>
+                <div class="card-button-container">
+                  <a href="/src/views/guessNumber.html">
+                    <span>
+                      <i class="fa-solid fa-play"></i>
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span>
+                      <i class="fa-solid fa-trophy"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <p>Coming Soon...</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
-  </div>
-  </div>
-
-  <a href="./src/views/guessNumber.html" style="color: aliceblue;">click me</a>
-</body>
-
+  </body>
 </html>
