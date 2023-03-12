@@ -108,7 +108,7 @@ function showError(errorMsg) {
 
 function sendRequest() {
   const http = new XMLHttpRequest();
-  const url = '/api/guessNumber/checkGuess';
+  const url = '/api/guessnumber/checkanswer';
   const params = new ReqDto(input.value);
   http.open('POST', url, true);
 
@@ -117,7 +117,7 @@ function sendRequest() {
   http.onload = function() {
     const result = JSON.parse(http.response);
     if (result.status==400) {
-      const firstError = result.error.errors[0].msg;
+      const firstError = result.errors.errors[0].msg;
       showError(firstError);
     } else {
       setMessageByCode(result.result);
