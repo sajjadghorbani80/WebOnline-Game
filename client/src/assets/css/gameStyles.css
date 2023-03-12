@@ -63,6 +63,7 @@ body {
   border-radius: 25px;
   margin-bottom: 2vh;
   font-size: 14pt;
+  cursor: pointer;
 }
 
 .startTitle {
@@ -116,6 +117,14 @@ body {
   padding-top: 2%;
 }
 
+/*////////////////////////////////////////////// End styles //////////////////////////////////////////////*/
+
+.endGame {
+  width: 80%;
+  height: 100%;
+  margin-top: 30%;
+}
+
 /*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
 
 h1 {
@@ -156,6 +165,7 @@ label {
   border-radius: 25px;
   margin-bottom: 2vh;
   font-size: 14pt;
+  cursor: pointer;
 }
 
 input {
@@ -176,6 +186,14 @@ a {
   text-decoration: none;
 }
 
+/*////////////////////////////////////////////// Home icon //////////////////////////////////////////////*/
+
+.homeIcon {
+  position: absolute;
+  top:20px;
+  left: 20px;
+
+}
 /*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
 
 @font-face {

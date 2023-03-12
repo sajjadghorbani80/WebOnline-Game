@@ -6,46 +6,55 @@ const input = document.getElementById('guessinput');
 const ptag1 = document.getElementById('msg1');
 const ptag2 = document.getElementById('msg2');
 const ptag3 = document.getElementById('msg3');
-const start = document.getElementById('start');
+const startBtn = document.getElementById('start');
 const startGameDiv = document.getElementById('startGame');
-const game = document.getElementById('game');
-const end = document.getElementById('endGame');
+const gameDiv = document.getElementById('game');
+const endDiv = document.getElementById('endGame');
 const restart = document.getElementById('restart');
-game.style.display = 'none';
+const homeBtn = document.getElementById('homeIcon');
+const message1 = document.getElementById('message1');
+const message2 = document.getElementById('message2');
 
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
   fetch('/api/guessnumber/restart-game', {
     method: 'GET',
-  })
-      .then(resetElements());
+  });
 }
 
 // start event
-start.addEventListener('click', () => {
+startBtn.addEventListener('click', () => {
   startGame();
-  if (game.style.display === 'none') {
-    game.style.display = 'block';
-  } else {
-    game.style.display = 'none';
-  }
-  const buttons = document.getElementById('startGame');
-  buttons.style.display = 'none';
-});
-
-function resetElements() {
+  gameDiv.style.display = 'block';
+  startGameDiv.style.display = 'none';
   ptag1.innerHTML = '';
   ptag2.innerHTML = '';
   ptag3.innerHTML = '';
   input.value = '';
-  end.style.display = 'none';
-}
+  endDiv.style.display = 'none';
+});
+
 // reset event
 restart.addEventListener('click', () => {
-  game.style.display = 'none';
-  startGameDiv.style.display = 'block';
+  startGame();
+  gameDiv.style.display = 'block';
+  startGameDiv.style.display = 'none';
+  endDiv.style.display = 'none';
+  homeBtn.style.display = 'block';
 });
+
+function startAgian(msg1, msg2) {
+  ptag1.innerHTML = '';
+  ptag2.innerHTML = '';
+  ptag3.innerHTML = '';
+  input.value = '';
+  homeBtn.style.display = 'none';
+  gameDiv.style.display = 'none';
+  endDiv.style.display = 'block';
+  message1.innerHTML = msg1;
+  message2.innerHTML = msg2;
+}
 
 /* //////////////////////////// Game message //////////////////////// */
 
@@ -53,15 +62,11 @@ restart.addEventListener('click', () => {
 function setMessageByCode(resultDto) {
   switch (resultDto.status) {
     case 0:
-      ptag1.innerHTML = 'You lose :(';
-      ptag2.innerHTML = 'the Number was ' + resultDto.randomNumber;
-      ptag3.innerHTML = 'Do you wanna paly again?';
-      end.style.display = 'block';
+      startAgian('You lose :(', 'the Number was ' + resultDto.randomNumber);
       break;
     case 1:
-      ptag1.innerHTML = 'Yahhhh You won It!!';
-      ptag2.innerHTML = 'the Number was ' + resultDto.randomNumber;
-      ptag3.innerHTML = '';
+      startAgian('Yahhhh You won It!!', 'the Number was ' +
+      resultDto.randomNumber);
       break;
     case 2:
       ptag1.innerHTML = 'Your Guess is Too low';
@@ -83,7 +88,7 @@ function showError(errorMsg) {
   console.log(errorMsg);
   switch (errorMsg) {
     case 'guessnumber.input.empty':
-      alert('input can not be empty');
+      alert('Input can not be empty');
       break;
     case 'guessnumber.input.isNotInt':
       alert('The entered number must be Integer');
