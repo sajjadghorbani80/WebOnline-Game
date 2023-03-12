@@ -10,3 +10,4 @@ export class ResponseDto {
     this.errors= errors;
   }
 }
+

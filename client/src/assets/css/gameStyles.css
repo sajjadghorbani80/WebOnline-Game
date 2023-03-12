@@ -8,76 +8,90 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+/*////////////////////////////////////////////// Containers //////////////////////////////////////////////*/
+
 .app-container {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e7e9f6;
+  background-color: #2e2f30;
 }
 
-#game-scene {
-  display: none;
-}
-
-#restart-scene {
-  align-items: center;
-}
-
-#start-btn,
-#exit-btn {
-  margin-top: 0;
-}
-
-#home-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: 65px;
-  height: 65px;
-  cursor: pointer;
-}
-#guide-btn{
-  position: absolute;
-  bottom: 20px;
-  left: 90px;
-  width: 65px;
-  height: 65px;
-  cursor: pointer;
-}
-.button-container {
-  width: 40%;
-  height: 15%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn {
-  width: 45%;
-  height: 70%;
-  cursor: pointer;
-}
-
-.main {
-  background-color: #ffffff;
+.main-left {
+  background-color: #131313;
+  border: #202531a4 solid 2px;
   width: 50%;
   height: 80vh;
   text-align: center;
   border-radius: 4%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  margin-right: 10%;
+  box-shadow: 0 15px 25px #0000004a;
 }
+
+.main-right {
+  background-color: #131313;
+  border: #202531a4 solid 2px;
+  width: 25%;
+  height: 80vh;
+  text-align: center;
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  box-shadow: 0 15px 25px #0000004a;
+}
+
+/*////////////////////////////////////////////// Start styles //////////////////////////////////////////////*/
+
+.startGame {
+  width: 80%;
+  height: 100%;
+}
+
+/* button start game styles */
+.event {
+  width: 20%;
+  height: 50px;
+  background-color: #eb0745;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
+  cursor: pointer;
+}
+
+.startTitle {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40%;
+}
+
+.startButtons {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+/*////////////////////////////////////////////// Game Styles //////////////////////////////////////////////*/
 
 .logo-container {
   width: 100%;
   height: 30%;
+  margin-top: 15%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: #694cd2; */
 }
 
 .game-container {
@@ -86,16 +100,51 @@ body {
   flex-direction: column;
   align-items: center;
   height: 70%;
-  /* background-color: bisque; */
 }
 
 .user-input {
   width: 100%;
-  height: 40%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.show-result {
+  width: 100%;
+  height: 55%;
+  padding-top: 2%;
+}
+
+/*////////////////////////////////////////////// End styles //////////////////////////////////////////////*/
+
+.endGame {
+  width: 80%;
+  height: 100%;
+  margin-top: 30%;
+}
+
+/*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
+
+h1 {
+  font-family: TiltWarp;
+  font-size: 42pt;
+  color: #eb0745;
+}
+h2 {
+  font-size: 22pt;
+  font-weight: 350;
+  margin-bottom: 2%;
+  color: #ffffff;
+}
+
+p {
+  padding: 1%;
+  width: 100%;
+  font-size: 22pt;
+  font-weight: 350;
+  color: #ffffff;
 }
 
 label {
@@ -106,40 +155,15 @@ label {
   font-size: 11pt;
 }
 
-.show-result {
-  width: 100%;
-  height: 60%;
-  padding-top: 5%;
-}
-
-h1 {
-  font-family: lobster;
-  font-size: 45pt;
-  color: #694ad3;
-}
-
-h2 {
-  font-size: 14pt;
-  font-weight: 300;
-  margin-bottom: 2%;
-}
-
-p {
-  padding: 1%;
-  width: 100%;
-  font-size: 14pt;
-  font-weight: 300;
-}
-
-button {
-  background-color: #694cd2;
+.buttons {
+  background-color: #eb0745;
   color: #ffffff;
   width: 40%;
-  height: 45%;
+  height: 25%;
   outline: none;
   border: none;
   border-radius: 25px;
-  margin-top: 2vh;
+  margin-bottom: 2vh;
   font-size: 14pt;
   cursor: pointer;
 }
@@ -148,32 +172,31 @@ input {
   display: block;
   width: 40%;
   background-color: #f4f3f8;
-  height: 45%;
+  height: 25%;
   outline: none;
   border: none;
   border-radius: 25px;
+  margin-bottom: 2vh;
   text-align: center;
   font-size: 14pt;
 }
 
-#result-box {
-  width: 40%;
-  background-color: #f4f4f6;
-  border-radius: 25px 25px 0 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: start;
+a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
-@font-face {
-  font-family: "lobster";
-  src: url("../fonts/Lobster/Lobster_1.3.otf");
+/*////////////////////////////////////////////// Home icon //////////////////////////////////////////////*/
+
+.homeIcon {
+  position: absolute;
+  top:20px;
+  left: 20px;
+
 }
+/*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
 
 @font-face {
-  font-family: "roboto-reg";
-  src: url("../fonts/roboto-slab/RobotoSlab-Regular.ttf");
+  font-family: "TiltWarp";
+  src: url("../fonts/TiltWarp-Regular.ttf");
 }
