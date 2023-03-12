@@ -5,7 +5,6 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   background-color: rgb(12, 17, 26);
 }
 
@@ -43,14 +42,11 @@ header {
 }
 
 .profile-pic {
-  /* background-image: url('../images/profile-pic.jpg'); */
   width: 20%;
   text-align: right;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100px; */
-  /* border-radius: 50%; */
 }
 
 .profile-circle {
@@ -168,14 +164,14 @@ main {
 .description-box h1 {
   color: white;
   font-size: 44pt;
-  font-family: 'BebasNeue';
+  font-family: 'TiltWarp-Regular';
   line-height: 60px;
 }
 
 .game-description {
   color: white;
-  font-family: 'roboto';
   text-shadow: 2px 2px black;
+  font-size: 14pt;
 }
 
 .top {
@@ -209,7 +205,6 @@ main {
   margin-left: 10px;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.795);
-  font-family: 'roboto';
   text-align: center;
 }
 
@@ -238,7 +233,6 @@ main {
   justify-content: center;
   align-items: center;
   font-size: 16pt;
-  font-family: Tahoma;
 }
 
 .game-slider {
@@ -279,6 +273,11 @@ main {
   height: 100%;
 }
 
+h3 {
+  font-size: 11pt;
+  color: white;
+}
+
 .card-button-container {
   width: 50%;
   height: 100%;
@@ -316,11 +315,11 @@ main {
 }
 
 @font-face {
-  font-family: "roboto";
-  src: url('../fonts/roboto-slab/RobotoSlab-Regular.ttf');
+  font-family: "BebasNeue";
+  src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
 }
 
 @font-face {
-  font-family: "BebasNeue";
+  font-family: "TiltWarp-Regular";
   src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
 }
