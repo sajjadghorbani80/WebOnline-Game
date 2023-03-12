@@ -315,11 +315,6 @@ h3 {
 }
 
 @font-face {
-  font-family: "BebasNeue";
-  src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
-}
-
-@font-face {
   font-family: "TiltWarp-Regular";
-  src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
+  src: url('../fonts/TiltWarp-Regular.ttf');
 }
