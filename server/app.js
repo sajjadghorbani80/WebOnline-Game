@@ -11,7 +11,8 @@ const port = process.env.PORT || 80;
 
 app.use(express.json());
 /*
-Alternative for __dirname in Node.js when using ES6 modules
+add static files
+there is no __dirname in ES6 modules
 */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
