@@ -129,7 +129,7 @@ body {
 
 h1 {
   font-family: TiltWarp;
-  font-size: 60pt;
+  font-size: 42pt;
   color: #eb0745;
 }
 h2 {
@@ -166,14 +166,6 @@ label {
   margin-bottom: 2vh;
   font-size: 14pt;
   cursor: pointer;
-}
-
-.inputButtons {
-  background-color: #ffffff;
-  width: 40%;
-  height: 25%;
-  border-radius: 25px;
-  color: #000;
 }
 
 input {

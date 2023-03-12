@@ -3,7 +3,8 @@
 /* eslint-disable new-cap */
 import {Router} from 'express';
 const router = Router();
-import {checkGuess, randomNumberMaker} from '../src/services/guess-number.js';
+import {checkGuess, randomNumberMaker}
+  from '../src/services/guessNumberService.js';
 import {ReqDto} from '../src/dtos/guessNumberDto.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
 import {validationResult, check} from 'express-validator';

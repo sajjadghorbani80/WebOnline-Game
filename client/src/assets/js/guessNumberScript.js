@@ -93,7 +93,7 @@ function showError(errorMsg) {
       alert('Input can not be empty');
       break;
     case 'guessnumber.input.isNotInt':
-      alert('The entered number must be Integer');
+      alert('The entered value must be integer');
       break;
     case 'guessnumber.input.invalidRange':
       alert('Please guess number between 0 to 100!');
