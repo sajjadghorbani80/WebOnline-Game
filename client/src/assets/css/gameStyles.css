@@ -57,7 +57,7 @@ body {
   width: 20%;
   height: 50px;
   background-color: #eb0745;
-  color: #131313;
+  color: #ffffff;
   outline: none;
   border: none;
   border-radius: 25px;
@@ -157,7 +157,7 @@ label {
 
 .buttons {
   background-color: #eb0745;
-  color: #131313;
+  color: #ffffff;
   width: 40%;
   height: 25%;
   outline: none;
@@ -166,6 +166,14 @@ label {
   margin-bottom: 2vh;
   font-size: 14pt;
   cursor: pointer;
+}
+
+.inputButtons {
+  background-color: #ffffff;
+  width: 40%;
+  height: 25%;
+  border-radius: 25px;
+  color: #000;
 }
 
 input {
@@ -182,7 +190,7 @@ input {
 }
 
 a {
-  color: #131313;
+  color: #ffffff;
   text-decoration: none;
 }
 

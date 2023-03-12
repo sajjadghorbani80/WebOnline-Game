@@ -14,13 +14,15 @@ const restart = document.getElementById('restart');
 const homeBtn = document.getElementById('homeIcon');
 const message1 = document.getElementById('message1');
 const message2 = document.getElementById('message2');
-
+const form = document.getElementById('form');
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
-  fetch('/api/guessnumber/restart-game', {
-    method: 'GET',
-  });
+  const http = new XMLHttpRequest();
+  const url = '/api/guessnumber/restart-game';
+  http.open('GET', url, true);
+  http.setRequestHeader('Content-Type', 'application/json');
+  http.send();
 }
 
 // start event
@@ -105,25 +107,28 @@ function showError(errorMsg) {
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
-  const data = new ReqDto(input.value);
-  fetch('/api/guessNumber/checkGuess', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status==400) {
-          const firstError = data.error.errors[0].msg;
-          showError(firstError);
-        } else {
-          setMessageByCode(data.result);
-        }
-      });
+  const http = new XMLHttpRequest();
+  const url = '/api/guessNumber/checkGuess';
+  const params = new ReqDto(input.value);
+  http.open('POST', url, true);
+
+  http.setRequestHeader('Content-Type', 'application/json');
+  http.send(JSON.stringify(params));
+  http.onload = function() {
+    const result = JSON.parse(http.response);
+    if (result.status==400) {
+      const firstError = result.error.errors[0].msg;
+      showError(firstError);
+    } else {
+      setMessageByCode(result.result);
+    }
+  };
 }
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  console.log('Form submission cancelled.');
+});
 btn.addEventListener('click', sendRequest);
 
 
