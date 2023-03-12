@@ -3,12 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: rgb(12, 17, 26);
 }
 
-.container {
+header {
   width: 100%;
   height: 8vh;
   background-color: rgb(10, 15, 21);
@@ -34,87 +35,6 @@ body {
   width: 40%;
 }
 
-.toolbarContainer {
-  width: 100%;
-  height: 90px;
-  display: flex;
-  justify-content: center;
-}
-.toolBar {
-  width: 92%;
-  background-color: #ffffffa4;
-  border-radius: 10px;
-  margin: 1%;
-}
-
-.content-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.left-container {
-  width: 65%;
-  height: 80vh;
-  margin: 1%;
-}
-
-.right-container {
-  width: 25%;
-  height: 80vh;
-  display: flex;
-  justify-content: right;
-  margin: 1%;
-}
-
-.top {
-  width: 100%;
-  height: 45vh;
-  display: flex;
-  justify-content: right;
-}
-
-.under {
-  width: 100%;
-  height: 35vh;
-  display: flex;
-  justify-content: center;
-  margin-top: 3%;
-}
-.slider {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: #694cd2; */
-}
-
-.game-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 70%;
-  /* background-color: bisque; */
-}
-
-.user-input {
-  width: 100%;
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-label {
-  width: 40%;
-  text-align: left;
-  color: #817e7e;
-  margin-bottom: 2vh;
-  font-size: 11pt;
-}
-
 .profile-section {
   display: flex;
   justify-content: end;
@@ -123,14 +43,11 @@ label {
 }
 
 .profile-pic {
-  /* background-image: url('../images/profile-pic.jpg'); */
   width: 20%;
   text-align: right;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100px; */
-  /* border-radius: 50%; */
 }
 
 .profile-circle {
@@ -145,58 +62,70 @@ label {
   margin-right: 2%;
 }
 
-
-h1 {
-  font-family: lobster;
-  font-size: 45pt;
-  color: #694ad3;
-}
-h2 {
-  font-size: 14pt;
-  font-weight: 300;
-  margin-bottom: 2%;
-}
-
-button {
-  background-color: #694cd2;
-  color: #ffffff;
-  width: 40%;
-  height: 25%;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-}
-
-.topPlayer {
+.menu-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: start;
   width: 100%;
-  height: 85vh;
-  background-color: #ffffffa4;
-  border-radius: 25px;
+  height: 100%;
+  color: #979aa1;
 }
-.gameBoxs {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+
+.underline-active:hover {
+  border-bottom: 5px solid #a02247;
+  color: white;
 }
-.box1 {
-  width: 30%;
-  height: 35vh;
-  background-image: url(../images/guess-the-numbers.jpg);
-  border-radius: 25px;
-  
+
+.menu-nav li {
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10%;
 }
-.box2 {
-    width: 30%;
-    height: 35vh;
-    background-image: url(../images/guess-the-numbers.jpg);
-    border-radius: 25px;
-  }
-  .box3 {
-    width: 30%;
-    height: 35vh;
-    background-image: url(../images/guess-the-numbers.jpg);
-    border-radius: 25px;
-  }
+
+.search-form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  background: #2a2d32;
+}
+
+.search-input {
+  position: absolute;
+  top: 5px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: white;
+  width: 195px;
+  height: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+}
+
+.search-button {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none !important;
+  cursor: pointer;
+
+}
 
 main {
   width: 100%;
@@ -316,9 +245,6 @@ main {
 .card-image-container {
   width: 100%;
   height: 100%;
-  /* background-image: url('../images/metro.jpg');
-  background-repeat: no-repeat;
-  background-size: cover; */
   border-radius: inherit;
 }
 
@@ -390,103 +316,4 @@ main {
 @font-face {
   font-family: "BebasNeue";
   src: url('../fonts/Bebas/BebasNeue-Regular.ttf');
-}
-
-.menu-nav {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  height: 100%;
-  color: #979aa1;
-}
-
-.underline-active:hover {
-  border-bottom: 5px solid #a02247;
-  color: white;
-}
-
-.menu-nav li {
-  width: auto;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10%;
-}
-
-
-.search-form {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  width: 350px;
-  height: 30px;
-  border-radius: 5px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translate(-50%, -50%);
-  background: #2a2d32;
-}
-
-.search-input {
-  position: absolute;
-  top: 5px;
-  left: 38px;
-  font-size: 14px;
-  background: none;
-  color: white;
-  width: 195px;
-  height: 20px;
-  border: none;
-  appearance: none;
-  outline: none;
-}
-
-.search-button {
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  height: 20px;
-  width: 20px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none !important;
-  cursor: pointer;
-
-}
-main{
-  width: 100%;
-  height: 92vh;
-}
-.game-showbox{
-  width: 100%;
-  height: 60%;
-}
-.card-container{
-  width: 80%;
-  height: 100%;
-  margin-left: 10%;
-  margin-right: 10%;
-  display: flex;
-  justify-content: space-between;
-}
-.card {
-  width: 30%;
-  height: 90%;
-  background-color: #979aa1;
-  border-radius: 5px;
-}
-.game-slider {
-  width: 100%;
-  height: 40%;
-}
-.w-30 {
-  width: 30%;
-}
-
-.w-10 {
-  width: 10%;
 }
