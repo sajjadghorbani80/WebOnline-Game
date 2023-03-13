@@ -27,23 +27,22 @@ This is the first version of the game project where you can guess the number. Up
 ## :arrow_forward: Run the project
 
 1. Download and install Node.js from [here](https://nodejs.org/en/download/)</li>
-2. Clone the project in your systeam with this command in terminal:
+2. Clone the project in your system with this command in terminal:
 ```bash
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
-3. then go to the v1 brench:
+3. Open Project folder in terminal
+4. then go to the v1 brench:
 ```bash
 git checkout v1
 ```
-4. Open Project folder in terminal
-5. Install dependencies with this command on terminal:</li>
-```bash
-npm i
-```
-
-6. In terminal go to server folder with this command:
+5. In terminal go to server folder with this command:
 ```bash
 cd server
+```
+6. Install dependencies with this command on terminal:</li>
+```bash
+npm i
 ```
 7. after that for run project write this command:
 ```bash
