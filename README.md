@@ -40,14 +40,13 @@ git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 git checkout v2
 ```
 5. Open Project folder in terminal
-6. Install dependencies with this command on terminal:</li>
-```bash
-npm i
-```
-
-7. In terminal go to server folder with this command:
+6. In terminal go to server folder with this command:
 ```bash
 cd server
+```
+7. Install dependencies with this command on terminal:</li>
+```bash
+npm i
 ```
 
 8. Change server port (optional)<br>
@@ -66,4 +65,4 @@ PORT=3000
 ```bash
 node app.js
 ```
-9. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
+10. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
