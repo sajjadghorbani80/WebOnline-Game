@@ -3,18 +3,19 @@
 import {ReqDto} from '../../dtos/guessNumberDto.js';
 const btn = document.getElementById('submit');
 const input = document.getElementById('guessinput');
-const ptag1 = document.getElementById('msg1');
-const ptag2 = document.getElementById('msg2');
-const ptag3 = document.getElementById('msg3');
-const startBtn = document.getElementById('start');
-const startGameDiv = document.getElementById('startGame');
-const gameDiv = document.getElementById('game');
-const endDiv = document.getElementById('endGame');
-const restart = document.getElementById('restart');
+const resultMessage1 = document.getElementById('pTag1');
+const resultMessage2 = document.getElementById('pTag2');
+const resultMessage3 = document.getElementById('pTag3');
+const gameDiv = document.getElementById('games');
 const homeBtn = document.getElementById('homeIcon');
+const headline = document.getElementById('headline');
 const message1 = document.getElementById('message1');
 const message2 = document.getElementById('message2');
+const message3 = document.getElementById('message3');
 const form = document.getElementById('form');
+const gameBtn = document.getElementById('gameBtn');
+const gameEvent = document.getElementById('gameEvent');
+const errorMessage = document.getElementById('errorMessage');
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
@@ -26,59 +27,65 @@ function startGame() {
 }
 
 // start event
-startBtn.addEventListener('click', () => {
+gameBtn.addEventListener('click', () => {
   startGame();
   gameDiv.style.display = 'block';
-  startGameDiv.style.display = 'none';
-  ptag1.innerHTML = '';
-  ptag2.innerHTML = '';
-  ptag3.innerHTML = '';
-  input.value = '';
-  endDiv.style.display = 'none';
-});
-
-// reset event
-restart.addEventListener('click', () => {
-  startGame();
-  gameDiv.style.display = 'block';
-  startGameDiv.style.display = 'none';
-  endDiv.style.display = 'none';
+  gameEvent.style.display = 'none';
+  resultMessage1.innerHTML = 'You haven\'t guessed yet!';
+  resultMessage2.innerHTML = 'Start game with your first GUESS!';
+  resultMessage3.innerHTML = 'Remaining Chances 5';
   homeBtn.style.display = 'block';
+  input.value = '';
 });
 
-function startAgian(msg1, msg2) {
-  ptag1.innerHTML = '';
-  ptag2.innerHTML = '';
-  ptag3.innerHTML = '';
-  input.value = '';
-  homeBtn.style.display = 'none';
-  gameDiv.style.display = 'none';
-  endDiv.style.display = 'block';
-  message1.innerHTML = msg1;
-  message2.innerHTML = msg2;
-}
 
+// this function add result game's messages to html
+function setMessageToHtml(ptag1, ptag2, ptag3, offDisplay, onDisplay) {
+  resultMessage1.innerHTML = ptag1;
+  resultMessage2.innerHTML = ptag2;
+  resultMessage3.innerHTML = ptag3;
+  headline.innerHTML = '';
+  message1.innerHTML = ptag1;
+  message2.innerHTML = ptag2;
+  message3.innerHTML = ptag3;
+  gameEvent.style.display = onDisplay;
+  homeBtn.style.display = offDisplay;
+  gameDiv.style.display = offDisplay;
+  errorMessage.style.display = 'none';
+}
 /* //////////////////////////// Game message //////////////////////// */
 
-// Send the correct answer to the user's guess
-function setMessageByCode(resultDto) {
+/* create result game's messages by status code and
+ set them in html with setMessageToHtml function */
+function messageGeneratorByCode(resultDto) {
   switch (resultDto.status) {
     case 0:
-      startAgian('You lose :(', 'the Number was ' + resultDto.randomNumber);
+      setMessageToHtml(
+          'You lose :(',
+          'the Number was ' + resultDto.randomNumber,
+          'Do You wanna play agian?',
+          'none',
+          'block');
       break;
     case 1:
-      startAgian('Yahhhh You won It!!', 'the Number was ' +
-      resultDto.randomNumber);
+      setMessageToHtml(
+          'Yahhhh You won It!!',
+          'the Number was ' + resultDto.randomNumber,
+          'Do You wanna play agian?',
+          'none',
+          'block');
       break;
     case 2:
-      ptag1.innerHTML = 'Your Guess is Too low';
-      ptag2.innerHTML = 'Your Guess ' + resultDto.guess;
-      ptag3.innerHTML = 'Remaining Chances ' + resultDto.chance;
+      setMessageToHtml(
+          'Your Guess is Too low',
+          'Your Guess ' + resultDto.guess,
+          'Remaining Chances ' + resultDto.chance);
       break;
     case 3:
-      ptag1.innerHTML = 'Your Guess is Too High';
-      ptag2.innerHTML = 'Your Guess ' + resultDto.guess;
-      ptag3.innerHTML = 'Remaining Chances ' + resultDto.chance;
+      setMessageToHtml(
+          'Your Guess is Too High',
+          'Your Guess ' + resultDto.guess,
+          'Remaining Chances ' + resultDto.chance);
       break;
     default:
       break;
@@ -87,19 +94,19 @@ function setMessageByCode(resultDto) {
 
 // Validate the user's guess
 function showError(errorMsg) {
-  console.log(errorMsg);
+  errorMessage.style.display = 'block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
-      alert('Input can not be empty');
+      errorMessage.innerHTML = 'Input can not be empty';
       break;
     case 'guessnumber.input.isNotInt':
-      alert('The entered value must be integer');
+      errorMessage.innerHTML = 'The entered value must be integer';
       break;
     case 'guessnumber.input.invalidRange':
-      alert('Please guess number between 0 to 100!');
+      errorMessage.innerHTML = 'Please guess number between 0 to 100!';
       break;
     default:
-      alert('Invalid input');
+      errorMessage.innerHTML = 'Invalid input';
       break;
   }
 }
@@ -118,9 +125,10 @@ function sendRequest() {
     const result = JSON.parse(http.response);
     if (result.status==400) {
       const firstError = result.errors.errors[0].msg;
+
       showError(firstError);
     } else {
-      setMessageByCode(result.result);
+      messageGeneratorByCode(result.result);
     }
   };
 }
