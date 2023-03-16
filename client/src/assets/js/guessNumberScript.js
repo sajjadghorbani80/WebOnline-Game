@@ -87,7 +87,7 @@ function showError(errorMsg) {
       errorLabel.innerText='Please guess number between 0 to 100!';
       break;
     default:
-      alert('Invalid input');
+      errorLabel.innerText='Invalid input';
       break;
   }
 }
@@ -113,11 +113,37 @@ function sendRequest() {
   };
 }
 
+function formValidation(value) {
+  if (value == undefined) {
+    showError('Invalid input');
+    return false;
+  }
+  value = value.trim();
+  if (value == null || value == '') {
+    showError('guessnumber.input.empty');
+    return false;
+  }
+
+  if (!Number.isInteger(+value)) {
+    showError('guessnumber.input.isNotInt');
+    return false;
+  }
+
+  if (+value <0 || +value >100) {
+    showError('guessnumber.input.invalidRange');
+    return false;
+  }
+  return true;
+}
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
 });
-checkAnswerBtn.addEventListener('click', sendRequest);
+checkAnswerBtn.addEventListener('click', ()=>{
+  if (formValidation(input.value)) {
+    sendRequest();
+  };
+});
 // start event
 startBtn.addEventListener('click', startGame);
 
