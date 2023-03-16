@@ -28,7 +28,7 @@ function checkAnswer(guess) {
     result.randomNumber = randomNumber;
     return result;
   }
-  if (guess.guessValue === randomNumber) {
+  if (guess.guessValue == randomNumber) {
     result.status = 1;
     result.randomNumber = randomNumber;
   } else if (guess.guessValue < randomNumber) {
