@@ -21,7 +21,7 @@ router.post('/guessnumber/checkanswer', validationRules, (req, res) => {
     const response = new ResponseDto(400, null, errors);
     return res.status(200).send(response);
   }
-  const data = new ReqDto(req.body.guessValue);
+  const data = new ReqDto(+req.body.guessValue);
   const result = checkAnswer(data);
   const response = new ResponseDto(200, result);
   res.status(200).send(response);
