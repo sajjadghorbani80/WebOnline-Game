@@ -1,73 +1,61 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ReqDto} from '../../dtos/guessNumberDto.js';
-const btn = document.getElementById('submit');
+const checkAnswerBtn = document.getElementById('submit');
 const input = document.getElementById('guessinput');
 const ptag1 = document.getElementById('msg1');
 const ptag2 = document.getElementById('msg2');
 const ptag3 = document.getElementById('msg3');
 const startBtn = document.getElementById('start');
-const startGameDiv = document.getElementById('startGame');
+const exitBtn = document.getElementById('exit');
+const pauseGameDiv = document.getElementById('startGame');
 const gameDiv = document.getElementById('game');
-const endDiv = document.getElementById('endGame');
-const restart = document.getElementById('restart');
 const homeBtn = document.getElementById('homeIcon');
 const message1 = document.getElementById('message1');
 const message2 = document.getElementById('message2');
 const form = document.getElementById('form');
+const errorLabel = document.getElementById('error-label');
+const startQuestion = document.getElementById('start-h1');
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
+  // generate random number and reset chance
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/restart-game';
   http.open('GET', url, true);
   http.setRequestHeader('Content-Type', 'application/json');
   http.send();
+  // reset ui
+  gameDiv.style.display = 'block';
+  pauseGameDiv.style.display = 'none';
+  ptag1.innerHTML = '';
+  ptag2.innerHTML = '';
+  ptag3.innerHTML = '';
+  input.value = '';
+  homeBtn.style.display='block';
 }
 
-// start event
-startBtn.addEventListener('click', () => {
-  startGame();
-  gameDiv.style.display = 'block';
-  startGameDiv.style.display = 'none';
-  ptag1.innerHTML = '';
-  ptag2.innerHTML = '';
-  ptag3.innerHTML = '';
-  input.value = '';
-  endDiv.style.display = 'none';
-});
-
-// reset event
-restart.addEventListener('click', () => {
-  startGame();
-  gameDiv.style.display = 'block';
-  startGameDiv.style.display = 'none';
-  endDiv.style.display = 'none';
-  homeBtn.style.display = 'block';
-});
-
-function startAgian(msg1, msg2) {
-  ptag1.innerHTML = '';
-  ptag2.innerHTML = '';
-  ptag3.innerHTML = '';
-  input.value = '';
-  homeBtn.style.display = 'none';
+function stopGame(msg1, msg2) {
   gameDiv.style.display = 'none';
-  endDiv.style.display = 'block';
+  pauseGameDiv.style.display='block';
   message1.innerHTML = msg1;
   message2.innerHTML = msg2;
+  startQuestion.style.display='none';
+  startBtn.innerText = 'Restart';
+  exitBtn.innerHTML = 'Exit';
 }
 
 /* //////////////////////////// Game message //////////////////////// */
 
 // Send the correct answer to the user's guess
 function setMessageByCode(resultDto) {
+  errorLabel.style.display='none';
   switch (resultDto.status) {
     case 0:
-      startAgian('You lose :(', 'the Number was ' + resultDto.randomNumber);
+      stopGame('You lose :(', 'the Number was ' + resultDto.randomNumber);
       break;
     case 1:
-      startAgian('Yahhhh You won It!!', 'the Number was ' +
+      stopGame('Yahhhh You won It!!', 'the Number was ' +
       resultDto.randomNumber);
       break;
     case 2:
@@ -87,16 +75,16 @@ function setMessageByCode(resultDto) {
 
 // Validate the user's guess
 function showError(errorMsg) {
-  console.log(errorMsg);
+  errorLabel.style.display='block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
-      alert('Input can not be empty');
+      errorLabel.innerText='Input can not be empty';
       break;
     case 'guessnumber.input.isNotInt':
-      alert('The entered value must be integer');
+      errorLabel.innerText='The entered value must be integer';
       break;
     case 'guessnumber.input.invalidRange':
-      alert('Please guess number between 0 to 100!');
+      errorLabel.innerText='Please guess number between 0 to 100!';
       break;
     default:
       alert('Invalid input');
@@ -129,6 +117,8 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
 });
-btn.addEventListener('click', sendRequest);
+checkAnswerBtn.addEventListener('click', sendRequest);
+// start event
+startBtn.addEventListener('click', startGame);
 
 

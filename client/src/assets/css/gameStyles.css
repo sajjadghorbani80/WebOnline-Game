@@ -72,6 +72,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 40%;
+  flex-direction: column;
 }
 
 .startButtons {
@@ -148,8 +149,8 @@ p {
 }
 
 label {
-  width: 40%;
-  text-align: left;
+  /* width: 40%;
+  text-align: left; */
   color: #817e7e;
   margin-bottom: 2vh;
   font-size: 11pt;
