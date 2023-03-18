@@ -93,8 +93,9 @@ function messageGeneratorByCode(resultDto) {
   }
 }
 
-// Validate the user's guess
-function showError(errorMsg) {
+/* //////////////////////////// form validation //////////////////////// */
+
+function setErrorMessage(errorMsg) {
   errorLabel.style.display='block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
@@ -112,6 +113,29 @@ function showError(errorMsg) {
   }
 }
 
+// from front
+function formValidation(value) {
+  if (value == undefined) {
+    setErrorMessage('Invalid input');
+    return false;
+  }
+  value = value.trim();
+  if (value == null || value == '') {
+    setErrorMessage('guessnumber.input.empty');
+    return false;
+  }
+
+  if (!Number.isInteger(+value)) {
+    setErrorMessage('guessnumber.input.isNotInt');
+    return false;
+  }
+
+  if (+value <0 || +value >100) {
+    setErrorMessage('guessnumber.input.invalidRange');
+    return false;
+  }
+  return true;
+}
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
@@ -127,35 +151,13 @@ function sendRequest() {
     if (result.status==400) {
       const firstError = result.errors.errors[0].msg;
 
-      showError(firstError);
+      setErrorMessage(firstError);
     } else {
       messageGeneratorByCode(result.result);
     }
   };
 }
 
-function formValidation(value) {
-  if (value == undefined) {
-    showError('Invalid input');
-    return false;
-  }
-  value = value.trim();
-  if (value == null || value == '') {
-    showError('guessnumber.input.empty');
-    return false;
-  }
-
-  if (!Number.isInteger(+value)) {
-    showError('guessnumber.input.isNotInt');
-    return false;
-  }
-
-  if (+value <0 || +value >100) {
-    showError('guessnumber.input.invalidRange');
-    return false;
-  }
-  return true;
-}
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
