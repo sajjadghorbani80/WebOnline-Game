@@ -92,6 +92,7 @@ function messageGeneratorByCode(resultDto) {
       break;
   }
 }
+
 /* //////////////////////////// form validation //////////////////////// */
 
 function setErrorMessage(errorMsg) {
@@ -156,7 +157,6 @@ function sendRequest() {
     }
   };
 }
-
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
