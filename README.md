@@ -35,18 +35,23 @@ This is the second version of the number guessing game. Improvements have been m
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
 3. Open Project folder in terminal
-4. In terminal go to server folder with this command:
+4. then go to the v2 brench:
+```bash
+git checkout v2
+```
+5. In terminal go to server folder with this command:
 ```bash
 cd server
 ```
-5. Install dependencies with this command on terminal:</li>
+6. Install dependencies with this command on terminal:</li>
 ```bash
 npm i
 ```
-6. Change server port (optional)<br>
+
+7. Change server port (optional)<br>
 By default, the server uses port 80. Follow the steps below to change it:<br>
-6-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
-6-2. Open it with a Text Editor, then paste the following value inside it and save:<br>
+7-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
+7-2. Open it with a Text Editor, then paste the following value inside it and save:<br>
 
 ```bash
 PORT=your arbitrary port
@@ -55,8 +60,8 @@ example:
 ```bash
 PORT=3000
 ```
-7. after that for run project write this command:
+8. after that for run project write this command:
 ```bash
 node app.js
 ```
-8. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
+9. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
