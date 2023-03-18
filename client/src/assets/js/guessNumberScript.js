@@ -92,8 +92,10 @@ function messageGeneratorByCode(resultDto) {
   }
 }
 
-// Validate the user's guess
-function showError(errorMsg) {
+/* ////////////////////////// user Validation answer //////////////////////// */
+
+// from backend
+function setErrorMessage(errorMsg) {
   errorMessage.style.display = 'block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
@@ -111,6 +113,23 @@ function showError(errorMsg) {
   }
 }
 
+
+// from front
+function formValidation(value) {
+  if (value === '' || value == null) {
+    setErrorMessage('guessnumber.input.empty'); return false;
+  }
+  value = +value;
+  if (!Number.isInteger(value)) {
+    setErrorMessage('guessnumber.input.isNotInt'); return false;
+  }
+  if (value < 0 || value > 100) {
+    setErrorMessage('guessnumber.input.invalidRange');
+    return false;
+  }
+  return true;
+}
+
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
@@ -125,8 +144,7 @@ function sendRequest() {
     const result = JSON.parse(http.response);
     if (result.status==400) {
       const firstError = result.errors.errors[0].msg;
-
-      showError(firstError);
+      setErrorMessage(firstError);
     } else {
       messageGeneratorByCode(result.result);
     }
@@ -137,6 +155,10 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
 });
-btn.addEventListener('click', sendRequest);
+btn.addEventListener('click', () => {
+  if (formValidation(input.value)) {
+    sendRequest();
+  }
+});
 
 
