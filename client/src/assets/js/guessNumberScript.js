@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ReqDto} from '../../dtos/guessNumberDto.js';
-const btn = document.getElementById('submit');
+const checkAnswerBtn = document.getElementById('submit');
 const input = document.getElementById('guessinput');
 const resultMessage1 = document.getElementById('pTag1');
 const resultMessage2 = document.getElementById('pTag2');
@@ -15,10 +15,11 @@ const message3 = document.getElementById('message3');
 const form = document.getElementById('form');
 const gameBtn = document.getElementById('gameBtn');
 const gameEvent = document.getElementById('gameEvent');
-const errorMessage = document.getElementById('errorMessage');
+const errorLabel = document.getElementById('errorMessage');
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
+  // generate random number and reset chance
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/restart-game';
   http.open('GET', url, true);
@@ -51,7 +52,7 @@ function setMessageToHtml(ptag1, ptag2, ptag3, offDisplay, onDisplay) {
   gameEvent.style.display = onDisplay;
   homeBtn.style.display = offDisplay;
   gameDiv.style.display = offDisplay;
-  errorMessage.style.display = 'none';
+  errorLabel.style.display = 'none';
 }
 /* //////////////////////////// Game message //////////////////////// */
 
@@ -92,44 +93,50 @@ function messageGeneratorByCode(resultDto) {
   }
 }
 
-/* ////////////////////////// user Validation answer //////////////////////// */
+/* //////////////////////////// form validation //////////////////////// */
 
-// from backend
 function setErrorMessage(errorMsg) {
-  errorMessage.style.display = 'block';
+  errorLabel.style.display='block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
-      errorMessage.innerHTML = 'Input can not be empty';
+      errorLabel.innerText='Input can not be empty';
       break;
     case 'guessnumber.input.isNotInt':
-      errorMessage.innerHTML = 'The entered value must be integer';
+      errorLabel.innerText='The entered value must be integer';
       break;
     case 'guessnumber.input.invalidRange':
-      errorMessage.innerHTML = 'Please guess number between 0 to 100!';
+      errorLabel.innerText='Please guess number between 0 to 100!';
       break;
     default:
-      errorMessage.innerHTML = 'Invalid input';
+      errorLabel.innerText='Invalid input';
       break;
   }
 }
 
-
 // from front
+
 function formValidation(value) {
-  if (value === '' || value == null) {
-    setErrorMessage('guessnumber.input.empty'); return false;
+  if (value == undefined) {
+    setErrorMessage('Invalid input');
+    return false;
   }
-  value = +value;
-  if (!Number.isInteger(value)) {
-    setErrorMessage('guessnumber.input.isNotInt'); return false;
+  value = value.trim();
+  if (value == null || value == '') {
+    setErrorMessage('guessnumber.input.empty');
+    return false;
   }
-  if (value < 0 || value > 100) {
+
+  if (!Number.isInteger(+value)) {
+    setErrorMessage('guessnumber.input.isNotInt');
+    return false;
+  }
+
+  if (+value <0 || +value >100) {
     setErrorMessage('guessnumber.input.invalidRange');
     return false;
   }
   return true;
 }
-
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
@@ -155,8 +162,12 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
 });
-btn.addEventListener('click', () => {
+checkAnswerBtn.addEventListener('click', ()=>{
   if (formValidation(input.value)) {
     sendRequest();
-  }
+  };
 });
+// start event
+startBtn.addEventListener('click', startGame);
+
+
