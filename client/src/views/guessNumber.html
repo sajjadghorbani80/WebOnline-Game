@@ -23,20 +23,18 @@
 
       <!--////////////////////////////////////////////// Start Items //////////////////////////////////////////////-->
 
-      <div class="startGame" id="startGame">
-        <div class="startTitle">
-          <h1>Do u wanna start?</h1>
+        <div class="gameEvent" id="gameEvent">
+          <h1 id="headline">Do u wanna play?</h1>
+          <p id="message1"></p>
+          <p id="message2"></p>
+          <p id="message3"></p>
+          <button class="event" id="gameBtn">Lets Go!</button>
+          <button class="event" onclick="location.href='../../index.html'">Exit</button>
         </div>
-        <div class="startButtons">
-          <button class="event" id="start">Yes</button>
-          <button class="event" id="exit"><a href="../../index.html">No</a></button>
-        </div>
-
-      </div>
 
       <!--////////////////////////////////////////////// Game Items //////////////////////////////////////////////-->
 
-      <div id="game" style="display: none;">
+      <div id="games" style="display: none;">
         <div class="logo-container">
           <h1>Guess Number</h1>
           <div style="width: 100%;">
@@ -48,6 +46,7 @@
         <div class="game-container">
             <form id="form" class="user-input">
               <input id="guessinput" type="text" class="inputButtons">
+              <label id="errorMessage" class="error"></label>
               <button class="buttons" type="submit" id="submit">submit</button>
             </form>
           <!--Game result and scores shows in this p tags
@@ -55,17 +54,11 @@
           2nd p tag: message for show the number guessed by the user
           3rd p tag: message for show remaining chances -->
           <div class="show-result">
-            <p id="msg1">You haven't guessed yet!</p>
-            <p id="msg2">Start game with your first <strong>GUESS!</strong></p>
-            <p id="msg3">Remaining Chances 5</p>
+            <p id="pTag1"></p>
+            <p id="pTag2"></p>
+            <p id="pTag3"></p>
           </div>
         </div>
-      </div>
-      <div class="endGame" id="endGame" style="display: none;">
-        <p id="message1"></p>
-        <p id="message2"></p>
-        <button class="event" id="restart">Restart</button>
-        <button class="event" onclick="location.href='../../index.html'">Exit</button>
       </div>
     </div>
 

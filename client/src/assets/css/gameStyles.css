@@ -47,7 +47,7 @@ body {
 
 /*////////////////////////////////////////////// Start styles //////////////////////////////////////////////*/
 
-.startGame {
+.gameEvent {
   width: 80%;
   height: 100%;
 }
@@ -72,6 +72,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 40%;
+  flex-direction: column;
 }
 
 .startButtons {
@@ -119,12 +120,19 @@ body {
 
 /*////////////////////////////////////////////// End styles //////////////////////////////////////////////*/
 
-.endGame {
+.gameEvent {
   width: 80%;
   height: 100%;
   margin-top: 30%;
 }
 
+.error {
+  color: #eb0745;
+  font-size: 12pt;
+  margin-bottom: 2%;
+  font-weight: 400;
+  display: none;
+}
 /*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
 
 h1 {
@@ -148,8 +156,8 @@ p {
 }
 
 label {
-  width: 40%;
-  text-align: left;
+  /* width: 40%;
+  text-align: left; */
   color: #817e7e;
   margin-bottom: 2vh;
   font-size: 11pt;
@@ -192,6 +200,7 @@ a {
   position: absolute;
   top:20px;
   left: 20px;
+  display: block;
 
 }
 /*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
