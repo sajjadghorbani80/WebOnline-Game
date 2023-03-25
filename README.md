@@ -20,6 +20,9 @@ In previous versions, you could run the project by cloning it. But now you can u
 <br>
 
 ## :arrow_forward: Run the project
+
+<br>
+
 ### :dolphin: Run with Docker
 1. install [docker](https://www.docker.com/)
 2. run docker desktop
