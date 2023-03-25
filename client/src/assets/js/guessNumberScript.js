@@ -151,7 +151,6 @@ function sendRequest() {
     const result = JSON.parse(http.response);
     if (result.status==400) {
       const firstError = result.errors.errors[0].msg;
-
       setErrorMessage(firstError);
     } else {
       messageGeneratorByCode(result.result);
