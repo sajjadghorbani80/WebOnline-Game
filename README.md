@@ -32,6 +32,9 @@ Note: You can use any port instead of port 3000
 
 5. Go to "localhost:your arbitrary port" and here we go:smiley::muscle:
 
+<br><br>
+
+
 ### :green_square: Run with Nodejs
 1. Download and install Node.js from [here](https://nodejs.org/en/download/)</li>
 2. Clone the project in your system with this command in terminal:
