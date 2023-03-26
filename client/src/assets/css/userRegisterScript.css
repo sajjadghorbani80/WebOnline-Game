@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.event {
+    width: 20%;
+    height: 50px;
+    background-color: #eb0745;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 2vh;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2e2f30;
+}
+
+.homeIcon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: block;
+
+}
+
+.main-container {
+    background-color: #131313;
+    border: #202531a4 solid 2px;
+    width: 30%;
+    height: 50vh;
+    text-align: center;
+    border-radius: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 15px 25px #0000004a;
+}
+
+.form-section {
+    display: none;
+    color: white;
+}
+
+.show {
+    display: flex;
+}
+
+.buttons {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-section {
+    width: 100%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-section p{
+    margin-bottom: 1em;
+    font-size: 0.9em;
+}
+
+.primary-btn {
+    background-color: #eb0745;
+    color: white;
+    width: 30%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+input{
+    display: block;
+    width: 50%;
+    background-color: #f4f3f8;
+    height: 10%;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 2vh;
+    text-align: center;
+    font-size: 1em;
+} 
+a{
+    text-decoration: none;
+    margin-bottom: 1em;
+    color: white;
+    font-size: 0.9em;
+}
