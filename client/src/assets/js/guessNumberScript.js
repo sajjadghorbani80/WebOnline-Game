@@ -167,7 +167,5 @@ checkAnswerBtn.addEventListener('click', ()=>{
     sendRequest();
   };
 });
-// start event
-startBtn.addEventListener('click', startGame);
 
 
