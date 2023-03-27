@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/*////////////////////////////////////////////// Containers //////////////////////////////////////////////*/
+.mainContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2e2f30;
+}
+
+.registerBox {
+  background-color: #131313;
+  border: #202531a4 solid 2px;
+  width: 30%;
+  height: 50vh;
+  text-align: center;
+  border-radius: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 15px 25px #0000004a;
+}
+
+.chooseTypeOfRegister {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formSection {
+  width: 100%;
+  height: 80%;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/*////////////////////////////////////////////// Home icon //////////////////////////////////////////////*/
+
+.event {
+  width: 20%;
+  height: 50px;
+  background-color: #eb0745;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  font-size: 14pt;
+  cursor: pointer;
+}
+
+.homeIcon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: block;
+}
+
+/*////////////////////////////////////////////// Items //////////////////////////////////////////////*/
+
+.registerButton {
+  background-color: #eb0745;
+  color: white;
+  width: 30%;
+  height: 5vh;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  width: 50%;
+  background-color: #f4f3f8;
+  height: 12%;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 2vh;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+input::placeholder {
+  color: #2e2f308b;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+a {
+  text-decoration: none;
+  margin-bottom: 1em;
+  color: white;
+  font-size: 0.9em;
+}
+
+.show {
+  display: flex;
+}
+
+.submitBtn {
+  width: 50%;
+  height: 12%;
+  justify-content: start;
+}
