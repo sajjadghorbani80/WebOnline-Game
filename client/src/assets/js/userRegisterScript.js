@@ -3,7 +3,6 @@
 const buttons = document.querySelector('.buttons');
 const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
-
 // Add an event listener to the buttons container
 buttons.addEventListener('click', handleClick);
 resetPassLink.addEventListener('click', handleClick);
