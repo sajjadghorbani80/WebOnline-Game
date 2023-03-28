@@ -96,19 +96,19 @@ function messageGeneratorByCode(resultDto) {
 /* //////////////////////////// form validation //////////////////////// */
 
 function setErrorMessage(errorMsg) {
-  errorLabel.style.display='block';
+  errorLabel.style.display = 'block';
   switch (errorMsg) {
     case 'guessnumber.input.empty':
-      errorLabel.innerText='Input can not be empty';
+      errorLabel.innerText = 'Input can not be empty';
       break;
     case 'guessnumber.input.isNotInt':
-      errorLabel.innerText='The entered value must be integer';
+      errorLabel.innerText = 'The entered value must be integer';
       break;
     case 'guessnumber.input.invalidRange':
-      errorLabel.innerText='Please guess number between 0 to 100!';
+      errorLabel.innerText = 'Please guess number between 0 to 100!';
       break;
     default:
-      errorLabel.innerText='Invalid input';
+      errorLabel.innerText = 'Invalid input';
       break;
   }
 }
@@ -131,7 +131,7 @@ function formValidation(value) {
     return false;
   }
 
-  if (+value <0 || +value >100) {
+  if (+value < 0 || +value > 100) {
     setErrorMessage('guessnumber.input.invalidRange');
     return false;
   }
@@ -149,7 +149,7 @@ function sendRequest() {
   http.send(JSON.stringify(params));
   http.onload = function() {
     const result = JSON.parse(http.response);
-    if (result.status==400) {
+    if (result.status == 400) {
       const firstError = result.errors.errors[0].msg;
       setErrorMessage(firstError);
     } else {
@@ -162,7 +162,7 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log('Form submission cancelled.');
 });
-checkAnswerBtn.addEventListener('click', ()=>{
+checkAnswerBtn.addEventListener('click', () => {
   if (formValidation(input.value)) {
     sendRequest();
   };

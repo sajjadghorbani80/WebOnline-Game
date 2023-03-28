@@ -119,6 +119,7 @@ body {
   font-weight: 400;
   display: none;
 }
+
 /*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
 
 h1 {
@@ -126,6 +127,7 @@ h1 {
   font-size: 42pt;
   color: #eb0745;
 }
+
 h2 {
   font-size: 22pt;
   font-weight: 350;
@@ -184,11 +186,11 @@ a {
 
 .homeIcon {
   position: absolute;
-  top:20px;
+  top: 20px;
   left: 20px;
   display: block;
-
 }
+
 /*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
 
 @font-face {

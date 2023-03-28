@@ -9,6 +9,11 @@ body {
   font-family: TiltWarp-Regular;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 header {
   width: 100%;
   height: 8vh;
@@ -58,7 +63,7 @@ header {
 }
 
 .username {
-  margin-right: 2%;
+  display: flex;
 }
 
 .menu-nav {
@@ -73,7 +78,7 @@ header {
 
 .underline-active:hover {
   border-bottom: 5px solid #a02247;
-  color: white;
+  color: white !important;
 }
 
 .menu-nav li {
@@ -83,46 +88,6 @@ header {
   justify-content: center;
   align-items: center;
   margin-right: 10%;
-}
-
-.search-form {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  width: 350px;
-  height: 30px;
-  border-radius: 5px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translate(-50%, -50%);
-  background: #2a2d32;
-}
-
-.search-input {
-  position: absolute;
-  top: 5px;
-  left: 38px;
-  font-size: 14px;
-  background: none;
-  color: white;
-  width: 195px;
-  height: 20px;
-  border: none;
-  appearance: none;
-  outline: none;
-}
-
-.search-button {
-  position: absolute;
-  top: 5px;
-  left: 10px;
-  height: 20px;
-  width: 20px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none !important;
-  cursor: pointer;
 }
 
 main {
@@ -187,8 +152,14 @@ main {
 }
 
 @keyframes floater {
-  0%{transform: translateY(-10%);transition: ease 0.5s;}
-  50%{transform: translateY(10%);transition: ease 0.5s;}
+  0% {
+    transform: translateY(-10%);
+    transition: ease 0.5s;
+  }
+  50% {
+    transform: translateY(10%);
+    transition: ease 0.5s;
+  }
 }
 
 .bottom {
@@ -468,6 +439,60 @@ hr {
 .scoreDetails p {
   color: rgba(57, 51, 51, 0.353);
 }
+.user-menu-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2a2d32;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  flex-direction: column;
+  top: 8vh;
+}
+
+.user-menu-section:hover .dropdown-content {
+  display: flex;
+}
+
+.dropdown-content a {
+  color: #979aa1;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content:hover {
+  display: flex;
+}
+
+.dropdown-content a:hover {
+  color: white;
+}
+
+#login-sction a {
+  display: inline-block;
+}
+
+#login-sction {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+}
+
+.dropdown-item:nth-child(3) {
+  border-bottom: 1px solid gray;
+}
+
 @font-face {
   font-family: "TiltWarp-Regular";
   src: url("../fonts/TiltWarp-Regular.ttf");
