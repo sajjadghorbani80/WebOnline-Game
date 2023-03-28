@@ -20,7 +20,7 @@
         <div class="menu-section w-30">
           <ul class="menu-nav">
             <li class="underline-active">Home</li>
-            <li class="underline-active">Scoreboard</li>
+            <li class="underline-active"><a href="#topPlayerSection">Scoreboard</a></li>
           </ul>
         </div>
         <div class="search-section w-30">
@@ -34,113 +34,163 @@
           </form>
         </div>
         <div class="profile-section w-30">
-          <div class="loginUser">
-            <div class="username">
-              <p>Sajjad Ghorbani</p>
-            </div>
-            <img class="profile-circle" src="./src/assets/images/profile-pic.jpg" alt="" />
+          <div class="username">
+            <p>Sajjad Ghorbani</p>
           </div>
-          <div class="logoutUser">
-
+          <img class="profile-circle" src="./src/assets/images/profile-pic.jpg" alt="" />
+        </div>
+      </div>
+  </div>
+  </header>
+  <main>
+    <div class="game-showbox">
+      <div class="description-box">
+        <div class="top">
+          <h1>Guess<br />Number</h1>
+          <p class="game-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatem blanditiis sequi fugiat, iure culpa eum dolores,
+            tenetur harum exercitationem quis ut! Incidunt perspiciatis
+            dicta quos minima! Ipsum repellat soluta beatae?
+          </p>
+        </div>
+        <div class="bottom">
+          <div class="genres-box">
+            <h3>
+              GENRES:
+            </h3>
+            <div class="genres-item">Family</div>
+            <div class="genres-item">Casual</div>
+          </div>
+          <br />
+          <div>
+            <a href="/src/views/guessNumber.html">
+              <button class="primary-btn">
+                <i class="fa-solid fa-play"></i>
+                Play
+              </button>
+            </a>
+            <a href="./src/views/userRegister.html">
+              <button class="primary-btn" style="width: 10%">
+                <i class="fa-solid fa-user"></i>
+              </button>
+            </a>
           </div>
         </div>
       </div>
-    </header>
-    <main>
-      <div class="game-showbox">
-        <div class="description-box">
-          <div class="top">
-            <h1>Guess<br />Number</h1>
-            <p class="game-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatem blanditiis sequi fugiat, iure culpa eum dolores,
-              tenetur harum exercitationem quis ut! Incidunt perspiciatis
-              dicta quos minima! Ipsum repellat soluta beatae?
-            </p>
+    </div>
+    <div class="game-slider">
+      <div class="card-container">
+        <div class="card">
+          <p>Coming Soon...</p>
+        </div>
+        <div class="card">
+          <div class="card-image-container">
+            <img src="./src/assets/images/metro.jpg" alt="" />
           </div>
-          <div class="bottom">
-            <div class="genres-box">
+          <div class="bottom-card-container">
+            <div class="card-title" style="color: white">
               <h3>
-                GENRES:
+                Guess Number
               </h3>
-              <div class="genres-item">Family</div>
-              <div class="genres-item">Casual</div>
+              <p>+3</p>
             </div>
-            <br />
-            <div>
+            <div class="card-button-container">
               <a href="/src/views/guessNumber.html">
-                <button class="primary-btn">
+                <span>
                   <i class="fa-solid fa-play"></i>
-                  Play
-                </button>
+                </span>
               </a>
-              <a href="./src/views/userRegister.html">
-                <button class="primary-btn" style="width: 10%">
-                  <i class="fa-solid fa-user"></i>
-                </button>
+              <a href="#">
+                <span>
+                  <i class="fa-solid fa-trophy"></i>
+                </span>
               </a>
             </div>
           </div>
         </div>
+        <div class="card">
+          <p>Coming Soon...</p>
+        </div>
       </div>
-      <div class="game-slider">
-        <div class="card-container">
-          <div class="card">
-            <p>Coming Soon...</p>
+    </div>
+
+    <div class="topPlayerContainer">
+      <div class="headlinedSection">
+        <div class="leftHrDiv">
+          <hr>
+        </div>
+        <div class="headlineDiv">
+          <h2 class="topPlayerHeadline">Top Player</h2>
+        </div>
+        <div class="rightHrDiv">
+          <hr>
+        </div>
+      </div>
+
+      <div class="topPlayerSection" id="topPlayerSection">
+        <div class="topPlayerBox">
+          <div class="playerPic">
+            <img class="topPlayerPic" src="./src/assets/images/profile-pic.jpg" alt="">
           </div>
-          <div class="card">
-            <div class="card-image-container">
-              <img src="./src/assets/images/metro.jpg" alt="" />
+          <div class="playerName">
+            <p class="topPlayerName">Sajjad Ghorbani</p>
+            <p class="topUsername">@sjd2001</p>
+          </div>
+          <div class="scoreSection">
+            <div class="playerScore" title="Score">
+              <i class="fa-solid fa-medal" style="color: #7a7a7a;font-size: 15pt;margin-right: 10%;"></i>
+              <p>1234</p>
             </div>
-            <div class="bottom-card-container">
-              <div class="card-title" style="color: white">
-                <h3>
-                  Guess Number
-                </h3>
-                <p>+3</p>
-              </div>
-              <div class="card-button-container">
-                <a href="/src/views/guessNumber.html">
-                  <span>
-                    <i class="fa-solid fa-play"></i>
-                  </span>
-                </a>
-                <a href="#">
-                  <span>
-                    <i class="fa-solid fa-trophy"></i>
-                  </span>
-                </a>
-              </div>
+            <div class="playerScore" title="number of times played">
+              <i class="fa-solid fa-rotate-right" style="color: #ff9300;font-size: 15pt;margin-right: 10%;"></i>
+              <p>12</p>
             </div>
           </div>
-          <div class="card">
-            <p>Coming Soon...</p>
+        </div>
+        <div class="topPlayerBox">
+          <div class="playerPic">
+            <img class="topPlayerPic" src="./src/assets/images/profile-pic.jpg" alt="">
+          </div>
+          <div class="playerName">
+            <p class="topPlayerName">Sajjad Ghorbani</p>
+            <p class="topUsername">@sjd2001</p>
+          </div>
+          <div class="scoreSection">
+            <div class="playerScore" title="Score">
+              <i class="fa-solid fa-medal" style="color:#c4bc00;font-size: 15pt;margin-right: 10%;"></i>
+              <p>1234</p>
+            </div>
+            <div class="playerScore" title="number of times played">
+              <i class="fa-solid fa-rotate-right" style="color: #ff9300;font-size: 15pt;margin-right: 10%;"></i>
+              <p>12</p>
+            </div>
+          </div>
+        </div>
+        <div class="topPlayerBox">
+          <div class="playerPic">
+            <img class="topPlayerPic" src="./src/assets/images/profile-pic.jpg" alt="">
+          </div>
+          <div class="playerName">
+            <p class="topPlayerName">Sajjad Ghorbani</p>
+            <p class="topUsername">@sjd2001</p>
+          </div>
+          <div class="scoreSection">
+            <div class="playerScore" title="Score">
+              <i class="fa-solid fa-medal" style="color: #CD7F32;font-size: 15pt;margin-right: 10%;"></i>
+              <p>1234</p>
+            </div>
+            <div class="playerScore" title="number of times played">
+              <i class="fa-solid fa-rotate-right" style="color: #ff9300;font-size: 15pt;margin-right: 10%;"></i>
+              <p>12</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="topPlayerSection">
-        <div style="display: flex; justify-content: space-around; align-items: center;width: 100%; height: 20%; ">
-          <div style="width: 40%;display: flex;justify-content: end;height: 100%;align-items: center;">
-            <hr style="width: 40%;height: 0%;">
-          </div>
-          <div style="width:20%; display: flex; justify-content: center;;height: 100%;align-items: center;">
-            <h2 class="topPlayerHeadline">Top Player</h2>
-          </div>
-          <div style="width: 40%;display: flex;justify-content: start;height: 100%;align-items: center;">
-            <hr style="width: 40%;height: 0%;">
-          </div>
-        </div>
 
-        <div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-
-
-      </div>
-    </main>
+    </div>
+  </main>
   </div>
 </body>
 
