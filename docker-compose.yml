@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: "3"
+services:
+  app:
+    restart: on-failure
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@localhost:35432/db_webOnlineGame
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    command: sh -c "cd ./server && node app.js"
+    volumes:
+      - .:/app/
+      - /app/node_modules
+
+  postgres:
+    image: postgres:11
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: webOnlineGame
+      POSTGRES_PASSWORD: Sjdhni@1402
+      POSTGRES_DB: db_webOnlineGame
+
+    volumes:
+       - ./server/data:/var/lib/postgresql/data
