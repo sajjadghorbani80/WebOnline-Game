@@ -25,3 +25,6 @@ services:
       POSTGRES_USER: webOnlineGame
       POSTGRES_PASSWORD: Sjdhni@1402
       POSTGRES_DB: db_webOnlineGame
+
+    volumes:
+       - ./server/data:/var/lib/postgresql/data

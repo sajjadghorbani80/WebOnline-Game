@@ -135,3 +135,6 @@ dist
 .eslintrc.json
 # linter
 .eslintrc.json
+
+# volume docker compose
+/server/data
