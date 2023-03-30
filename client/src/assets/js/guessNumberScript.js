@@ -107,6 +107,9 @@ function setErrorMessage(errorMsg) {
     case 'guessnumber.input.invalidRange':
       errorLabel.innerText = 'Please guess number between 0 to 100!';
       break;
+    case 'guessnumber.database.error':
+      errorLabel.innerText = 'Your answer is correct. But your score was not saved. Please try again';
+      break;
     default:
       errorLabel.innerText = 'Invalid input';
       break;
