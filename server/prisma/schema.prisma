@@ -2,6 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native","linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -31,8 +32,8 @@ model Play {
   pid     Int     @id @default(autoincrement())
   createdate DateTime @default(now())
   user   User   @relation(fields: [userId], references: [uid])
-  userId Int    @unique
+  userId Int    
   game   Game   @relation(fields: [gameId], references: [gid])
-  gameId Int    @unique
+  gameId Int    
   score Int
 }
