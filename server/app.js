@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 import {router as guessNumber} from './routes/guessNumberRoters.js';
+import { router as authRouters } from './routes/authRouters.js';
 dotenv.config();
 const app = express();
 /* A configurable port can be used if port 80 is in use */
@@ -19,6 +20,7 @@ const __dirname = dirname(__filename);
 app.use(express.json());
 app.use('/', express.static(join(__dirname, '../client')));
 app.use('/api', guessNumber);
+app.use('/api', authRouters);
 
 
 app.listen(port, () => {

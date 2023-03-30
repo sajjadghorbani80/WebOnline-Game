@@ -4,7 +4,7 @@
 import {Router} from 'express';
 const router = Router();
 import {checkAnswer, restartGame}
-  from '../src/services/guessNumberService.js';
+  from '../src/services/guessNumberServices.js';
 import {ReqDto} from '../src/dtos/guessNumberDto.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
 import {validationResult, check} from 'express-validator';
