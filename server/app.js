@@ -3,7 +3,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
-import {router as guessNumber} from './routes/guessNumberRoters.js';
+import {router as guessNumber} from './routes/guessNumberRouters.js';
 dotenv.config();
 const app = express();
 /* A configurable port can be used if port 80 is in use */

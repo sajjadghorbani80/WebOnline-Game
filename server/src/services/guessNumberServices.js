@@ -11,6 +11,7 @@ let randomNumber = 0;
 function restartGame() {
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
+  console.log(randomNumber);
 }
 
 /*
@@ -19,22 +20,22 @@ that Compares the game number with user guess
 and return the game result
 */
 function checkAnswer(guess) {
-  console.log(randomNumber);
   chance--;
   const result = new ResDto(chance, null, guess.guessValue, null);
 
-  if (chance <= 0) {
-    result.status = 0;
-    result.randomNumber = randomNumber;
-    return result;
-  }
   if (guess.guessValue == randomNumber) {
     result.status = 1;
     result.randomNumber = randomNumber;
+    return result;
+
   } else if (guess.guessValue < randomNumber) {
     result.status = 2;
   } else {
     result.status = 3;
+  }
+  if (chance <= 0) {
+    result.status = 0;
+    result.randomNumber = randomNumber;
   }
   return result;
 }
