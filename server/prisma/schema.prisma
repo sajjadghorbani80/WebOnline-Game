@@ -29,6 +29,7 @@ model Game {
 
 model Play {
   pid     Int     @id @default(autoincrement())
+  createdate DateTime @default(now())
   user   User   @relation(fields: [userId], references: [uid])
   userId Int    @unique
   game   Game   @relation(fields: [gameId], references: [gid])
