@@ -1,13 +1,13 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-import { ResDto } from '../dtos/guessNumberDto.js';
-import { PrismaClient } from '@prisma/client'
-import { PlayDto } from '../dtos/playDto.js';
-const prisma = new PrismaClient()
+import {ResDto} from '../dtos/guessNumberDto.js';
+import {PrismaClient} from '@prisma/client';
+import {PlayDto} from '../dtos/playDto.js';
+const prisma = new PrismaClient();
 
 let chance = 0;
 let randomNumber = 0;
-let gameId = await getGameIdByName('Guess Number');
+const gameId = await getGameIdByName('Guess Number');
 
 /* Using this function, a random number is
  created according to the user's behavior.
@@ -33,14 +33,12 @@ async function checkAnswer(guess) {
     result.randomNumber = randomNumber;
     const score = calculateScore(chance);
     const saveRes = await SaveRecord(new PlayDto(1, gameId, score));
-    if (saveRes === true)
+    if (saveRes === true) {
       return result;
-    else {
-      chance++
-      return { errors: [{ msg: 'guessnumber.database.error' }] };
+    } else {
+      chance++;
+      return {errors: [{msg: 'guessnumber.database.error'}]};
     }
-
-
   } else if (guess.guessValue < randomNumber) {
     result.status = 2;
   } else {
@@ -59,13 +57,13 @@ async function SaveRecord(playDto) {
       data: {
         userId: playDto.userId,
         gameId: playDto.gameId,
-        score: playDto.score
-      }
-    })
+        score: playDto.score,
+      },
+    });
 
     return true;
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
   return false;
 }
@@ -77,13 +75,13 @@ function calculateScore(chance) {
 async function getGameIdByName(gameName) {
   try {
     const game = await prisma.game.findFirst({
-      where: { title: gameName }
-    })
+      where: {title: gameName},
+    });
 
     return game.gid;
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
   return null;
 }
-export { checkAnswer, restartGame };
+export {checkAnswer, restartGame};
