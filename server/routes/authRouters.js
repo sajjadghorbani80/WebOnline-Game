@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 import jwt from 'jsonwebtoken';
 import {Router} from 'express';
 const router = Router();
