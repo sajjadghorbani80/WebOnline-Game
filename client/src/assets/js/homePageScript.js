@@ -2,6 +2,10 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 const topPlayerSection = document.getElementById('topPlayerSection');
+const userFullname = document.getElementById('userFullname');
+const userScore = document.getElementById('userScore');
+const userRank = document.getElementById('userRank');
+const userPlayCount = document.getElementById('userPlayCount');
 window.onload = showTopPlayers();
 
 async function getTopPlayers(count) {
@@ -28,7 +32,7 @@ async function showTopPlayers() {
   const proficPicArr = ['./src/assets/images/cat-pic.jpeg',
     './src/assets/images/profile-pic.jpg',
     './src/assets/images/pic-avatar.jpeg'];
-  const ranks = ['1st', '2nd', '3rd']
+  const ranks = ['1st', '2nd', '3rd'];
   const players = await getTopPlayers(3);
 
   if (players.result != null) {
@@ -73,3 +77,30 @@ async function showTopPlayers() {
     topPlayerSection.style.justifyContent = 'center';
   }
 }
+
+async function getCurrentUserInfo(userId) {
+  const response = await fetch(`api/getcurrentuserinfo/${userId}`, {
+    method: 'GET',
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.result);
+        return data.result;
+      });
+
+  return response;
+}
+// this is for test, get and show current user info's should call when user logined
+(async function() {
+  const res = await getCurrentUserInfo(1);
+  showCurrentUserInfo(res);
+})();
+
+function showCurrentUserInfo(userObj) {
+  userFullname.innerHTML = userObj.fullName;
+  userScore.innerHTML = userObj.sumScore;
+  userRank.innerHTML = userObj.rank;
+  userPlayCount.innerHTML = userObj.playCount;
+  return;
+}
+
