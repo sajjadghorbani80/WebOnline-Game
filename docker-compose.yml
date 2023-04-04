@@ -13,9 +13,9 @@ services:
     ports:
       - "3000:3000"
     command: sh -c "cd ./server && node app.js"
-    # volumes:
-    #   - .:/app/
-    #   - /app/node_modules
+    volumes:
+      - .:/app/
+      - /app/node_modules
 
   postgres:
     image: postgres:11
@@ -26,5 +26,5 @@ services:
       POSTGRES_PASSWORD: Sjdhni@1402
       POSTGRES_DB: db_webOnlineGame
 
-    # volumes:
-    #    - ./server/data:/var/lib/postgresql/data
+    volumes:
+       - ./server/data:/var/lib/postgresql/data
