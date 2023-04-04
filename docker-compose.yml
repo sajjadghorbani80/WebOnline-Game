@@ -12,10 +12,8 @@ services:
       PORT: 3000
     ports:
       - "3000:3000"
-    command: sh -c "cd ./server && node app.js"
-    # volumes:
-    #   - .:/app/
-    #   - /app/node_modules
+    command: sh -c "cd ./server && npx prisma generate && node app.js"
+
 
   postgres:
     image: postgres:11
@@ -26,5 +24,5 @@ services:
       POSTGRES_PASSWORD: Sjdhni@1402
       POSTGRES_DB: db_webOnlineGame
 
-    # volumes:
-    #    - ./server/data:/var/lib/postgresql/data
+    volumes:
+       - ./server/data:/var/lib/postgresql/data
