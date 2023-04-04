@@ -1,57 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-.event {
-  width: 20%;
-  height: 50px;
-  background-color: #eb0745;
-  color: #ffffff;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  margin-bottom: 2vh;
-  font-size: 14pt;
-  cursor: pointer;
-}
-
-.app-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2e2f30;
-}
-
-.homeIcon {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: block;
-}
-
-.main-container {
-  background-color: #131313;
-  border: #202531a4 solid 2px;
-  width: 30%;
-  height: 50vh;
-  text-align: center;
-  border-radius: 4%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 15px 25px #0000004a;
-}
-
 .show {
   display: flex !important;
 }
@@ -109,9 +55,13 @@ input::placeholder {
 input:focus::placeholder {
   color: transparent;
 }
-a {
+.contentBox a {
   text-decoration: none;
   margin-bottom: 1em;
   color: white;
   font-size: 0.9em;
+}
+
+.contentBox {
+  flex-direction: column;
 }

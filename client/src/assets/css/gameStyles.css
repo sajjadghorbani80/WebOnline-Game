@@ -1,55 +1,29 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-/*////////////////////////////////////////////// Containers //////////////////////////////////////////////*/
-
-.app-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2e2f30;
-}
-
-.main-container {
-  background-color: #131313;
-  border: #202531a4 solid 2px;
-  width: 50%;
-  height: 80vh;
-  text-align: center;
-  border-radius: 4%;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 15px 25px #0000004a;
-}
-
 /*////////////////////////////////////////////// Start styles //////////////////////////////////////////////*/
 
 .gameEvent {
   width: 80%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.event-content {
+  color: white;
+}
+
+.event-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3%;
 }
 
 /* button start game styles */
-.event {
+.gameEventBtn {
   width: 20%;
   height: 50px;
-  background-color: #eb0745;
-  color: #ffffff;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  margin-bottom: 2vh;
-  font-size: 14pt;
-  cursor: pointer;
 }
 
 .startTitle {
@@ -106,12 +80,6 @@ body {
 
 /*////////////////////////////////////////////// End styles //////////////////////////////////////////////*/
 
-.gameEvent {
-  width: 80%;
-  height: 100%;
-  margin-top: 30%;
-}
-
 .error {
   color: #eb0745;
   font-size: 12pt;
@@ -123,23 +91,20 @@ body {
 /*////////////////////////////////////////////// Tag styles //////////////////////////////////////////////*/
 
 h1 {
-  font-family: TiltWarp;
-  font-size: 42pt;
+  font-size: 3em;
   color: #eb0745;
 }
 
 h2 {
-  font-size: 22pt;
-  font-weight: 350;
+  font-size: 16pt;
   margin-bottom: 2%;
   color: #ffffff;
 }
 
-p {
+.resultGame {
   padding: 1%;
   width: 100%;
-  font-size: 22pt;
-  font-weight: 350;
+  font-size: 18pt;
   color: #ffffff;
 }
 
@@ -175,25 +140,4 @@ input {
   margin-bottom: 2vh;
   text-align: center;
   font-size: 14pt;
-}
-
-a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/*////////////////////////////////////////////// Home icon //////////////////////////////////////////////*/
-
-.homeIcon {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: block;
-}
-
-/*////////////////////////////////////////////// font import //////////////////////////////////////////////*/
-
-@font-face {
-  font-family: "TiltWarp";
-  src: url("../fonts/TiltWarp-Regular.ttf");
 }
