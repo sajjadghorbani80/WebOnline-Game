@@ -14,7 +14,6 @@ services:
       - "3000:3000"
     command: sh -c "cd ./server && npx prisma generate && node app.js"
 
-
   postgres:
     image: postgres:11
     ports:
