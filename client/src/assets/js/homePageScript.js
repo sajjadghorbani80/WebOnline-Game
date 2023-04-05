@@ -33,6 +33,7 @@ async function showTopPlayers() {
     './src/assets/images/profile-pic.jpg',
     './src/assets/images/pic-avatar.jpeg'];
   const ranks = ['1st', '2nd', '3rd'];
+  const rankIconColorList = ['#c4bc00', '#7a7a7a', '#CD7F32'];
   const players = await getTopPlayers(3);
 
   if (players.result != null) {
@@ -49,7 +50,7 @@ async function showTopPlayers() {
         </div>
         <div class="scoreSection">
           <div class="playerScore" title="Score">
-            <i class="fa-solid fa-medal" style="color: #7a7a7a;font-size: 20pt;margin-right: 10%;"></i>
+            <i class="fa-solid fa-medal" style="color: ${rankIconColorList[i]};font-size: 20pt;margin-right: 10%;"></i>
             <div class="scoreDetails">
               <p style="font-size: 10pt;">Score:</p>
               <p>${player.sumScore}</p>
