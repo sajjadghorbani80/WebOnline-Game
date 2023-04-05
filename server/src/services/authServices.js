@@ -36,18 +36,25 @@ function verifyToken(token) {
 
 async function userRegister(registerData) {
   const result = new ResponseDto();
+  registerData.username = registerData.username.toLowerCase();
+  registerData.email = registerData.email.toLowerCase();
   try {
-    const username = await prisma.$exists.user({
-      username: registerData.username,
-    });
-    const email = await prisma.$exists.user({
-      email: registerData.email,
+    const username = await prisma.user.count({
+      where: {
+        username: registerData.username,
+      },
     });
 
-    if (username == true) {
+    const email = await prisma.user.count({
+      where: {
+        email: registerData.email,
+      },
+    });
+
+    if (username != 0) {
       result.status = 4031; // username is exist
       return result;
-    } else if (email == true) {
+    } else if (email != 0) {
       result.status = 4032; // email is exist
       return result;
     } else {
@@ -56,28 +63,32 @@ async function userRegister(registerData) {
           result.status = 500; // can not hash password
           result.errors = err;
         }
-        try {
-          const user = await prisma.user.create({
-            data: {
-              username: registerData.username,
-              email: registerData.email,
-              fullname: registerData.fullname,
-              password: hash,
-            },
-          });
-          result.status = 200;
-          result.result = user;
-          return result;
-        } catch (error) {
-          result.status = 503; // server error
-          return result;
-        }
+        registerData.password = hash;
       });
+      try {
+        const user = await prisma.user.create({
+          data: {
+            username: registerData.username,
+            email: registerData.email,
+            fullname: registerData.fullname,
+            password: registerData.password,
+          },
+        });
+        result.status = 200;
+        result.result = user;
+      } catch (error) {
+        result.status = 503; // server error
+        return result;
+      }
     }
   } catch (err) {
-    result.status = 510; // Database connection error
+    result.status = 510;
+    console.log(err); // Database connection error
     result.errors = err;
+    return result;
   };
+  return result;
 };
+
 
 export {generateToken, verifyToken, userRegister};
