@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 /* eslint-disable linebreak-style */
 import {Router} from 'express';
 import {ReqTopPlayersDto} from '../src/dtos/getTopPlayersDto.js';

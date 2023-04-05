@@ -115,5 +115,24 @@ async function singIn(userData) {
     return result;
   }
 }
-export {generateToken, verifyToken, userRegister, singIn};
+
+
+function checkToken(req, res, next) {
+  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+  const jwtSecretKey = process.env.JWT_SECRET_KEY;
+  const token = req.header(tokenHeaderKey);
+  if (token) {
+    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
+      if (err) {
+        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    res.status(403).send({success: false, message: 'No Token Provided.'});
+  }
+}
+export {generateToken, verifyToken, userRegister, singIn, checkToken};
 
