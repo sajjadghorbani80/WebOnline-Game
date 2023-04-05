@@ -23,6 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use(express.json());
 app.use('/', express.static(join(__dirname, '../client')));
+
 app.use('/api', guessNumber);
 app.use('/api', topPlayersRouter);
 app.use('/api', userRouter);

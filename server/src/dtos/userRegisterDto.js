@@ -1,5 +1,6 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-class ReqDto {
+class ReqSignUpDto {
   username;
   email;
   fullname;
@@ -11,5 +12,14 @@ class ReqDto {
     this.password = password;
   }
 }
-export {ReqDto};
+
+class ReqSignInDto {
+  usernameOrEmail;
+  password;
+  constructor(usernameOrEmail, password) {
+    this.usernameOrEmail = usernameOrEmail;
+    this.password = password;
+  }
+}
+export {ReqSignUpDto, ReqSignInDto};
 

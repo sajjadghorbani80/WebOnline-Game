@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable max-len */
 /* eslint-disable new-cap */
@@ -7,7 +8,7 @@ import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
 const prisma = new PrismaClient();
 
-function generateToken(userId, email) {
+function generateToken(userId) {
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
   const data = {
     userId: userId,
@@ -58,20 +59,14 @@ async function userRegister(registerData) {
       result.status = 4032; // email is exist
       return result;
     } else {
-      bcrypt.hash(registerData.password, 10, async (err, hash) => {
-        if (err) {
-          result.status = 500; // can not hash password
-          result.errors = err;
-        }
-        registerData.password = hash;
-      });
+      const hash = bcrypt.hashSync(registerData.password, 10);
       try {
         const user = await prisma.user.create({
           data: {
             username: registerData.username,
             email: registerData.email,
             fullname: registerData.fullname,
-            password: registerData.password,
+            password: hash,
           },
         });
         result.status = 200;
@@ -90,5 +85,35 @@ async function userRegister(registerData) {
   return result;
 };
 
+async function singIn(userData) {
+  const result = new ResponseDto();
+  userData.usernameOrEmail = userData.usernameOrEmail.toLowerCase();
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          {username: userData.usernameOrEmail},
+          {email: userData.usernameOrEmail},
+        ],
+      },
+    });
+    if (user != null) {
+      const res = bcrypt.compareSync(userData.password, user.password); // true
+      if (res) {
+        const token = generateToken(user.uid);
+        result.status = 200;
+        result.result = token;
+      } else {
+        result.status = 401;
+      }
+    } else {
+      result.status = 401;
+    }
+    return result;
+  } catch (error) {
+    result.status = 401;
+    return result;
+  }
+}
+export {generateToken, verifyToken, userRegister, singIn};
 
-export {generateToken, verifyToken, userRegister};
