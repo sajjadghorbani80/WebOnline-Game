@@ -72,7 +72,8 @@ router.get('/verify/:token', (req, res)=>{
       console.log(err);
       res.send('Email verification failed,possibly the link is invalid or expired');
     } else {
-      res.redirect('http://127.0.0.1:3000/src/views/resetPass.html');
+      console.log(decoded);
+      res.redirect(`http://127.0.0.1:${process.env.PORT}/src/views/resetPass.html?email=${decoded.email}`);
     }
   });
 });
