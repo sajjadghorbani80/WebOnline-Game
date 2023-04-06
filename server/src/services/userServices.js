@@ -3,6 +3,9 @@
 /* eslint-disable linebreak-style */
 import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
+import bcrypt from 'bcrypt';
+import {ResponseDto} from '../dtos/responseDto.js';
+
 
 async function getCurrentUserInfo(userId) {
   try {
@@ -46,4 +49,27 @@ async function getCurrentUserInfo(userId) {
   }
 }
 
-export {getCurrentUserInfo};
+async function resetPassword(userEmail, password, repassword) {
+  const result = new ResponseDto();
+  if (password == repassword) {
+    try {
+      const updateUser = await prisma.user.update({
+        where: {
+          email: userEmail,
+        },
+        data: {
+          password: bcrypt.hashSync(password, 10),
+        },
+      });
+      result.status = 200;
+    } catch (error) {
+      console.log(error);
+      result.status = 404;
+      return result;
+    }
+  } else {
+    result.status = 400;
+  }
+  return result;
+}
+export {getCurrentUserInfo, resetPassword};

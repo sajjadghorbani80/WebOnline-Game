@@ -22,14 +22,22 @@
         <header id="includedContent"></header>
         <div class="main-container">
             <div class="contentBox">
-                <div class="form-section show" id="resetpass-section">
+                <div class="form-section show" id="sendemail-section">
                     <p>Enter your email to receive the password recovery link</p>
                         <input type="email" name="email" id="email" placeholder="Email">
-                        <button id="submit-btn" class="primary-btn">Send</button>
+                        <button id="sendEmail-btn" class="primary-btn">Send</button>
+                </div>
+                <div class="form-section" id="resetpass-section">
+                    <p>Please enter your new password</p>
+                        <input type="password" name="password" id="password" placeholder="password">
+                        <input type="password" name="re-password" id="re-password" placeholder="confirm password">
+                        <button id="resetpass-btn" class="primary-btn">Submit</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../assets/js/resetPasswordScript.js"></script>
 </body>
 
 </html>
