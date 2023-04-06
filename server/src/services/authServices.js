@@ -6,6 +6,9 @@ import bcrypt from 'bcrypt';
 import {PrismaClient} from '@prisma/client';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
+import {sendVerifyEmail} from '../utilities/emailDelivery.js';
+import {SendEmailDto} from '../dtos/SendemailDto.js';
+
 const prisma = new PrismaClient();
 
 function generateToken(userId) {
@@ -134,5 +137,28 @@ function checkToken(req, res, next) {
     res.status(403).send({success: false, message: 'No Token Provided.'});
   }
 }
-export {generateToken, verifyToken, userRegister, singIn, checkToken};
+
+
+async function sendVerifyUserEmail(userEmail) {
+  const result = new ResponseDto();
+  userEmail = userEmail.toLowerCase();
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        email: userEmail,
+      },
+    });
+    if (user != null) {
+      sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
+      result.status = 200;
+    } else {
+      result.status = 401;
+    }
+    return result;
+  } catch (error) {
+    result.status = 500;
+    return result;
+  }
+}
+export {generateToken, verifyToken, userRegister, singIn, checkToken, sendVerifyUserEmail};
 
