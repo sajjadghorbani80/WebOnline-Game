@@ -1,43 +1,60 @@
 # :video_game: Web Online Game Project
-This is the second version of the number guessing game. Improvements have been made in starting, restarting and ending the game. Now you can use the start button to guess the number and if you lose the game, you can restart or end the game. Upon starting the game, a random number from 0 to 100 is generated, which you are allowed to guess up to 5 times. If you guess the number correctly, you will be shown the message of winning, otherwise, after the chance is over, it will show the message that you have lost. Also, every time you guess the wrong number, your chances decrease by one number.
+In this version, the user section and project features have been added for them. Therefore, there was requires to add a database to the project. The chosen database is Postgres, which is implemented with the Prisma client ORM.
 
 <br>
 
 ## :seedling: Development stages of this version
-1. Use linter (ESLint)
-2. Add comment
-3. Add readme version 1
-4. Use env for config
-5. Use express router
-6. Use dto
-7. Implementation of start, restart, exit events
-8. Validation of entries
-9. Translation of messages and errors in front-end
-10. Use form/submit for old browsers
-11. UI improvements+
-12. Add readme version 2
-13. Merge each item after completion with branch v2
-
+1. Create Sing up, login pages, reset password
+2. User menu
+3. Top player pages
+4. Database design
+5. Add postgre 
+6. Docker compose
+7. Prisma setup
+8. Implement Prisma models
+9. Writing the necessary APIs
+10. Writing services and queries
+11. Using jwt token 
+12. Add readme version 4
 
 
 <br>
+
 
 ## :hammer_and_wrench: Requirements for run project
 1. Node.js
 2. npm
+3. Docker (for run project with Docker)
 <br>
 
 ## :arrow_forward: Run the project
 
+<br>
+
+### :dolphin: Run with Docker
+1. install [docker](https://www.docker.com/)
+2. run docker desktop
+3. open cmd/terminal
+4. pull project with this command:
+```bash
+docker run -dp 3000:80 sajjadr2001/webonline-game
+```
+Note: You can use any port instead of port 3000
+
+5. Go to "localhost:your arbitrary port" and here we go:smiley::muscle:
+
+
+
+### :green_square: Run with Nodejs
 1. Download and install Node.js from [here](https://nodejs.org/en/download/)</li>
 2. Clone the project in your system with this command in terminal:
 ```bash
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
 3. Open Project folder in terminal
-4. then go to the v2 brench:
+4. then go to the V4 brench:
 ```bash
-git checkout v2
+git checkout V4
 ```
 5. In terminal go to server folder with this command:
 ```bash
