@@ -34,14 +34,21 @@ In this version, the user section and project features have been added for them.
 ### :dolphin: Run with Docker
 1. install [docker](https://www.docker.com/)
 2. run docker desktop
-3. open cmd/terminal
-4. pull project with this command:
+3. clone the repo 
 ```bash
-docker run -dp 3000:80 sajjadr2001/webonline-game
+git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
-Note: You can use any port instead of port 3000
-
-5. Go to "localhost:your arbitrary port" and here we go:smiley::muscle:
+4. then go to the V4 brench:
+```bash
+git checkout V4
+```
+5. In the root folder of project you can find a docker-compose.yml and in the server folder a config file .env.
+6. Configure all files to your needs or just use the default settings.
+7. To start the application just use the command below:
+```bash
+docker compose up -d
+```
+8. After successful building go to http://localhost:8080 (with default settings).
 
 
 
