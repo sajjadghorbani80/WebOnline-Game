@@ -7,7 +7,6 @@ const resultMessage1 = document.getElementById('pTag1');
 const resultMessage2 = document.getElementById('pTag2');
 const resultMessage3 = document.getElementById('pTag3');
 const gameDiv = document.getElementById('games');
-const homeBtn = document.getElementById('homeIcon');
 const headline = document.getElementById('headline');
 const message1 = document.getElementById('message1');
 const message2 = document.getElementById('message2');
@@ -35,7 +34,6 @@ gameBtn.addEventListener('click', () => {
   resultMessage1.innerHTML = 'You haven\'t guessed yet!';
   resultMessage2.innerHTML = 'Start game with your first GUESS!';
   resultMessage3.innerHTML = 'Remaining Chances 5';
-  homeBtn.style.display = 'block';
   input.value = '';
 });
 
@@ -50,7 +48,6 @@ function setMessageToHtml(ptag1, ptag2, ptag3, offDisplay, onDisplay) {
   message2.innerHTML = ptag2;
   message3.innerHTML = ptag3;
   gameEvent.style.display = onDisplay;
-  homeBtn.style.display = offDisplay;
   gameDiv.style.display = offDisplay;
   errorLabel.style.display = 'none';
 }
@@ -66,7 +63,7 @@ function messageGeneratorByCode(resultDto) {
           'the Number was ' + resultDto.randomNumber,
           'Do You wanna play agian?',
           'none',
-          'block');
+          'flex');
       break;
     case 1:
       setMessageToHtml(
@@ -74,7 +71,7 @@ function messageGeneratorByCode(resultDto) {
           'the Number was ' + resultDto.randomNumber,
           'Do You wanna play agian?',
           'none',
-          'block');
+          'flex');
       break;
     case 2:
       setMessageToHtml(
@@ -106,6 +103,9 @@ function setErrorMessage(errorMsg) {
       break;
     case 'guessnumber.input.invalidRange':
       errorLabel.innerText = 'Please guess number between 0 to 100!';
+      break;
+    case 'guessnumber.database.error':
+      errorLabel.innerText = 'Your answer is correct. But your score was not saved. Please try again';
       break;
     default:
       errorLabel.innerText = 'Invalid input';

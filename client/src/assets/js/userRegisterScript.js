@@ -1,9 +1,16 @@
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
+const singupBtn = document.getElementById('sing-up-btn');
+const singinBtn = document.getElementById('sing-in-btn');
 const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
+const singupForm = document.getElementById('signup-section').getElementsByTagName('input');
+const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
 // Add an event listener to the buttons container
+
 buttons.addEventListener('click', handleClick);
 resetPassLink.addEventListener('click', handleClick);
 // When a child element of `buttons` is clicked
@@ -29,4 +36,54 @@ function handleClick(child) {
     // show class
     document.querySelector(selector).classList.add('show');
   }
-}
+};
+
+
+function singup() {
+  const params = {
+    fullname: singupForm[0].value,
+    username: singupForm[1].value,
+    email: singupForm[2].value,
+    password: singupForm[3].value,
+  };
+  const response = fetch('/api/user/userregister', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status == 400) {
+          const firstError = result.errors.errors[0].msg;
+          setErrorMessage(firstError);
+        } else {
+          messageGeneratorByCode(result.result);
+        }
+      });
+};
+
+function singin() {
+  const params = {
+    usernameOrEmail: singinForm[0].value,
+    password: singinForm[1].value,
+  };
+  const response = fetch('/api/user/userSignIn', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+};
+
+singupBtn.addEventListener('click', singup);
+singinBtn.addEventListener('click', singin);
+
+

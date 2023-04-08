@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {PrismaClient} from '@prisma/client';
 
@@ -47,6 +48,19 @@ async function main() {
     },
   });
 
+  const user3 = await prisma.User.upsert({
+    where: {uid: 3},
+
+    update: {},
+    create: {
+      username: '@amir.1986',
+      email: 'amirhosein@gmail.com',
+      fullname: 'amirhosein sadeghi',
+      password: 'amh123@',
+      play: {},
+
+    },
+  });
   const play = await prisma.Play.upsert({
     where: {pid: 1},
 
@@ -55,6 +69,42 @@ async function main() {
       userId: 1,
       gameId: 1,
       score: 100,
+
+    },
+  });
+
+  const play1 = await prisma.Play.upsert({
+    where: {pid: 2},
+
+    update: {},
+    create: {
+      userId: 1,
+      gameId: 1,
+      score: 100,
+
+    },
+  });
+
+  const play2 = await prisma.Play.upsert({
+    where: {pid: 3},
+
+    update: {},
+    create: {
+      userId: 2,
+      gameId: 1,
+      score: 50,
+
+    },
+  });
+
+  const play3 = await prisma.Play.upsert({
+    where: {pid: 4},
+
+    update: {},
+    create: {
+      userId: 3,
+      gameId: 1,
+      score: 40,
 
     },
   });

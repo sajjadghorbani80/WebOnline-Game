@@ -1,13 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: rgb(12, 17, 26);
-  font-family: TiltWarp-Regular;
-}
 
 a {
   text-decoration: none;
@@ -19,6 +9,9 @@ header {
   height: 8vh;
   background-color: rgb(10, 15, 21);
 }
+.app-container {
+  background-color: rgb(12, 17, 26) !important;
+}
 
 .header-container {
   width: 80%;
@@ -27,6 +20,7 @@ header {
   justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
+
 }
 
 .logo-section {
@@ -132,7 +126,6 @@ main {
 .description-box h1 {
   color: white;
   font-size: 44pt;
-  font-family: "TiltWarp-Regular";
   line-height: 60px;
 }
 
@@ -225,9 +218,6 @@ main {
 .card-image-container {
   width: 100%;
   height: 100%;
-  /* background-image: url('../images/metro.jpg');
-  background-repeat: no-repeat;
-  background-size: cover; */
   border-radius: inherit;
 }
 
@@ -341,7 +331,6 @@ h3 {
 .topPlayerHeadline {
   color: white;
   font-size: 30pt;
-  font-family: "TiltWarp-Regular";
   line-height: 60px;
 }
 
@@ -359,6 +348,7 @@ hr {
   margin-right: 10%;
   margin-top: 1%;
   display: flex;
+  color: white;
   justify-content: space-between;
 }
 
@@ -493,7 +483,3 @@ hr {
   border-bottom: 1px solid gray;
 }
 
-@font-face {
-  font-family: "TiltWarp-Regular";
-  src: url("../fonts/TiltWarp-Regular.ttf");
-}

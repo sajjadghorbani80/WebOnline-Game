@@ -7,15 +7,12 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@localhost:35432/db_webOnlineGame
+      DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@postgres:5432/db_webOnlineGame
       NODE_ENV: development
       PORT: 3000
     ports:
-      - "3000:3000"
-    command: sh -c "cd ./server && node app.js"
-    volumes:
-      - .:/app/
-      - /app/node_modules
+      - "8080:3000"
+    command: sh -c "cd ./server && npx prisma generate && node app.js"
 
   postgres:
     image: postgres:11
