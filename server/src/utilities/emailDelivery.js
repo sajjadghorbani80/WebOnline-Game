@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 function sendVerifyEmail(reqSendEmail) {
   const secretkey = process.env.JWT_SECRET_KEY;
   const token = jwt.sign({
-    data: 'Token Data',
+    email: reqSendEmail.to,
   }, secretkey, {expiresIn: '10m'},
   );
   const mailConfigurations = {
@@ -52,7 +52,5 @@ function sendEmail(mailConfigurations) {
   });
 }
 
-
-sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', 'sajjadr2001@gmail.com', 'email verification'));
 
 export {sendVerifyEmail};
