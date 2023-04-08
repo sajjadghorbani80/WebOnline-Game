@@ -25,6 +25,7 @@ In this version, the user section and project features have been added for them.
 1. Node.js
 2. npm
 3. Docker (for run project with Docker)
+4. PostgreSql
 <br>
 
 ## :arrow_forward: Run the project
@@ -74,7 +75,7 @@ npm i
 
 7. Change server port (optional)<br>
 By default, the server uses port 80. Follow the steps below to change it:<br>
-7-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
+7-1. in the server folder you can find a config file named ".env".<br>
 7-2. Open it with a Text Editor, then paste the following value inside it and save:<br>
 
 ```bash
@@ -84,8 +85,14 @@ example:
 ```bash
 PORT=3000
 ```
+9. also, change the database address section in the .env file according to the specifications of your database
 8. after that for run project write this command:
 ```bash
 node app.js
+```
+10. use this command to create tables in the database
+```bash
+cd server
+npx prisma db push
 ```
 9. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
