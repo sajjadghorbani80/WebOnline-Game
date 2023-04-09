@@ -21,7 +21,6 @@ there is no __dirname in ES6 modules
 */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use(express.json());
 app.use('/', express.static(join(__dirname, '../client')));
 
 app.use('/api', guessNumber);

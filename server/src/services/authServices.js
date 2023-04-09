@@ -59,7 +59,7 @@ function checkToken(req, res, next) {
 
 /* //////////////////////////// singin and sing up //////////////////////// */
 
-async function singup(registerData) {
+async function signup(registerData) {
   const result = new ResponseDto();
   registerData.username = registerData.username.toLowerCase();
   registerData.email = registerData.email.toLowerCase();
@@ -109,7 +109,7 @@ async function singup(registerData) {
   return result;
 };
 
-async function singin(userData) {
+async function signin(userData) {
   const result = new ResponseDto();
   userData.usernameOrEmail = userData.usernameOrEmail.toLowerCase();
   try {
@@ -141,5 +141,5 @@ async function singin(userData) {
 }
 
 
-export {generateToken, verifyToken, singup, singin, checkToken};
+export {generateToken, verifyToken, signup, signin, checkToken};
 
