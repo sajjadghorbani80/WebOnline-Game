@@ -17,6 +17,8 @@ function restartGame() {
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
   console.log(randomNumber);
+  const response = new ResponseDto(200, null);
+  return response;
 }
 
 /*

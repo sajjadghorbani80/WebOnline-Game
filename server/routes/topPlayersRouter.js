@@ -10,7 +10,7 @@ const router = Router();
 router.post('/getTopPlayers', async (req, res)=>{
   const data = new ReqTopPlayersDto(req.body.count);
   const records = await getTopPlayers(data);
-  const response = new ResponseDto(200, records);
+  const response = new ResponseDto(records, null);
   res.status(200).send(response);
 });
 

@@ -121,21 +121,21 @@ async function signin(userData) {
         ],
       },
     });
-    if (user != undefined) {
+    if (user != null) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
         const token = generateToken(user.uid);
-        result.status = 200;
+        result.errors = 200;
         result.result = token;
       } else {
-        result.status = 401;
+        result.errors = 4012;
       }
     } else {
-      result.status = 401;
+      result.errors = 4013;
     }
     return result;
   } catch (error) {
-    result.status = 401;
+    result.errors = 4014;
     return result;
   }
 }

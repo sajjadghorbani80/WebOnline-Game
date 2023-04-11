@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable new-cap */
@@ -15,10 +16,10 @@ const resetPassValidationRules = [
   check('repassword').escape().notEmpty().withMessage('repassword.input.empty'),
 ];
 
-router.get('/getcurrentuserinfo/:id', checkToken, async (req, res)=>{
+router.get('/getcurrentuserinfo/:id', async (req, res)=>{
   const userId = req.params.id;
   const userInfo = await getCurrentUserInfo(userId);
-  const response = new ResponseDto(200, userInfo);
+  const response = new ResponseDto(userInfo, null);
   return res.status(200).send(response);
 });
 
