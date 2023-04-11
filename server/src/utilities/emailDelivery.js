@@ -17,6 +17,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/* //////////////////////////// Email verification //////////////////////// */
+
 function sendVerifyEmail(reqSendEmail) {
   const secretkey = process.env.JWT_SECRET_KEY;
   const token = jwt.sign({
@@ -53,4 +55,27 @@ function sendEmail(mailConfigurations) {
 }
 
 
-export {sendVerifyEmail};
+async function sendVerifyUserEmail(userEmail) {
+  const result = new ResponseDto();
+  userEmail = userEmail.toLowerCase();
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        email: userEmail,
+      },
+    });
+    if (user != undefined) {
+      sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
+      result.status = 200;
+    } else {
+      result.status = 401;
+    }
+    return result;
+  } catch (error) {
+    result.status = 500;
+    return result;
+  }
+}
+
+
+export {sendVerifyEmail, sendVerifyUserEmail};

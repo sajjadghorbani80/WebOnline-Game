@@ -6,21 +6,22 @@ import bcrypt from 'bcrypt';
 import {PrismaClient} from '@prisma/client';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
-import {sendVerifyEmail} from '../utilities/emailDelivery.js';
-import {SendEmailDto} from '../dtos/SendemailDto.js';
 
 const prisma = new PrismaClient();
 
+
+/* //////////////////////////// token jwt //////////////////////// */
+
 function generateToken(userId) {
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const data = {
+  const data = { // options that will be in token
     userId: userId,
   };
   const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
   return token;
 }
 
-function verifyToken(token) {
+function verifyToken() {
   const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -38,7 +39,27 @@ function verifyToken(token) {
   }
 }
 
-async function userRegister(registerData) {
+function checkToken(req, res, next) {
+  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+  const jwtSecretKey = process.env.JWT_SECRET_KEY;
+  const token = req.header(tokenHeaderKey);
+  if (token) {
+    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
+      if (err) {
+        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    res.status(403).send({success: false, message: 'No Token Provided.'});
+  }
+}
+
+/* //////////////////////////// singin and sing up //////////////////////// */
+
+async function signup(registerData) {
   const result = new ResponseDto();
   registerData.username = registerData.username.toLowerCase();
   registerData.email = registerData.email.toLowerCase();
@@ -88,7 +109,7 @@ async function userRegister(registerData) {
   return result;
 };
 
-async function singIn(userData) {
+async function signin(userData) {
   const result = new ResponseDto();
   userData.usernameOrEmail = userData.usernameOrEmail.toLowerCase();
   try {
@@ -104,61 +125,21 @@ async function singIn(userData) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
         const token = generateToken(user.uid);
-        result.status = 200;
+        result.errors = 200;
         result.result = token;
       } else {
-        result.status = 401;
+        result.errors = 4012;
       }
     } else {
-      result.status = 401;
+      result.errors = 4013;
     }
     return result;
   } catch (error) {
-    result.status = 401;
+    result.errors = 4014;
     return result;
   }
 }
 
 
-function checkToken(req, res, next) {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const token = req.header(tokenHeaderKey);
-  if (token) {
-    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
-      if (err) {
-        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(403).send({success: false, message: 'No Token Provided.'});
-  }
-}
-
-
-async function sendVerifyUserEmail(userEmail) {
-  const result = new ResponseDto();
-  userEmail = userEmail.toLowerCase();
-  try {
-    const user = await prisma.user.findFirst({
-      where: {
-        email: userEmail,
-      },
-    });
-    if (user != null) {
-      sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
-      result.status = 200;
-    } else {
-      result.status = 401;
-    }
-    return result;
-  } catch (error) {
-    result.status = 500;
-    return result;
-  }
-}
-export {generateToken, verifyToken, userRegister, singIn, checkToken, sendVerifyUserEmail};
+export {generateToken, verifyToken, signup, signin, checkToken};
 

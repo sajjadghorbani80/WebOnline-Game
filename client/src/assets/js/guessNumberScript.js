@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ReqDto} from '../../dtos/guessNumberDto.js';
+import {errorHandler} from './errorHandler.js';
 const checkAnswerBtn = document.getElementById('submit');
 const input = document.getElementById('guessinput');
 const resultMessage1 = document.getElementById('pTag1');
@@ -92,26 +94,26 @@ function messageGeneratorByCode(resultDto) {
 
 /* //////////////////////////// form validation //////////////////////// */
 
-function setErrorMessage(errorMsg) {
-  errorLabel.style.display = 'block';
-  switch (errorMsg) {
-    case 'guessnumber.input.empty':
-      errorLabel.innerText = 'Input can not be empty';
-      break;
-    case 'guessnumber.input.isNotInt':
-      errorLabel.innerText = 'The entered value must be integer';
-      break;
-    case 'guessnumber.input.invalidRange':
-      errorLabel.innerText = 'Please guess number between 0 to 100!';
-      break;
-    case 'guessnumber.database.error':
-      errorLabel.innerText = 'Your answer is correct. But your score was not saved. Please try again';
-      break;
-    default:
-      errorLabel.innerText = 'Invalid input';
-      break;
-  }
-}
+// function setErrorMessage(errorMsg) {
+//   errorLabel.style.display = 'block';
+//   switch (errorMsg) {
+//     case 'guessnumber.input.empty':
+//       errorLabel.innerText = 'Input can not be empty';
+//       break;
+//     case 'guessnumber.input.isNotInt':
+//       errorLabel.innerText = 'The entered value must be integer';
+//       break;
+//     case 'guessnumber.input.invalidRange':
+//       errorLabel.innerText = 'Please guess number between 0 to 100!';
+//       break;
+//     case 'guessnumber.database.error':
+//       errorLabel.innerText = 'Your answer is correct. But your score was not saved. Please try again';
+//       break;
+//     default:
+//       errorLabel.innerText = 'Invalid input';
+//       break;
+//   }
+// }
 
 // from front
 
@@ -122,7 +124,7 @@ function formValidation(value) {
   }
   value = value.trim();
   if (value == null || value == '') {
-    setErrorMessage('guessnumber.input.empty');
+    errorHandler(errorLabel, 'guessnumber.input.empty');
     return false;
   }
 

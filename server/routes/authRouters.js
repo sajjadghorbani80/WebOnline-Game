@@ -4,7 +4,8 @@
 
 import {Router} from 'express';
 import {ReqSignUpDto, ReqSignInDto} from '../src/dtos/userRegisterDto.js';
-import {userRegister, singIn, sendVerifyUserEmail} from '../src/services/authServices.js';
+import {signup, signin} from '../src/services/authServices.js';
+import {sendVerifyUserEmail} from '../src/utilities/emailDelivery.js';
 import {validationResult, check} from 'express-validator';
 import {ResponseDto} from '../src/dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
@@ -35,7 +36,7 @@ router.post('/user/userSignIn', loginValidationRules, async (req, res) => {
     return res.status(200).send(response);
   }
   const requestData = new ReqSignInDto(req.body.usernameOrEmail, req.body.password);
-  const userLoginResult = await singIn(requestData);
+  const userLoginResult = await signin(requestData);
   res.send(userLoginResult);
 });
 
@@ -50,7 +51,7 @@ router.post('/user/sendVerifyEmail', emailValidations, async (req, res) => {
   res.send(resultProcess);
 });
 
-router.post('/user/userregister', RegisterValidationRules, async (req, res)=>{
+router.post('/user/signup', RegisterValidationRules, async (req, res)=>{
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const response = new ResponseDto(400, null, errors);
@@ -58,8 +59,8 @@ router.post('/user/userregister', RegisterValidationRules, async (req, res)=>{
   }
   const requestData = new ReqSignUpDto(req.body.username, req.body.email,
       req.body.fullname, req.body.password);
-  const userRegisterResult = await userRegister(requestData);
-  res.send(userRegisterResult);
+  const signupResult = await signup(requestData);
+  res.send(signupResult);
 });
 
 

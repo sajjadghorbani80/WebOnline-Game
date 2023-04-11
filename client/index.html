@@ -5,147 +5,109 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./src/assets/css/styles.css"/>
-  <link rel="stylesheet" href="./src/assets/css/globalStyles.css"/>
+  <link rel="stylesheet" href="./src/assets/css/styles.css" />
+  <link rel="stylesheet" href="./src/assets/css/globalStyles.css" />
   <script src="https://kit.fontawesome.com/1dca7e92a5.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <title>Web Online Game</title>
 </head>
 
 <body>
   <div class="app-container">
-    <header>
-      <div class="header-container" id="header-html">
-        <div class="logo-section w-10">
-          <img id="img-logo" class="logo" src="./../../src/assets/images/pslogo.png" alt="" />
-        </div>
-        <div class="w-50">
-          <ul class="menu-nav">
-            <li class="underline-active"><a href="./../../index.html">Home</a></li>
-            <li class="underline-active"><a href="./../../index.html#topPlayerSection">Scoreboard</a></li>
-          </ul>
-        </div>
-        <div class="profile-section w-50">
-          <div id="login-sction" class="underline-active" style="display: none;">
-            <a href="./src/views/userRegister.html"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Sign In</a>
+    <header id="includedContent"></header>
+    <main>
+      <div class="game-showbox">
+        <div class="description-box">
+          <div class="top">
+            <h1>Guess Number</h1>
+            <p class="game-description">
+              Try your luck and get a prize!
+            </p>
           </div>
-          <div class="user-menu-section">
-            <div class="username">
-              <p id="userFullname">Sajjad Ghorbani</p>&nbsp;&nbsp;
-            </div>
-            <img id="img-profile" class="profile-circle" src="./../../src/assets/images/profile-pic.jpg" alt="" />
-            <div class="dropdown-content">
-              <div class="dropdown-item" title="Score">
-                <span><i class="fa-solid fa-star" style="color: #c0c0c0;"></i></span>
-                <span id="userScore">1254856</span>
-              </div>
-              <div class="dropdown-item" title="Rank">
-                <span><i class="fa-solid fa-medal" style="color: #c0c0c0;"></i></span>
-                <span id="userRank">86559</span>
-              </div>
-              <div class="dropdown-item" title="Number of times played">
-                <span><i class="fa-solid fa-rotate-right" style="color: #c0c0c0;"></i></span>
-                <span id="userPlayCount">50</span>
-              </div>
-              <a href="/src/views/resetPass.html">Change Password</a>
-              <a href="#">Logout</a>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-    </header>
-  <main>
-    <div class="game-showbox">
-      <div class="description-box">
-        <div class="top">
-          <h1>Guess Number</h1>
-          <p class="game-description">
-            Try your luck and get a prize!
-          </p>
-        </div>
-        <div class="bottom">
-          <div class="genres-box">
-            <h3>
-              GENRES:
-            </h3>
-            <div class="genres-item">Family</div>
-            <div class="genres-item">Casual</div>
-          </div>
-          <br />
-          <div>
-            <a href="/src/views/guessNumber.html">
-              <button class="primary-btn">
-                <i class="fa-solid fa-play"></i>
-                Play
-              </button>
-            </a>
-            <a href="#topPlayerSection">
-              <button class="primary-btn" style="width: 10%">
-                <i class="fa-solid fa-trophy"></i>
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="game-slider">
-      <div class="card-container">
-        <div class="card">
-          <p>Coming Soon...</p>
-        </div>
-        <div class="card">
-          <div class="card-image-container">
-            <img src="./src/assets/images/metro.jpg" alt="" />
-          </div>
-          <div class="bottom-card-container">
-            <div class="card-title" style="color: white">
+          <div class="bottom">
+            <div class="genres-box">
               <h3>
-                Guess Number
+                GENRES:
               </h3>
-              <p>+3</p>
+              <div class="genres-item">Family</div>
+              <div class="genres-item">Casual</div>
             </div>
-            <div class="card-button-container">
+            <br />
+            <div>
               <a href="/src/views/guessNumber.html">
-                <span>
+                <button class="primary-btn">
                   <i class="fa-solid fa-play"></i>
-                </span>
+                  Play
+                </button>
               </a>
               <a href="#topPlayerSection">
-                <span>
+                <button class="primary-btn" style="width: 10%">
                   <i class="fa-solid fa-trophy"></i>
-                </span>
+                </button>
               </a>
             </div>
           </div>
         </div>
-        <div class="card">
-          <p>Coming Soon...</p>
+      </div>
+      <div class="game-slider">
+        <div class="card-container">
+          <div class="card">
+            <p>Coming Soon...</p>
+          </div>
+          <div class="card">
+            <div class="card-image-container">
+              <img src="./src/assets/images/metro.jpg" alt="" />
+            </div>
+            <div class="bottom-card-container">
+              <div class="card-title" style="color: white">
+                <h3>
+                  Guess Number
+                </h3>
+                <p>+3</p>
+              </div>
+              <div class="card-button-container">
+                <a href="/src/views/guessNumber.html">
+                  <span>
+                    <i class="fa-solid fa-play"></i>
+                  </span>
+                </a>
+                <a href="#topPlayerSection">
+                  <span>
+                    <i class="fa-solid fa-trophy"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <p>Coming Soon...</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="topPlayerContainer">
-      <div class="headlinedSection">
-        <div class="leftHrDiv">
-          <hr>
+      <div class="topPlayerContainer">
+        <div class="headlinedSection">
+          <div class="leftHrDiv">
+            <hr>
+          </div>
+          <div class="headlineDiv">
+            <h2 class="topPlayerHeadline">Top Player</h2>
+          </div>
+          <div class="rightHrDiv">
+            <hr>
+          </div>
         </div>
-        <div class="headlineDiv">
-          <h2 class="topPlayerHeadline">Top Player</h2>
+
+        <div class="topPlayerSection" id="topPlayerSection">
+
         </div>
-        <div class="rightHrDiv">
-          <hr>
-        </div>
+
+
       </div>
-
-      <div class="topPlayerSection" id="topPlayerSection">
-        
-      </div>
-
-
-    </div>
-  </main>
+    </main>
   </div>
   <script src="./src/assets/js/homePageScript.js"></script>
+  <script type="module" src="./src/assets/js/headerHandler.js"></script>
 </body>
 
 </html>

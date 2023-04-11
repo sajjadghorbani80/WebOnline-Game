@@ -4,8 +4,7 @@ export class ResponseDto {
   status;
   result;
   errors;
-  constructor(status, result, errors) {
-    this.status = status;
+  constructor(result, errors) {
     this.result = result;
     this.errors= errors;
   }

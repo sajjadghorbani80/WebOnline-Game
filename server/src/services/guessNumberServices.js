@@ -17,6 +17,8 @@ function restartGame() {
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
   console.log(randomNumber);
+  const response = new ResponseDto(200, null);
+  return response;
 }
 
 /*
@@ -32,7 +34,7 @@ async function checkAnswer(guess) {
     result.status = 1;
     result.randomNumber = randomNumber;
     const score = calculateScore(chance);
-    const saveRes = await SaveRecord(new PlayDto(1, gameId, score));
+    const saveRes = await saveRecord(new PlayDto(1, gameId, score));
     if (saveRes === true) {
       return result;
     } else {
@@ -51,7 +53,7 @@ async function checkAnswer(guess) {
   return result;
 }
 
-async function SaveRecord(playDto) {
+async function saveRecord(playDto) {
   try {
     const play = await prisma.play.create({
       data: {
@@ -82,6 +84,6 @@ async function getGameIdByName(gameName) {
   } catch (error) {
     console.log(error.message);
   }
-  return null;
+  return undefined;
 }
 export {checkAnswer, restartGame};
