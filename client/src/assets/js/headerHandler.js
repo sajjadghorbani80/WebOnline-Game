@@ -1,10 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+// eslint-disable-next-line linebreak-style
 import {getTokenFromCookies, parseJwt} from './tokenHandler.js';
+import {CONFIG} from './config.js';
 const headerContainer = document.getElementById('includedContent');
+window.CONFIG = CONFIG;
 headerLoader();
 async function headerLoader() {
-  const tokenInCookies = getTokenFromCookies('gfg_token_header_key');
+  const tokenInCookies = getTokenFromCookies(window.CONFIG.Token_Header_Key);
   if (tokenInCookies) {
     const tokenData = parseJwt(tokenInCookies);
     const userData = await getCurrentUserInfo(tokenData.userId);
@@ -38,11 +41,13 @@ async function headerLoader() {
                     <span id="userPlayCount">${userData.playCount}</span>
                 </div>
                 <a href="/src/views/resetPass.html">Change Password</a>
-                <a href="#">Logout</a>
+                <a id="logout" href="#">Logout</a>
             </div>
         </div>
     </div>
   </div>`;
+    const logoutBtn = document.getElementById('logout');
+    logoutBtn.addEventListener('click', logout);
   } else {
     headerContainer.innerHTML = `<div class="header-container" id="header-html">
     <div class="logo-section w-10">
@@ -64,7 +69,7 @@ async function headerLoader() {
 }
 
 async function getCurrentUserInfo(userId) {
-  const response = await fetch(`http://localhost:3000/api/getcurrentuserinfo/${userId}`, {
+  const response = await fetch(`${window.CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
     method: 'GET',
   })
       .then((response) => response.json())
@@ -75,3 +80,9 @@ async function getCurrentUserInfo(userId) {
 
   return response;
 };
+
+function logout() {
+  document.cookie = `${window.CONFIG.Token_Header_Key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  window.location = '/';
+}
+

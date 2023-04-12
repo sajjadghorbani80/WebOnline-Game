@@ -37,7 +37,7 @@ router.post('/user/userSignIn', loginValidationRules, async (req, res) => {
   }
   const requestData = new ReqSignInDto(req.body.usernameOrEmail, req.body.password);
   const userLoginResult = await signin(requestData);
-  res.send(userLoginResult);
+  return res.send(userLoginResult);
 });
 
 router.post('/user/sendVerifyEmail', emailValidations, async (req, res) => {
