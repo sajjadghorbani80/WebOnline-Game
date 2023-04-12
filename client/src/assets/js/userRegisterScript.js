@@ -10,6 +10,12 @@ const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
 const singupForm = document.getElementById('signup-section').getElementsByTagName('input');
 const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
+const sendEmailBtn = document.getElementById('sendEmail-btn');
+const emailInput = document.getElementById('email-verify');
+const showMessage = document.getElementById('show-message');
+import {errorHandler} from './errorHandler.js';
+
+
 // Add an event listener to the buttons container
 
 buttons.addEventListener('click', handleClick);
@@ -84,6 +90,29 @@ function singin() {
       });
 };
 
+async function sendEmail() {
+  const params = {
+    email: emailInput.value,
+  };
+  const response = await fetch('/api/user/sendVerifyEmail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (response.status == 400) {
+    const data = await response.json();
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(showMessage, firstError);
+  } else {
+    const data = await response.json();
+    errorHandler(showMessage, data.errors);
+  }
+}
+
+sendEmailBtn.addEventListener('click', sendEmail);
 singupBtn.addEventListener('click', singup);
 singinBtn.addEventListener('click', singin);
 

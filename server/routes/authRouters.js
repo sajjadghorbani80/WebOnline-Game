@@ -43,12 +43,12 @@ router.post('/user/userSignIn', loginValidationRules, async (req, res) => {
 router.post('/user/sendVerifyEmail', emailValidations, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const response = new ResponseDto(400, null, errors);
-    return res.status(200).send(response);
+    const response = new ResponseDto(null, errors);
+    return res.status(400).send(response);
   }
   const email = req.body.email;
   const resultProcess = await sendVerifyUserEmail(email);
-  res.send(resultProcess);
+  res.status(200).send(resultProcess);
 });
 
 router.post('/user/signup', RegisterValidationRules, async (req, res)=>{
@@ -74,7 +74,7 @@ router.get('/verify/:token', (req, res)=>{
       res.send('Email verification failed,possibly the link is invalid or expired');
     } else {
       console.log(decoded);
-      res.redirect(`http://127.0.0.1:${process.env.PORT}/src/views/resetPass.html?email=${decoded.email}`);
+      res.redirect(`http://localhost:${process.env.PORT}/src/views/resetPass.html?token=${token}`);
     }
   });
 });

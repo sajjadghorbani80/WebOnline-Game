@@ -26,10 +26,10 @@ router.get('/getcurrentuserinfo/:id', async (req, res)=>{
 router.post('/user/resetpass', resetPassValidationRules, async (req, res)=> {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const response = new ResponseDto(400, null, errors);
-    return res.status(200).send(response);
+    const response = new ResponseDto(null, errors);
+    return res.status(400).send(response);
   }
-  const result = await resetPassword(req.body.email, req.body.password, req.body.repassword);
+  const result = await resetPassword(req.body.token, req.body.password, req.body.repassword);
   res.send(result);
 });
 export {router};

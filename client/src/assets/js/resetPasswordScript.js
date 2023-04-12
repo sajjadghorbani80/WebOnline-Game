@@ -1,27 +1,38 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-unused-vars */
 /* eslint-disable linebreak-style */
-const sendEmailBtn = document.getElementById('sendEmail-btn');
 const resetPassBtn = document.getElementById('resetpass-btn');
-const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const repasswordInput = document.getElementById('re-password');
+const showMessage = document.getElementById('show-message');
+import {errorHandler} from './errorHandler.js';
+import {getTokenFromCookies} from './tokenHandler.js';
 
-async function sendEmail() {
+async function resetPassword() {
   const params = {
-    email: emailInput.value,
+    password: passwordInput.value,
+    repassword: repasswordInput.value,
   };
-  const response = await fetch('/api/user/sendVerifyEmail', {
+  const url = new URL(window.location);
+  const token = url.searchParams.get('token');
+  params.token = token || getTokenFromCookies(window.CONFIG.Token_Header_Key);
+
+  const response = await fetch('/api/user/resetpass', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+  });
+
+  if (response.status == 400) {
+    const data = await response.json();
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(showMessage, firstError);
+  } else {
+    const data = await response.json();
+    errorHandler(showMessage, data.errors);
+  }
 }
 
-sendEmailBtn.addEventListener('click', sendEmail);
+resetPassBtn.addEventListener('click', resetPassword);

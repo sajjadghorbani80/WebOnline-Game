@@ -4,6 +4,7 @@
 import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
 
 
@@ -49,26 +50,38 @@ async function getCurrentUserInfo(userId) {
   }
 }
 
-async function resetPassword(userEmail, password, repassword) {
+async function resetPassword(token, password, repassword) {
   const result = new ResponseDto();
+  const jwtSecretKey = process.env.JWT_SECRET_KEY;
+  const tokenData = jwt.verify(token, jwtSecretKey, (err, decoded)=> {
+    if (err) {
+      return false;
+    } else {
+      return decoded;
+    }
+  });
+  if (tokenData == false) {
+    result.errors = 'webonlinegame.token.unauthorize';
+    return result;
+  }
   if (password == repassword) {
     try {
       const updateUser = await prisma.user.update({
         where: {
-          email: userEmail,
+          email: tokenData.email,
         },
         data: {
           password: bcrypt.hashSync(password, 10),
         },
       });
-      result.status = 200;
+      result.errors = 'webonlinegame.resetpass.success';
     } catch (error) {
       console.log(error);
-      result.status = 404;
+      result.errors = 'webonlinegame.server.error';
       return result;
     }
   } else {
-    result.status = 400;
+    result.errors = 'webonlinegame.resetpass.passwordMisMatch';
   }
   return result;
 }
