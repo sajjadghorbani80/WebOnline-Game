@@ -71,7 +71,7 @@ router.get('/verify/:token', (req, res)=>{
   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
     if (err) {
       console.log(err);
-      res.send('Email verification failed,possibly the link is invalid or expired');
+      res.redirect(`http://localhost:${process.env.PORT}/src/views/error.html?error=notverify`);
     } else {
       console.log(decoded);
       res.redirect(`http://localhost:${process.env.PORT}/src/views/resetPass.html?token=${token}`);
