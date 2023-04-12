@@ -61,7 +61,7 @@ async function headerLoader() {
     </div>
     <div class="profile-section w-50">
         <div id="login-sction" class="underline-active">
-            <a href="./src/views/userRegister.html"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Sign In</a>
+            <a href="/src/views/userRegister.html"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Sign In</a>
         </div>
     </div>
   </div>`;

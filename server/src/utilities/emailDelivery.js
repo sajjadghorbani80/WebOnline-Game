@@ -7,13 +7,15 @@ import nodemailer from 'nodemailer';
 import {PrismaClient} from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import {SendEmailDto} from '../dtos/SendemailDto.js';
+import {ResponseDto} from '../dtos/responseDto.js';
+const prisma = new PrismaClient();
 
 const transporter = nodemailer.createTransport({
   host: 'sandbox.smtp.mailtrap.io',
   port: 2525,
   auth: {
-    user: 'c387f3a49c1e8c',
-    pass: 'c4abf742876ed5',
+    user: '8f5dd8e0a91c87',
+    pass: '18db80a01c9d64',
   },
 });
 
@@ -41,16 +43,19 @@ function sendVerifyEmail(reqSendEmail) {
           Thanks`,
 
   };
-
-  sendEmail(mailConfigurations);
+  try {
+    console.log(mailConfigurations.text);
+    sendEmail(mailConfigurations);
+    return;
+  } catch (error) {
+    throw Error(error);
+  };
 }
-
 
 function sendEmail(mailConfigurations) {
   transporter.sendMail(mailConfigurations, function(error, info) {
     if (error) throw Error(error);
-    console.log('Email Sent Successfully');
-    console.log(info);
+    return;
   });
 }
 
@@ -65,14 +70,18 @@ async function sendVerifyUserEmail(userEmail) {
       },
     });
     if (user != undefined) {
-      sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
-      result.status = 200;
+      try {
+        sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
+        result.errors = 'webonlinegame.verifyemail.sent';
+      } catch (error) {
+        result.errors = 'webonlinegame.verifyemail.notsent';
+      }
     } else {
-      result.status = 401;
+      result.errors = 'webonlinegame.user.notfound';
     }
     return result;
   } catch (error) {
-    result.status = 500;
+    result.errors = 'webonlinegame.server.error';
     return result;
   }
 }

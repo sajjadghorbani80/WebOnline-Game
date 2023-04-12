@@ -12,10 +12,11 @@ const prisma = new PrismaClient();
 
 /* //////////////////////////// token jwt //////////////////////// */
 
-function generateToken(userId) {
+function generateToken(userId, userEmail) {
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
   const data = { // options that will be in token
     userId: userId,
+    email: userEmail,
   };
   const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
   return token;
@@ -124,7 +125,7 @@ async function signin(userData) {
     if (user != null) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
-        const token = generateToken(user.uid);
+        const token = generateToken(user.uid, user.email);
         result.errors = 200;
         result.result = token;
       } else {
