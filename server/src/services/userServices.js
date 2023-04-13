@@ -9,8 +9,14 @@ import {ResponseDto} from '../dtos/responseDto.js';
 
 
 async function getCurrentUserInfo(userId) {
+  const response = new ResponseDto();
+  const userInfo = {
+    sumScore: 0,
+    rank: 0,
+    playCount: 0,
+  };
   try {
-    const user = await prisma.user.findFirstOrThrow({
+    const user = await prisma.user.findFirst({
       where: {
         uid: +userId,
       },
@@ -34,26 +40,33 @@ async function getCurrentUserInfo(userId) {
         _all: true,
       },
     });
-    const playsOfCurrentUser = plays.find((p) => p.userId == userId);
-    const userRank = plays.findIndex((p) => p.userId == +userId) + 1;
-    const userInfo = {
-      uid: user.uid,
-      fullName: user.fullname,
-      sumScore: playsOfCurrentUser._sum.score,
-      playCount: playsOfCurrentUser._count._all,
-      rank: userRank,
-    };
 
-    return userInfo;
+    if (user != undefined) {
+      userInfo.fullName = user.fullname;
+      userInfo.uid = user.uid;
+    } else {
+      response.errors = 'webonlinegame.user.notfound';
+      return response;
+    }
+    if (plays != undefined) {
+      const playsOfCurrentUser = plays.find((p) => p.userId == userId);
+      const userRank = plays.findIndex((p) => p.userId == +userId) + 1;
+      userInfo.sumScore = playsOfCurrentUser != undefined? playsOfCurrentUser._sum.score : 0;
+      userInfo.playCount = playsOfCurrentUser != undefined? playsOfCurrentUser._count._all : 0;
+      userInfo.rank = userRank != -1? userRank: 0;
+    }
+    response.result = userInfo;
   } catch (error) {
     console.log(error);
+    response.errors = 'webonlinegame.server.error';
   }
+  return response;
 }
 
 async function resetPassword(token, password, repassword) {
   const result = new ResponseDto();
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const tokenData = jwt.verify(token, jwtSecretKey, (err, decoded)=> {
+  const tokenData = jwt.verify(token, jwtSecretKey, (err, decoded) => {
     if (err) {
       return false;
     } else {

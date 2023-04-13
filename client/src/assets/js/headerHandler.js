@@ -71,14 +71,13 @@ async function headerLoader() {
 async function getCurrentUserInfo(userId) {
   const response = await fetch(`${window.CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
     method: 'GET',
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.result);
-        return data.result;
-      });
-
-  return response;
+  });
+  const data = await response.json();
+  if (response.status == 400 || data.errors == 'webonlinegame.user.notfound') {
+    logout();
+    return;
+  }
+  return data.result;
 };
 
 function logout() {
