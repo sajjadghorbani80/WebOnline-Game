@@ -3,6 +3,7 @@
 /* eslint-disable require-jsdoc */
 import {ReqDto} from '../../dtos/guessNumberDto.js';
 import {errorHandler} from './errorHandler.js';
+import {getTokenFromCookies} from './tokenHandler.js';
 const checkAnswerBtn = document.getElementById('submit');
 const input = document.getElementById('guessinput');
 const resultMessage1 = document.getElementById('pTag1');
@@ -24,6 +25,8 @@ function startGame() {
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/restart-game';
   http.open('GET', url, true);
+  const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
+  http.setRequestHeader(window.CONFIG.Token_Header_Key, token);
   http.setRequestHeader('Content-Type', 'application/json');
   http.send();
 }
@@ -142,12 +145,14 @@ function formValidation(value) {
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
+  const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/checkanswer';
   const params = new ReqDto(input.value);
   http.open('POST', url, true);
 
   http.setRequestHeader('Content-Type', 'application/json');
+  http.setRequestHeader(window.CONFIG.Token_Header_Key, token);
   http.send(JSON.stringify(params));
   http.onload = function() {
     const result = JSON.parse(http.response);

@@ -26,7 +26,7 @@ This is the logic of the number guessing game
 that Compares the game number with user guess
 and return the game result
 */
-async function checkAnswer(guess) {
+async function checkAnswer(guess, userId) {
   chance--;
   const result = new ResDto(chance, null, guess.guessValue, null);
 
@@ -34,7 +34,7 @@ async function checkAnswer(guess) {
     result.status = 1;
     result.randomNumber = randomNumber;
     const score = calculateScore(chance);
-    const saveRes = await saveRecord(new PlayDto(1, gameId, score));
+    const saveRes = await saveRecord(new PlayDto(userId, gameId, score));
     if (saveRes === true) {
       return result;
     } else {
