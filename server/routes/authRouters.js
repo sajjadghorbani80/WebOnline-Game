@@ -48,7 +48,7 @@ router.post('/user/sendVerifyEmail', emailValidations, async (req, res) => {
   }
   const email = req.body.email;
   const resultProcess = await sendVerifyUserEmail(email);
-  res.status(200).send(resultProcess);
+  return res.status(200).send(resultProcess);
 });
 
 router.post('/user/signup', RegisterValidationRules, async (req, res)=>{

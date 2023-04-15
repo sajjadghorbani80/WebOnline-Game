@@ -22,39 +22,46 @@ function generateToken(userId, userEmail) {
   return token;
 }
 
-function verifyToken() {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
+// function verifyToken() {
+//   try {
+//     const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+//     const jwtSecretKey = process.env.JWT_SECRET_KEY;
+//     const token = req.header(tokenHeaderKey);
 
-  try {
-    const token = req.header(tokenHeaderKey);
-
-    const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return 'webonlinegame.success.verifyToken';
-    } else {
-      return 'webonlinegame.error.TokenNotVerifyed';
-    }
-  } catch (error) {
-    return 'webonlinegame.error.servererror';
-  }
-}
+//     const verified = jwt.verify(token, jwtSecretKey);
+//     if (verified) {
+//       return 'webonlinegame.success.verifyToken';
+//     } else {
+//       return 'webonlinegame.error.TokenNotVerifyed';
+//     }
+//   } catch (error) {
+//     return 'webonlinegame.error.servererror';
+//   }
+// }
 
 function checkToken(req, res, next) {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const token = req.header(tokenHeaderKey);
-  if (token) {
-    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
-      if (err) {
-        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(403).send({success: false, message: 'No Token Provided.'});
+  const response = new ResponseDto();
+  try {
+    const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const token = req.header(tokenHeaderKey);
+    if (token) {
+      jwt.verify(token, jwtSecretKey, (err, decoded) => {
+        if (err) {
+          response.errors = 'webonlinegame.error.TokenNotVerifyed';
+          res.status(403).send(response);
+        } else {
+          req.decoded = decoded;
+          next();
+        }
+      });
+    } else {
+      response.errors = 'webonlinegame.error.NoTokenProvided';
+      res.status(403).send(response);
+    }
+  } catch (error) {
+    response.errors = 'webonlinegame.error.servererror';
+    res.status(500).send(response);
   }
 }
 
@@ -142,5 +149,5 @@ async function signin(userData) {
 }
 
 
-export {generateToken, verifyToken, signup, signin, checkToken};
+export {generateToken, /* verifyToken,*/ signup, signin, checkToken};
 
