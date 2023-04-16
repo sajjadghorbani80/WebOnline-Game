@@ -26,9 +26,6 @@ router.post('/guessnumber/checkanswer', checkToken, validationRules, async (req,
   const data = new ReqDto(+req.body.guessValue);
   const userId = req.decoded.userId;
   const result = await checkAnswer(data, userId);
-  if (result.errors) {
-    return res.status(200).send(result);
-  }
   return res.status(200).send(result);
 });
 

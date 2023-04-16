@@ -66,6 +66,16 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
       Start game with your first GUESS! <br> 
       Remaining Chances 5`;
       break;
+      // for getTopPlayers
+    case 'webonlinegame.gettopplayers.success':
+      HtmlTag.innerHTML = 'User scores counted';
+      break;
+
+      // they are global error
+    case 'webonlinegame.record.NotFound':
+      HtmlTag.innerHTML = 'record not found';
+      break;
+
     default:
       HtmlTag.innerHTML = 'Unhandled Error';
       break;

@@ -2,9 +2,12 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 import {PrismaClient} from '@prisma/client';
+import {ResponseDto} from '../dtos/responseDto.js';
+
 const prisma = new PrismaClient();
 
 async function getTopPlayers(params) {
+  const response = new ResponseDto();
   const userIds = [];
   const finalResult = [];
   let plays = null;
@@ -26,13 +29,17 @@ async function getTopPlayers(params) {
       },
       take: params.count != undefined? params.count: 3,
     });
-
-    // get users id for get their info
+    if (plays == undefined) {
+      // get users id for get their info
+      response.errors = 'webonlinegame.record.NotFound';
+      return response;
+    }
     plays.forEach((record) => {
       userIds.push(record.userId);
     });
   } catch (error) {
-    console.log(error);
+    response.errors = 'webonlinegame.server.error';
+    return response;
   }
 
 
@@ -50,23 +57,30 @@ async function getTopPlayers(params) {
         username: true,
       },
     });
-
+    if (users != undefined) {
+      // get users id for get their info
+      plays.forEach((element) => {
+        const user = users.find((u) => u.uid== element.userId);
+        const userInfo = {
+          uid: user.uid,
+          userName: user.username,
+          fullName: user.fullname,
+          sumScore: element._sum.score,
+          PlayCount: element._count._all,
+        };
+        finalResult.push(userInfo);
+      });
+      response.result = finalResult;
+      response.errors = 'webonlinegame.gettopplayers.success';
+      return response;
+    }
+    response.errors = 'webonlinegame.record.NotFound';
+    return response;
     // prepare final result, include user info, score's, number of play's
-    plays.forEach((element) => {
-      const user = users.find((u) => u.uid== element.userId);
-      const userInfo = {
-        uid: user.uid,
-        userName: user.username,
-        fullName: user.fullname,
-        sumScore: element._sum.score,
-        PlayCount: element._count._all,
-      };
-      finalResult.push(userInfo);
-    });
   } catch (error) {
-    console.log(error);
+    response.errors = 'webonlinegame.server.error';
+    return response;
   }
-  return finalResult;
 }
 
 export {getTopPlayers};
