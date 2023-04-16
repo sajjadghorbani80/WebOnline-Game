@@ -71,10 +71,10 @@ router.get('/verify/:token', (req, res)=>{
   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
     if (err) {
       console.log(err);
-      res.redirect(`http://localhost:${process.env.PORT}/src/views/error.html?error=notverify`);
+      res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=notverify`);
     } else {
       console.log(decoded);
-      res.redirect(`http://localhost:${process.env.PORT}/src/views/resetPass.html?token=${token}`);
+      res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/resetPass.html?token=${token}`);
     }
   });
 });

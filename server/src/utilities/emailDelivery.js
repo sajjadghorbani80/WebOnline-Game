@@ -6,28 +6,33 @@
 import nodemailer from 'nodemailer';
 import {PrismaClient} from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import {SendEmailDto} from '../dtos/SendemailDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 const prisma = new PrismaClient();
 
 const transporter = nodemailer.createTransport({
-  host: 'sandbox.smtp.mailtrap.io',
-  port: 2525,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  tls: true,
   auth: {
-    user: '8f5dd8e0a91c87',
-    pass: '18db80a01c9d64',
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
 
 /* //////////////////////////// Email verification //////////////////////// */
 
 function sendEmail(mailConfigurations) {
-  transporter.sendMail(mailConfigurations, function(error, info) {
-    if (error){
-      console.log(error);
-      throw Error(error)};
-    return;
-  });
+  try {
+    transporter.sendMail(mailConfigurations, function(error, info) {
+      if (error) {
+        console.log(error);
+        throw Error(error);
+      }
+    });
+    return 'webonlinegame.verifyemail.sent';
+  } catch (error) {
+    return 'webonlinegame.server.error';
+  }
 }
 
 
@@ -50,7 +55,7 @@ async function sendVerifyUserEmail(userEmail) {
       const mailConfigurations = {
 
         // It should be a string of sender/server email
-        from: 'sandbox.smtp.mailtrap.io',
+        from: process.env.SMTP_EMAIL_ADDRESS,
 
         to: userEmail,
 
@@ -59,11 +64,11 @@ async function sendVerifyUserEmail(userEmail) {
 
         // This would be the text of email body
         text: `Hi, for reset password, Please follow the given link to verify your email
-        http://localhost:${process.env.PORT}/api/verify/${token}`,
+        http://localhost:${process.env.NODE_LOCAL_PORT}/api/verify/${token}`,
 
       };
-      sendEmail(mailConfigurations);
-      result.errors = 'webonlinegame.verifyemail.sent';
+      const resEmail = sendEmail(mailConfigurations);
+      result.errors = resEmail;
     } catch (error) {
       result.errors = 'webonlinegame.verifyemail.notsent';
     }
