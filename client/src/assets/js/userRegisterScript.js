@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
+import {errorHandler} from './errorHandler.js';
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
 const singupBtn = document.getElementById('sing-up-btn');
@@ -10,6 +11,11 @@ const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
 const singupForm = document.getElementById('signup-section').getElementsByTagName('input');
 const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
+const singinError = document.getElementById('singin-error');
+const singupError = document.getElementById('singup-error');
+const btnkocholo = document.getElementById('btn-kocholo');
+const signinsucsess = document.getElementById('signin-sucsess');
+
 // Add an event listener to the buttons container
 
 buttons.addEventListener('click', handleClick);
@@ -40,48 +46,57 @@ function handleClick(child) {
 };
 
 
-function singup() {
+async function singup() {
   const params = {
     fullname: singupForm[0].value,
     username: singupForm[1].value,
     email: singupForm[2].value,
     password: singupForm[3].value,
   };
-  const response = fetch('/api/user/userregister', {
+  const response = await fetch('/api/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status == 400) {
-          const firstError = result.errors.errors[0].msg;
-          setErrorMessage(firstError);
-        } else {
-          messageGeneratorByCode(result.result);
-        }
-      });
+  });
+  const data = await response.json();
+  if (response.status == 400) {
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(singupError, firstError);
+  } else {
+    errorHandler(singupError, data.errors);
+    if (data.errors == 'webonlinegame.signup.success') {
+      errorHandler(singupError, data.errors);
+      btnkocholo.click();
+      signinsucsess.innerHTML = 'signup success! sign in first';
+    }
+  }
 };
 
-function singin() {
+async function singin() {
   const params = {
     usernameOrEmail: singinForm[0].value,
     password: singinForm[1].value,
   };
-  const response = fetch('/api/user/userSignIn', {
+  const response = await fetch('/api/user/signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+  });
+  const data = await response.json();
+  if (response.status == 400) {
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(singinError, firstError);
+  } else {
+    errorHandler(singinError, data.errors);
+    if (data.errors == 'webonlinegame.signin.success') {
+      document.cookie = `${window.CONFIG.Token_Header_Key}=${data.result};path=/;`;
+      window.location = '/';
+    }
+  }
 };
 
 singupBtn.addEventListener('click', singup);

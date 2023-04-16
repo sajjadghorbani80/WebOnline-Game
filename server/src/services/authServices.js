@@ -13,12 +13,16 @@ const prisma = new PrismaClient();
 /* //////////////////////////// token jwt //////////////////////// */
 
 function generateToken(userId) {
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const data = { // options that will be in token
-    userId: userId,
-  };
-  const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
-  return token;
+  try {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const data = { // options that will be in token
+      userId: userId,
+    };
+    const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
+    return token;
+  } catch (error) {
+    return 'webonlinegame.server.error';
+  }
 }
 
 function verifyToken() {
@@ -77,10 +81,10 @@ async function signup(registerData) {
     });
 
     if (username != 0) {
-      result.status = 4031; // username is exist
+      result.errors = 'webonlinegame.username.isexist'; // username is exist
       return result;
     } else if (email != 0) {
-      result.status = 4032; // email is exist
+      result.errors = 'webonlinegame.email.isexist'; // email is exist
       return result;
     } else {
       const hash = bcrypt.hashSync(registerData.password, 10);
@@ -93,15 +97,15 @@ async function signup(registerData) {
             password: hash,
           },
         });
-        result.status = 200;
+        result.errors = 'webonlinegame.signup.success';
         result.result = user;
       } catch (error) {
-        result.status = 503; // server error
+        result.errors = 'webonlinegame.server.error';
         return result;
       }
     }
   } catch (err) {
-    result.status = 510;
+    result.errors = 'webonlinegame.server.error';
     console.log(err); // Database connection error
     result.errors = err;
     return result;
@@ -121,21 +125,21 @@ async function signin(userData) {
         ],
       },
     });
-    if (user != null) {
+    if (user != undefined) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
         const token = generateToken(user.uid);
-        result.errors = 200;
+        result.errors = 'webonlinegame.signin.success';
         result.result = token;
       } else {
-        result.errors = 4012;
+        result.errors = 'webonlinegame.signin.invalidcredentials';
       }
     } else {
-      result.errors = 4013;
+      result.errors = 'webonlinegame.user.notfound';
     }
     return result;
   } catch (error) {
-    result.errors = 4014;
+    result.errors = 'webonlinegame.server.error';
     return result;
   }
 }
