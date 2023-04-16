@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 
 /* //////////////////////////// token jwt //////////////////////// */
 
-function generateToken(userId) {
+function generateToken(userId, userEmail) {
   try {
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const data = { // options that will be in token

@@ -359,10 +359,12 @@ hr {
   border-radius: 10px;
 }
 
-.topPlayerBox:nth-child(odd) {
+.topPlayerBox:first-child {
   margin-top: 2%;
 }
-
+.topPlayerBox:last-child {
+  margin-top: 2%;
+}
 .playerPic {
   width: 100%;
   height: 39%;
