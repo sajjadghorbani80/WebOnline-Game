@@ -73,7 +73,7 @@ async function showTopPlayers() {
 
       });
       // change position of first and second player
-      const secondPlayer = document.querySelector('div.topPlayerBox:nth-child(2)');
+      const secondPlayer = document.querySelector('div.topPlayerBox:nth-child(3)');
       secondPlayer.parentNode.insertBefore(secondPlayer,
           secondPlayer.parentNode.firstChild);
     } else {
@@ -82,7 +82,7 @@ async function showTopPlayers() {
     }
   } catch (error) {
     topPlayerSection.style.justifyContent = 'center';
-    errorHandler(errorLable, error);
+    errorHandler(errorLable, error.message);
   }
 }
 

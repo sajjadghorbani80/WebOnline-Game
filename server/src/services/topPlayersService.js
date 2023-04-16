@@ -27,7 +27,7 @@ async function getTopPlayers(params) {
       _count: {
         _all: true,
       },
-      take: params.count != undefined? params.count: 3,
+      take: params.count != undefined? +params.count: 3,
     });
     if (plays == undefined) {
       // get users id for get their info
@@ -38,6 +38,8 @@ async function getTopPlayers(params) {
       userIds.push(record.userId);
     });
   } catch (error) {
+    console.log(error.message);
+    console.log('plays');
     response.errors = 'webonlinegame.server.error';
     return response;
   }
@@ -79,6 +81,8 @@ async function getTopPlayers(params) {
     // prepare final result, include user info, score's, number of play's
   } catch (error) {
     response.errors = 'webonlinegame.server.error';
+    console.log(error.message);
+    console.log('users');
     return response;
   }
 }
