@@ -41,7 +41,7 @@ async function main() {
     update: {},
     create: {
       username: 'sjd',
-      email: 'sajjad2001@gmail.com',
+      email: 'sajjadr2001@gmail.com',
       fullname: 'sajjad ghorbani',
       password: bcrypt.hashSync('sjd123@', 10),
       play: {},
