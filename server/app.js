@@ -12,7 +12,7 @@ import {router as authRouter} from './routes/authRouters.js';
 dotenv.config();
 const app = express();
 /* A configurable port can be used if port 80 is in use */
-const port = process.env.PORT || 80;
+const port = process.env.NODE_DOCKER_PORT || 80;
 
 app.use(express.json());
 /*

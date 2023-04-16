@@ -13,8 +13,12 @@ const singupForm = document.getElementById('signup-section').getElementsByTagNam
 const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
 const singinError = document.getElementById('singin-error');
 const singupError = document.getElementById('singup-error');
-const btnkocholo = document.getElementById('btn-kocholo');
+const switchSigninBtn = document.getElementById('switch-signin-btn');
 const signinsucsess = document.getElementById('signin-sucsess');
+const sendEmailBtn = document.getElementById('sendEmail-btn');
+const emailInput = document.getElementById('email-verify');
+const showMessage = document.getElementById('show-message');
+
 
 // Add an event listener to the buttons container
 
@@ -68,7 +72,7 @@ async function singup() {
     errorHandler(singupError, data.errors);
     if (data.errors == 'webonlinegame.signup.success') {
       errorHandler(singupError, data.errors);
-      btnkocholo.click();
+      switchSigninBtn.click();
       signinsucsess.innerHTML = 'signup success! sign in first';
     }
   }
@@ -99,6 +103,29 @@ async function singin() {
   }
 };
 
+async function sendEmail() {
+  const params = {
+    email: emailInput.value,
+  };
+  const response = await fetch('/api/user/sendVerifyEmail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (response.status == 400) {
+    const data = await response.json();
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(showMessage, firstError);
+  } else {
+    const data = await response.json();
+    errorHandler(showMessage, data.errors);
+  }
+}
+
+sendEmailBtn.addEventListener('click', sendEmail);
 singupBtn.addEventListener('click', singup);
 singinBtn.addEventListener('click', singin);
 

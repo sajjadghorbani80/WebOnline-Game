@@ -55,12 +55,12 @@ router.post('/user/signin', loginValidationRules, async (req, res) => {
 router.post('/user/sendVerifyEmail', emailValidations, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const response = new ResponseDto(400, null, errors);
-    return res.status(200).send(response);
+    const response = new ResponseDto(null, errors);
+    return res.status(400).send(response);
   }
   const email = req.body.email;
   const resultProcess = await sendVerifyUserEmail(email);
-  res.send(resultProcess);
+  return res.status(200).send(resultProcess);
 });
 
 router.get('/verify/:token', (req, res)=>{
@@ -70,10 +70,10 @@ router.get('/verify/:token', (req, res)=>{
   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
     if (err) {
       console.log(err);
-      res.send('Email verification failed,possibly the link is invalid or expired');
+      res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=notverify`);
     } else {
       console.log(decoded);
-      res.redirect(`http://127.0.0.1:${process.env.PORT}/src/views/resetPass.html?email=${decoded.email}`);
+      res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/resetPass.html?token=${token}`);
     }
   });
 });

@@ -61,7 +61,7 @@ async function headerLoader() {
     </div>
     <div class="profile-section w-50">
         <div id="login-sction" class="underline-active">
-            <a href="./src/views/userRegister.html"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Sign In</a>
+            <a href="/src/views/userRegister.html"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Sign In</a>
         </div>
     </div>
   </div>`;
@@ -71,14 +71,13 @@ async function headerLoader() {
 async function getCurrentUserInfo(userId) {
   const response = await fetch(`${window.CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
     method: 'GET',
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.result);
-        return data.result;
-      });
-
-  return response;
+  });
+  const data = await response.json();
+  if (response.status == 400 || data.errors == 'webonlinegame.user.notfound') {
+    logout();
+    return;
+  }
+  return data.result;
 };
 
 function logout() {

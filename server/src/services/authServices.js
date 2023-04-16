@@ -17,47 +17,38 @@ function generateToken(userId) {
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const data = { // options that will be in token
       userId: userId,
+      email: userEmail,
     };
-    const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
+    const token = jwt.sign(data, jwtSecretKey, {expiresIn: '5h'});
     return token;
   } catch (error) {
     return 'webonlinegame.server.error';
   }
 }
 
-function verifyToken() {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-
+function checkToken(req, res, next) {
+  const response = new ResponseDto();
   try {
+    const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const token = req.header(tokenHeaderKey);
-
-    const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return 'webonlinegame.success.verifyToken';
+    if (token) {
+      jwt.verify(token, jwtSecretKey, (err, decoded) => {
+        if (err) {
+          response.errors = 'webonlinegame.error.TokenNotVerifyed';
+          res.status(403).send(response);
+        } else {
+          req.decoded = decoded;
+          next();
+        }
+      });
     } else {
-      return 'webonlinegame.error.TokenNotVerifyed';
+      response.errors = 'webonlinegame.error.NoTokenProvided';
+      res.status(403).send(response);
     }
   } catch (error) {
-    return 'webonlinegame.error.servererror';
-  }
-}
-
-function checkToken(req, res, next) {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const token = req.header(tokenHeaderKey);
-  if (token) {
-    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
-      if (err) {
-        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(403).send({success: false, message: 'No Token Provided.'});
+    response.errors = 'webonlinegame.error.servererror';
+    res.status(500).send(response);
   }
 }
 
@@ -128,7 +119,7 @@ async function signin(userData) {
     if (user != undefined) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
-        const token = generateToken(user.uid);
+        const token = generateToken(user.uid, user.email);
         result.errors = 'webonlinegame.signin.success';
         result.result = token;
       } else {
@@ -145,5 +136,5 @@ async function signin(userData) {
 }
 
 
-export {generateToken, verifyToken, signup, signin, checkToken};
+export {generateToken, /* verifyToken,*/ signup, signin, checkToken};
 
