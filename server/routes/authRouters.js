@@ -69,14 +69,22 @@ router.get('/verify/:token', (req, res)=>{
   // Verifying the JWT token
   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
     if (err) {
-      console.log(err);
       res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=notverify`);
     } else {
-      console.log(decoded);
       res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/resetPass.html?token=${token}`);
     }
   });
 });
+
+// router.get('/check/:token', (req, res)=>{
+//   const {token} = req.params;
+//   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
+//     if (err) {
+//       res.send(400)
+//     } else {
+//     }
+//   });
+// });
 
 
 export {router};

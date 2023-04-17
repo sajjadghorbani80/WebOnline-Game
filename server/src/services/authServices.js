@@ -47,7 +47,7 @@ function checkToken(req, res, next) {
       res.status(403).send(response);
     }
   } catch (error) {
-    response.errors = 'webonlinegame.error.servererror';
+    response.errors = 'webonlinegame.server.error';
     res.status(500).send(response);
   }
 }

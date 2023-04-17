@@ -3,6 +3,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 import {errorHandler} from './errorHandler.js';
+import {getTokenFromCookies} from './tokenHandler.js';
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
 const singupBtn = document.getElementById('sing-up-btn');
@@ -102,6 +103,19 @@ async function singin() {
     }
   }
 };
+
+// async function checkLogin() {
+//   const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
+//   if (token != undefined) {
+//     const response = await fetch('/api/user/signin', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(params),
+//     });
+//   }
+// }
 
 async function sendEmail() {
   const params = {

@@ -1,5 +1,6 @@
 /* eslint-disable require-jsdoc */
-
+const switchSigninBtn = document.getElementById('switch-signin-btn');
+const signinsucsess = document.getElementById('signin-sucsess');
 
 function errorHandler(HtmlTag, errorCode, display, dataObj) {
   HtmlTag.style.display = display || 'block';
@@ -93,6 +94,11 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.token.unauthorize':
       HtmlTag.innerHTML = 'The token is invalid';
       break;
+      // for checktoken
+    case 'webonlinegame.error.TokenNotVerifyed':
+    case 'webonlinegame.error.NoTokenProvided':
+      window.location = '/src/views/userRegister.html';
+      break;
       // they are global error
     case 'webonlinegame.record.NotFound':
       HtmlTag.innerHTML = 'record not found';
@@ -110,6 +116,7 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.server.error':
       HtmlTag.innerHTML = 'The server is not responding at the moment';
       break;
+
     default:
       HtmlTag.innerHTML = 'Unhandled Error';
       break;
