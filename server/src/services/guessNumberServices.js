@@ -68,12 +68,10 @@ async function saveRecord(playDto) {
         score: playDto.score,
       },
     });
-
     return true;
   } catch (error) {
-    console.log(error.message);
+    return false;
   }
-  return false;
 }
 
 function calculateScore(chance) {
@@ -85,7 +83,6 @@ async function getGameIdByName(gameName) {
     const game = await prisma.game.findFirst({
       where: {title: gameName},
     });
-
     return game.gid;
   } catch (error) {
     console.log(error.message);

@@ -1,6 +1,4 @@
 /* eslint-disable require-jsdoc */
-const switchSigninBtn = document.getElementById('switch-signin-btn');
-const signinsucsess = document.getElementById('signin-sucsess');
 
 function errorHandler(HtmlTag, errorCode, display, dataObj) {
   HtmlTag.style.display = display || 'block';
