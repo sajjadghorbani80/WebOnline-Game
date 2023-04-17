@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+
 
 function errorHandler(HtmlTag, errorCode, display, dataObj) {
   HtmlTag.style.display = display || 'block';
@@ -41,16 +41,20 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
       break;
       // for checkAnswer
     case 'webonlinegame.guessnumber.success':
-      HtmlTag.innerHTML = `Yahhhh You won It!! <br> the Number was ${dataObj.randomNumber} <br> Do You wanna play agian?`;
+      HtmlTag.innerHTML = `Yahhhh You won It!! <br> the Number was
+      ${dataObj.randomNumber} <br> Do You wanna play agian?`;
       break;
     case 'webonlinegame.guessnumber.tolow':
-      HtmlTag.innerHTML = `Your Guess is Too Low <br> Your Guess ${dataObj.guess} <br> Remaining Chances ${dataObj.chance}`;
+      HtmlTag.innerHTML = `Your Guess is Too Low <br> Your Guess
+      ${dataObj.guess} <br> Remaining Chances ${dataObj.chance}`;
       break;
     case 'webonlinegame.guessnumber.tohigh':
-      HtmlTag.innerHTML = `Your Guess is Too High <br> Your Guess ${dataObj.guess} <br> Remaining Chances ${dataObj.chance}`;
+      HtmlTag.innerHTML = `Your Guess is Too High <br> Your Guess
+      ${dataObj.guess} <br> Remaining Chances ${dataObj.chance}`;
       break;
     case 'webonlinegame.guessnumber.faild':
-      HtmlTag.innerHTML = `You lose :( <br> the Number was ${dataObj.randomNumber} <br> Do You wanna play agian?`;
+      HtmlTag.innerHTML = `You lose :( <br> the Number was
+        ${dataObj.randomNumber} <br> Do You wanna play agian?`;
       break;
     case 'guessnumber.input.empty':
       HtmlTag.innerHTML = 'Input can not be empty';
@@ -70,29 +74,7 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.gettopplayers.success':
       HtmlTag.innerHTML = 'User scores counted';
       break;
-
-      // they are global error
-    case 'webonlinegame.record.NotFound':
-      HtmlTag.innerHTML = 'record not found';
-
-    case 'webonlinegame.verifyemail.sent':
-      HtmlTag.innerHTML = 'The activation email has been successfully sent to your email address';
-      break;
-    case 'webonlinegame.user.notfound':
-      HtmlTag.innerHTML = 'No account found with this email';
-      break;
-    case 'webonlinegame.play.notfound':
-      HtmlTag.innerHTML = 'No plays found for this user';
-      break;
-    case 'webonlinegame.server.error':
-      HtmlTag.innerHTML = 'The server is not responding at the moment';
-      break;
-    case 'webonlinegame.verifyemail.notsent':
-      HtmlTag.innerHTML = 'The activation email was not sent';
-      break;
-    case 'webonlinegame.token.unauthorize':
-      HtmlTag.innerHTML = 'The token is invalid';
-      break;
+      // for reset password
     case 'webonlinegame.resetpass.success':
       HtmlTag.innerHTML = 'Password changed successfully';
       break;
@@ -105,7 +87,29 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'repassword.input.empty':
       HtmlTag.innerHTML = 'Confirm password can not be empty';
       break;
+    case 'webonlinegame.verifyemail.notsent':
+      HtmlTag.innerHTML = 'The activation email was not sent';
+      break;
+    case 'webonlinegame.token.unauthorize':
+      HtmlTag.innerHTML = 'The token is invalid';
+      break;
+      // they are global error
+    case 'webonlinegame.record.NotFound':
+      HtmlTag.innerHTML = 'record not found';
 
+    case 'webonlinegame.verifyemail.sent':
+      HtmlTag.innerHTML =
+      'The activation email has been successfully sent to your email address';
+      break;
+    case 'webonlinegame.user.notfound':
+      HtmlTag.innerHTML = 'No account found with this email';
+      break;
+    case 'webonlinegame.play.notfound':
+      HtmlTag.innerHTML = 'No plays found for this user';
+      break;
+    case 'webonlinegame.server.error':
+      HtmlTag.innerHTML = 'The server is not responding at the moment';
+      break;
     default:
       HtmlTag.innerHTML = 'Unhandled Error';
       break;
