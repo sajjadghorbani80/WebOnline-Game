@@ -32,7 +32,10 @@ async function checkAnswer(guess, userId) {
   chance--;
   const response = new ResponseDto();
   const result = new ResDto(chance, null, guess.guessValue, null);
-
+  if (!gameId) {
+    response.errors = 'webonlinegame.server.error';
+    return response;
+  }
   if (guess.guessValue == randomNumber) {
     response.errors = 'webonlinegame.guessnumber.success';
     result.randomNumber = randomNumber;
@@ -89,7 +92,7 @@ async function getGameIdByName(gameName) {
     return game.gid;
   } catch (error) {
     console.log(error.message);
+    return undefined;
   }
-  return undefined;
 }
 export {checkAnswer, restartGame};
