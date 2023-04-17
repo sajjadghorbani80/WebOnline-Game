@@ -90,6 +90,9 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.token.unauthorize':
       HtmlTag.innerHTML = 'The token is invalid';
       break;
+    case 'token.input.empty':
+      HtmlTag.innerHTML = 'The token is invalid or not provided';
+      break;
     case 'webonlinegame.resetpass.success':
       HtmlTag.innerHTML = 'Password changed successfully';
       break;
