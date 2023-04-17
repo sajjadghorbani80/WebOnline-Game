@@ -16,10 +16,15 @@ const gameId = await getGameIdByName('Guess Number');
  Before this random number was generated when
  the server was running */
 function restartGame() {
+  const response = new ResponseDto();
+  if (!gameId) {
+    response.errors = 'webonlinegame.server.error';
+    return response;
+  }
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
   console.log(randomNumber);
-  const response = new ResponseDto(null, 'webonlinegame.guessnumber.restarted');
+  response.result ='webonlinegame.guessnumber.restarted';
   return response;
 }
 
@@ -32,10 +37,7 @@ async function checkAnswer(guess, userId) {
   chance--;
   const response = new ResponseDto();
   const result = new ResDto(chance, null, guess.guessValue, null);
-  if (!gameId) {
-    response.errors = 'webonlinegame.server.error';
-    return response;
-  }
+
   if (guess.guessValue == randomNumber) {
     response.errors = 'webonlinegame.guessnumber.success';
     result.randomNumber = randomNumber;
