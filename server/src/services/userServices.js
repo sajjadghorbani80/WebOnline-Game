@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
@@ -54,10 +56,12 @@ async function getCurrentUserInfo(userId) {
       userInfo.sumScore = playsOfCurrentUser != undefined? playsOfCurrentUser._sum.score : 0;
       userInfo.playCount = playsOfCurrentUser != undefined? playsOfCurrentUser._count._all : 0;
       userInfo.rank = userRank != -1? userRank: 0;
+    } else {
+      response.errors = 'webonlinegame.play.notfound';
+      return response;
     }
     response.result = userInfo;
   } catch (error) {
-    console.log(error);
     response.errors = 'webonlinegame.server.error';
   }
   return response;
@@ -89,7 +93,6 @@ async function resetPassword(token, password, repassword) {
       });
       result.errors = 'webonlinegame.resetpass.success';
     } catch (error) {
-      console.log(error);
       result.errors = 'webonlinegame.server.error';
       return result;
     }

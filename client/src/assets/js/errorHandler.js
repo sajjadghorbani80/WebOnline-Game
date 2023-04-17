@@ -81,6 +81,9 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.user.notfound':
       HtmlTag.innerHTML = 'No account found with this email';
       break;
+    case 'webonlinegame.play.notfound':
+      HtmlTag.innerHTML = 'No plays found for this user';
+      break;
     case 'webonlinegame.server.error':
       HtmlTag.innerHTML = 'The server is not responding at the moment';
       break;

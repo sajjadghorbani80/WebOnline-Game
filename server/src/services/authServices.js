@@ -136,5 +136,5 @@ async function signin(userData) {
 }
 
 
-export {generateToken, /* verifyToken,*/ signup, signin, checkToken};
+export {generateToken, signup, signin, checkToken};
 
