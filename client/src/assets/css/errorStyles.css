@@ -1,14 +1,14 @@
-.contentBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contentBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .not-found {
-    color: red;
-    font-size: 42pt;
+  color: #db1349;
+  font-size: 42pt;
 }
 
 .error {
-    color: white;
-    font-size: 14pt;
+  color: #db1349;
+  font-size: 14pt;
 }

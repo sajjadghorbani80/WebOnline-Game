@@ -27,6 +27,9 @@ app.use('/api', guessNumber);
 app.use('/api', topPlayersRouter);
 app.use('/api', userRouter);
 app.use('/api', authRouter);
+app.get('*', (req, res)=> {
+  res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=404`);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

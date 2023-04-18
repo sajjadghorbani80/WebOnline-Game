@@ -18,6 +18,9 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
       HtmlTag.innerHTML = 'Password can not be empty';
       break;
     // for singup errors
+    case 'username.input.invalid':
+      HtmlTag.innerHTML = 'Username must be more than 4 letters<br>Username must be less than 20 letters<br>Username must start with letter<br>Username can include English letters, numbers and underscore';
+      break;
     case 'webonlinegame.signup.success':
       HtmlTag.innerHTML = 'User successfully signup';
       break;
