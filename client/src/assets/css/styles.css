@@ -1,94 +1,12 @@
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-header {
-  width: 100%;
-  height: 8vh;
-  background-color: rgb(10, 15, 21);
-}
 .app-container {
   background-color: rgb(12, 17, 26) !important;
-}
-
-.header-container {
-  width: 80%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
-
-}
-
-.logo-section {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-
-.logo {
-  width: 40%;
-}
-
-.profile-section {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  color: #979aa1;
-}
-
-.profile-pic {
-  width: 20%;
-  text-align: right;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-circle {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  outline: 1px solid gray;
-  padding: 2px;
-}
-
-.username {
-  display: flex;
-}
-
-.menu-nav {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  height: 100%;
-  color: #979aa1;
-}
-
-.underline-active:hover {
-  border-bottom: 5px solid #a02247;
-  color: white !important;
-}
-
-.menu-nav li {
-  width: auto;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10%;
 }
 
 main {
   width: 100%;
   height: 92vh;
 }
-
+/*////////////////////////////////////////////// games sections //////////////////////////////////////////////*/
 .game-showbox {
   width: 100%;
   height: 61%;
@@ -129,21 +47,6 @@ main {
   line-height: 60px;
 }
 
-.game-description {
-  color: white;
-  text-shadow: 2px 2px black;
-  font-size: 14pt;
-}
-
-.top {
-  height: 70%;
-  width: 100%;
-  transform: translateY(-10%);
-  animation: floater 1.5s infinite;
-  animation-duration: 5s;
-  transition: ease 0.5s;
-}
-
 @keyframes floater {
   0% {
     transform: translateY(-10%);
@@ -153,6 +56,20 @@ main {
     transform: translateY(10%);
     transition: ease 0.5s;
   }
+}
+.top {
+  height: 70%;
+  width: 100%;
+  transform: translateY(-10%);
+  animation: floater 1.5s infinite;
+  animation-duration: 5s;
+  transition: ease 0.5s;
+}
+
+.game-description {
+  color: white;
+  text-shadow: 2px 2px black;
+  font-size: 14pt;
 }
 
 .bottom {
@@ -165,6 +82,16 @@ main {
   display: flex;
 }
 
+.genres-item {
+  width: 20%;
+  background-color: #292f33;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.795);
+  text-align: center;
+}
+
+
 .primary-btn {
   background-color: #eb0745;
   color: white;
@@ -175,13 +102,11 @@ main {
   cursor: pointer;
 }
 
-.genres-item {
-  width: 20%;
-  background-color: #292f33;
-  margin-left: 10px;
-  border-radius: 5px;
-  color: rgba(255, 255, 255, 0.795);
-  text-align: center;
+/*////////////////////////////////////////////// games slider //////////////////////////////////////////////*/
+
+.game-slider {
+  width: 100%;
+  height: 39%;
 }
 
 .card-container {
@@ -208,11 +133,6 @@ main {
   justify-content: center;
   align-items: center;
   font-size: 16pt;
-}
-
-.game-slider {
-  width: 100%;
-  height: 39%;
 }
 
 .card-image-container {
@@ -245,24 +165,19 @@ main {
   height: 100%;
 }
 
-h3 {
-  font-size: 11pt;
-  color: white;
-}
-
-.card-button-container {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: end;
-}
-
 .bottom-card-container a {
   text-decoration: none;
   margin-left: 5%;
   display: block;
   width: 25%;
   height: 100%;
+} 
+
+.card-button-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .card-button-container a span {
@@ -276,14 +191,6 @@ h3 {
   border-radius: 8px;
   height: 100%;
   cursor: pointer;
-}
-
-.w-50 {
-  width: 50%;
-}
-
-.w-10 {
-  width: 10%;
 }
 
 /*////////////////////////////////////////////// Top Player Headline Section & Containers //////////////////////////////////////////////*/
@@ -334,10 +241,7 @@ h3 {
   line-height: 60px;
 }
 
-hr {
-  width: 40%;
-  height: 0%;
-}
+
 
 /*////////////////////////////////////////////// Top Player box Section //////////////////////////////////////////////*/
 
@@ -431,57 +335,20 @@ hr {
 .scoreDetails p {
   color: rgba(57, 51, 51, 0.353);
 }
-.user-menu-section {
-  display: flex;
-  align-items: center;
-  height: 100%;
+
+/*////////////////////////////////////////////// html tag section //////////////////////////////////////////////*/
+
+hr {
+  width: 40%;
+  height: 0%;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #2a2d32;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 3;
-  flex-direction: column;
-  top: 8vh;
-}
-
-.user-menu-section:hover .dropdown-content {
-  display: flex;
-}
-
-.dropdown-content a {
-  color: #979aa1;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content:hover {
-  display: flex;
-}
-
-.dropdown-content a:hover {
+h3 {
+  font-size: 11pt;
   color: white;
 }
 
-#login-sction a {
-  display: inline-block;
+a {
+  text-decoration: none;
+  color: inherit;
 }
-
-#login-sction {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.dropdown-item {
-  padding: 12px 16px;
-}
-
-.dropdown-item:nth-child(3) {
-  border-bottom: 1px solid gray;
-}
-

@@ -6,7 +6,6 @@
 import {Router} from 'express';
 import {getCurrentUserInfo, resetPassword} from '../src/services/userServices.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
-import {checkToken} from '../src/services/authServices.js';
 import {validationResult, check} from 'express-validator';
 
 const router = Router();
