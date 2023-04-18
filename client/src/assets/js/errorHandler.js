@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 
 function errorHandler(HtmlTag, errorCode, display, dataObj) {
@@ -73,7 +74,39 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.gettopplayers.success':
       HtmlTag.innerHTML = 'User scores counted';
       break;
-      // for reset password
+      // for checktoken
+    case 'webonlinegame.error.TokenNotVerifyed':
+    case 'webonlinegame.error.NoTokenProvided':
+      window.location = '/src/views/userRegister.html';
+      break;
+      // they are global error
+    case 'webonlinegame.server.error':
+      HtmlTag.innerHTML = 'The server is not responding at the moment';
+      break;
+    case 'webonlinegame.record.NotFound':
+      HtmlTag.innerHTML = 'record not found';
+      break;
+    case 'webonlinegame.verifyemail.sent':
+      HtmlTag.innerHTML = 'The activation email has been successfully sent to your email address';
+      break;
+    case 'webonlinegame.user.notfound':
+      HtmlTag.innerHTML = 'No account found with this email';
+      break;
+    case 'webonlinegame.play.notfound':
+      HtmlTag.innerHTML = 'No plays found for this user';
+      break;
+    case 'webonlinegame.server.error':
+      HtmlTag.innerHTML = 'The server is not responding at the moment';
+      break;
+    case 'webonlinegame.verifyemail.notsent':
+      HtmlTag.innerHTML = 'The activation email was not sent';
+      break;
+    case 'webonlinegame.token.unauthorize':
+      HtmlTag.innerHTML = 'The token is invalid';
+      break;
+    case 'token.input.empty':
+      HtmlTag.innerHTML = 'The token is invalid or not provided';
+      break;
     case 'webonlinegame.resetpass.success':
       HtmlTag.innerHTML = 'Password changed successfully';
       break;
@@ -92,29 +125,6 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'webonlinegame.token.unauthorize':
       HtmlTag.innerHTML = 'The token is invalid';
       break;
-      // for checktoken
-    case 'webonlinegame.error.TokenNotVerifyed':
-    case 'webonlinegame.error.NoTokenProvided':
-      window.location = '/src/views/userRegister.html';
-      break;
-      // they are global error
-    case 'webonlinegame.record.NotFound':
-      HtmlTag.innerHTML = 'record not found';
-
-    case 'webonlinegame.verifyemail.sent':
-      HtmlTag.innerHTML =
-      'The activation email has been successfully sent to your email address';
-      break;
-    case 'webonlinegame.user.notfound':
-      HtmlTag.innerHTML = 'No account found with this email';
-      break;
-    case 'webonlinegame.play.notfound':
-      HtmlTag.innerHTML = 'No plays found for this user';
-      break;
-    case 'webonlinegame.server.error':
-      HtmlTag.innerHTML = 'The server is not responding at the moment';
-      break;
-
     default:
       HtmlTag.innerHTML = 'Unhandled Error';
       break;

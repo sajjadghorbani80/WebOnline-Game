@@ -14,6 +14,7 @@ const router = Router();
 const resetPassValidationRules = [
   check('password').escape().notEmpty().withMessage('password.input.empty'),
   check('repassword').escape().notEmpty().withMessage('repassword.input.empty'),
+  check('token').trim().escape().notEmpty().withMessage('token.input.empty'),
 ];
 
 const userIdValidationRules = [
