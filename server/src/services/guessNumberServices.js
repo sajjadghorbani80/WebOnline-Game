@@ -90,7 +90,6 @@ async function getGameIdByName(gameName) {
     });
     return game.gid;
   } catch (error) {
-    console.log(error.message);
     return undefined;
   }
 }

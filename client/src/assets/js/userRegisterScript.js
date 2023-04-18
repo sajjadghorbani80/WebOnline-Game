@@ -3,17 +3,16 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 import {errorHandler} from './errorHandler.js';
-import {getTokenFromCookies} from './tokenHandler.js';
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
-const singupBtn = document.getElementById('sing-up-btn');
-const singinBtn = document.getElementById('sing-in-btn');
+const signupBtn = document.getElementById('sign-up-btn');
+const signinBtn = document.getElementById('sign-in-btn');
 const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
-const singupForm = document.getElementById('signup-section').getElementsByTagName('input');
-const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
-const singinError = document.getElementById('singin-error');
-const singupError = document.getElementById('singup-error');
+const signupForm = document.getElementById('signup-section').getElementsByTagName('input');
+const signinForm = document.getElementById('signin-section').getElementsByTagName('input');
+const signinError = document.getElementById('signin-error');
+const signupError = document.getElementById('signup-error');
 const switchSigninBtn = document.getElementById('switch-signin-btn');
 const signinsucsess = document.getElementById('signin-sucsess');
 const sendEmailBtn = document.getElementById('sendEmail-btn');
@@ -51,12 +50,12 @@ function handleClick(child) {
 };
 
 
-async function singup() {
+async function signup() {
   const params = {
-    fullname: singupForm[0].value,
-    username: singupForm[1].value,
-    email: singupForm[2].value,
-    password: singupForm[3].value,
+    fullname: signupForm[0].value,
+    username: signupForm[1].value,
+    email: signupForm[2].value,
+    password: signupForm[3].value,
   };
   const response = await fetch('/api/user/signup', {
     method: 'POST',
@@ -68,21 +67,21 @@ async function singup() {
   const data = await response.json();
   if (response.status == 400) {
     const firstError = data.errors.errors[0].msg;
-    errorHandler(singupError, firstError);
+    errorHandler(signupError, firstError);
   } else {
-    errorHandler(singupError, data.errors);
+    errorHandler(signupError, data.errors);
     if (data.errors == 'webonlinegame.signup.success') {
-      errorHandler(singupError, data.errors);
+      errorHandler(signupError, data.errors);
       switchSigninBtn.click();
       signinsucsess.innerHTML = 'signup success! sign in first';
     }
   }
 };
 
-async function singin() {
+async function signin() {
   const params = {
-    usernameOrEmail: singinForm[0].value,
-    password: singinForm[1].value,
+    usernameOrEmail: signinForm[0].value,
+    password: signinForm[1].value,
   };
   const response = await fetch('/api/user/signin', {
     method: 'POST',
@@ -94,28 +93,15 @@ async function singin() {
   const data = await response.json();
   if (response.status == 400) {
     const firstError = data.errors.errors[0].msg;
-    errorHandler(singinError, firstError);
+    errorHandler(signinError, firstError);
   } else {
-    errorHandler(singinError, data.errors);
+    errorHandler(signinError, data.errors);
     if (data.errors == 'webonlinegame.signin.success') {
       document.cookie = `${window.CONFIG.Token_Header_Key}=${data.result};path=/;`;
       window.location = '/';
     }
   }
 };
-
-// async function checkLogin() {
-//   const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
-//   if (token != undefined) {
-//     const response = await fetch('/api/user/signin', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(params),
-//     });
-//   }
-// }
 
 async function sendEmail() {
   const params = {
@@ -140,7 +126,7 @@ async function sendEmail() {
 }
 
 sendEmailBtn.addEventListener('click', sendEmail);
-singupBtn.addEventListener('click', singup);
-singinBtn.addEventListener('click', singin);
+signupBtn.addEventListener('click', signup);
+signinBtn.addEventListener('click', signin);
 
 

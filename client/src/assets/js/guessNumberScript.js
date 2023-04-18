@@ -82,17 +82,16 @@ function sendRequest() {
         headline.style.display = 'none';
         gameEvent.style.display = 'flex';
         errorLabel.style.display = 'none';
-        errorHandler(message1, result.errors, null, result.result);
+        errorHandler(message1, result.errors, result.result);
         return;
       }
-      errorHandler(guessResult, result.errors, null, result.result);
+      errorHandler(guessResult, result.errors, result.result);
     }
   };
 }
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log('Form submission cancelled.');
 });
 checkAnswerBtn.addEventListener('click', () => {
   if (formValidation(input.value)) {

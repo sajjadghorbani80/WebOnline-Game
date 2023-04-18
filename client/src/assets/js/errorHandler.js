@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 
-function errorHandler(HtmlTag, errorCode, display, dataObj) {
-  HtmlTag.style.display = display || 'block';
+function errorHandler(HtmlTag, errorCode, dataObj) {
+  HtmlTag.style.display = 'block';
   switch (errorCode) {
     // for signin errors
     case 'webonlinegame.signin.success':
@@ -17,7 +17,7 @@ function errorHandler(HtmlTag, errorCode, display, dataObj) {
     case 'password.input.empty':
       HtmlTag.innerHTML = 'Password can not be empty';
       break;
-    // for singup errors
+    // for signup errors
     case 'username.input.invalid':
       HtmlTag.innerHTML = 'Username must be more than 4 letters<br>Username must be less than 20 letters<br>Username must start with letter<br>Username can include English letters, numbers and underscore';
       break;
