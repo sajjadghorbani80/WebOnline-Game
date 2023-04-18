@@ -26,7 +26,7 @@ async function main() {
 
     update: {},
     create: {
-      username: 'hni',
+      username: 'hani',
       email: 'haniehghsmie@gmail.com',
       fullname: 'hanieh ghassmie',
       password: bcrypt.hashSync('hni123@', 10),
@@ -40,7 +40,7 @@ async function main() {
 
     update: {},
     create: {
-      username: 'sjd',
+      username: 'sajd',
       email: 'sajjadr2001@gmail.com',
       fullname: 'sajjad ghorbani',
       password: bcrypt.hashSync('sjd123@', 10),
@@ -54,7 +54,7 @@ async function main() {
 
     update: {},
     create: {
-      username: '@amir.1986',
+      username: 'amir_1986',
       email: 'amirhosein@gmail.com',
       fullname: 'amirhosein sadeghi',
       password: bcrypt.hashSync('amh123@', 10),
