@@ -5,6 +5,7 @@ import {ResDto} from '../dtos/guessNumberDto.js';
 import {PrismaClient} from '@prisma/client';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
+import {logger} from '../utilities/logger.js';
 const prisma = new PrismaClient();
 
 let chance = 0;
@@ -23,7 +24,7 @@ function restartGame() {
   }
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
-  console.log(randomNumber);
+  logger.info(randomNumber);
   response.errors ='webonlinegame.guessnumber.restarted';
   return response;
 }
@@ -90,7 +91,6 @@ async function getGameIdByName(gameName) {
     });
     return game.gid;
   } catch (error) {
-    console.log(error.message);
     return undefined;
   }
 }

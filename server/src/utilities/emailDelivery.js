@@ -25,7 +25,6 @@ function sendEmail(mailConfigurations) {
   try {
     transporter.sendMail(mailConfigurations, function(error, info) {
       if (error) {
-        console.log(error);
         throw Error(error);
       }
     });

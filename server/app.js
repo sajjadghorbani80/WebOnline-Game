@@ -7,6 +7,7 @@ import {router as guessNumber} from './routes/guessNumberRouters.js';
 import {router as topPlayersRouter} from './routes/topPlayersRouter.js';
 import {router as userRouter} from './routes/userRouter.js';
 import {router as authRouter} from './routes/authRouters.js';
+import {logger} from './src/utilities/logger.js';
 
 
 dotenv.config();
@@ -31,6 +32,4 @@ app.get('*', (req, res)=> {
   res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=404`);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.listen(port, ()=> logger.info(`backend server running on port ${process.env.NODE_DOCKER_PORT}`));

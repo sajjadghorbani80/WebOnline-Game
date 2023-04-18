@@ -52,7 +52,7 @@ function checkToken(req, res, next) {
   }
 }
 
-/* //////////////////////////// singin and sing up //////////////////////// */
+/* //////////////////////////// signin and sign up //////////////////////// */
 
 async function signup(registerData) {
   const result = new ResponseDto();
@@ -97,7 +97,6 @@ async function signup(registerData) {
     }
   } catch (err) {
     result.errors = 'webonlinegame.server.error';
-    console.log(err); // Database connection error
     result.errors = err;
     return result;
   };

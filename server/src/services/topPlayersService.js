@@ -38,8 +38,6 @@ async function getTopPlayers(params) {
       userIds.push(record.userId);
     });
   } catch (error) {
-    console.log(error.message);
-    console.log('plays');
     response.errors = 'webonlinegame.server.error';
     return response;
   }
@@ -81,8 +79,6 @@ async function getTopPlayers(params) {
     // prepare final result, include user info, score's, number of play's
   } catch (error) {
     response.errors = 'webonlinegame.server.error';
-    console.log(error.message);
-    console.log('users');
     return response;
   }
 }
