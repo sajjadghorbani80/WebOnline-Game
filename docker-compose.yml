@@ -1,0 +1,35 @@
+# docker-compose.yml
+version: "3"
+services:
+  app:
+    restart: on-failure
+    build: .
+    depends_on:
+      - postgres
+    env_file: ./.env
+    # environment:
+    #   DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@postgres:5432/db_webOnlineGame
+    #   NODE_ENV: development
+    #   PORT: 3000
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    command: sh -c "cd ./server && npx prisma generate && node app.js"
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=$POSTGRES_USER
+      - DB_PASSWORD=$POSTGRES_PASSWORD
+      - DB_NAME=$POSTGRES_DB
+      - DB_PORT=$POSTGRES_DB_DOCKER_PORT
+      - DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:$POSTGRES_DB_DOCKER_PORT/$POSTGRES_DB
+  postgres:
+    image: postgres:11
+    env_file: ./.env
+    ports:
+      - $POSTGRES_DB_LOCAL_PORT:$POSTGRES_DB_DOCKER_PORT
+    environment:
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+
+    volumes:
+       - ./server/data:/var/lib/postgresql/data

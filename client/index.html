@@ -1,67 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/assets/css/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/1dca7e92a5.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Web Online Game</title>
-  </head>
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./src/assets/css/styles.css" />
+  <link rel="stylesheet" href="./src/assets/css/globalStyles.css" />
   <script src="https://kit.fontawesome.com/1dca7e92a5.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <title>Web Online Game</title>
 </head>
 
 <body>
   <div class="app-container">
-    <header>
-      <div class="header-container">
-        <div class="logo-section w-10">
-          <img class="logo" src="./src/assets/images/pslogo.png" alt="" />
-        </div>
-        <div class="menu-section w-30">
-          <ul class="menu-nav">
-            <li class="underline-active">Home</li>
-            <li class="underline-active">Scoreboard</li>
-          </ul>
-        </div>
-        <div class="search-section w-30">
-          <form class="search-form">
-            <input type="search" value="" placeholder="Search" class="search-input" />
-            <button type="submit" class="search-button">
-              <span style="color: white">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </span>
-            </button>
-          </form>
-        </div>
-        <div class="profile-section w-30">
-          <div class="username">
-            <p>Sajjad Ghorbani</p>
-          </div>
-          <img class="profile-circle" src="./src/assets/images/profile-pic.jpg" alt="" />
-        </div>
-      </div>
-    </header>
+    <header id="includedContent"></header>
     <main>
       <div class="game-showbox">
         <div class="description-box">
           <div class="top">
-            <h1>Guess<br />Number</h1>
+            <h1>Guess Number</h1>
             <p class="game-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatem blanditiis sequi fugiat, iure culpa eum dolores,
-              tenetur harum exercitationem quis ut! Incidunt perspiciatis
-              dicta quos minima! Ipsum repellat soluta beatae?
+              Try your luck and get a prize!
             </p>
           </div>
           <div class="bottom">
@@ -80,7 +40,7 @@
                   Play
                 </button>
               </a>
-              <a href="#">
+              <a href="#topPlayerSection">
                 <button class="primary-btn" style="width: 10%">
                   <i class="fa-solid fa-trophy"></i>
                 </button>
@@ -111,7 +71,7 @@
                     <i class="fa-solid fa-play"></i>
                   </span>
                 </a>
-                <a href="#">
+                <a href="#topPlayerSection">
                   <span>
                     <i class="fa-solid fa-trophy"></i>
                   </span>
@@ -124,8 +84,29 @@
           </div>
         </div>
       </div>
+
+      <div class="topPlayerContainer">
+        <div class="headlinedSection">
+          <div class="leftHrDiv">
+            <hr>
+          </div>
+          <div class="headlineDiv">
+            <h2 class="topPlayerHeadline">Top Player</h2>
+          </div>
+          <div class="rightHrDiv">
+            <hr>
+          </div>
+        </div>
+
+        <div class="topPlayerSection" id="topPlayerSection">
+          <p id="error-lable" style="display: none;"></p>
+        </div>
+
+      </div>
     </main>
   </div>
+  <script type="module" src="./src/assets/js/homePageScript.js"></script>
+  <script type="module" src="./src/assets/js/headerHandler.js"></script>
 </body>
 
 </html>
