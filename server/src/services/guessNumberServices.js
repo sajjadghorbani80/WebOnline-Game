@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ResDto} from '../dtos/guessNumberDto.js';
 import {PrismaClient} from '@prisma/client';
 import {PlayDto} from '../dtos/playDto.js';
+import {ResponseDto} from '../dtos/responseDto.js';
+import {logger} from '../utilities/logger.js';
 const prisma = new PrismaClient();
 
 let chance = 0;
@@ -14,9 +17,16 @@ const gameId = await getGameIdByName('Guess Number');
  Before this random number was generated when
  the server was running */
 function restartGame() {
+  const response = new ResponseDto();
+  if (!gameId) {
+    response.errors = 'webonlinegame.server.error';
+    return response;
+  }
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
-  console.log(randomNumber);
+  logger.info(randomNumber);
+  response.errors ='webonlinegame.guessnumber.restarted';
+  return response;
 }
 
 /*
@@ -24,34 +34,38 @@ This is the logic of the number guessing game
 that Compares the game number with user guess
 and return the game result
 */
-async function checkAnswer(guess) {
+async function checkAnswer(guess, userId) {
   chance--;
+  const response = new ResponseDto();
   const result = new ResDto(chance, null, guess.guessValue, null);
 
   if (guess.guessValue == randomNumber) {
-    result.status = 1;
+    response.errors = 'webonlinegame.guessnumber.success';
     result.randomNumber = randomNumber;
     const score = calculateScore(chance);
-    const saveRes = await SaveRecord(new PlayDto(1, gameId, score));
+    const saveRes = await saveRecord(new PlayDto(userId, gameId, score));
     if (saveRes === true) {
-      return result;
+      response.result = result;
+      return response;
     } else {
       chance++;
-      return {errors: [{msg: 'guessnumber.database.error'}]};
+      response.errors = 'webonlinegame.server.error';
+      return response;
     }
   } else if (guess.guessValue < randomNumber) {
-    result.status = 2;
+    response.errors = 'webonlinegame.guessnumber.tolow';
   } else {
-    result.status = 3;
+    response.errors = 'webonlinegame.guessnumber.tohigh';
   }
   if (chance <= 0) {
-    result.status = 0;
+    response.errors = 'webonlinegame.guessnumber.faild';
     result.randomNumber = randomNumber;
   }
-  return result;
+  response.result = result;
+  return response;
 }
 
-async function SaveRecord(playDto) {
+async function saveRecord(playDto) {
   try {
     const play = await prisma.play.create({
       data: {
@@ -60,12 +74,10 @@ async function SaveRecord(playDto) {
         score: playDto.score,
       },
     });
-
     return true;
   } catch (error) {
-    console.log(error.message);
+    return false;
   }
-  return false;
 }
 
 function calculateScore(chance) {
@@ -77,11 +89,9 @@ async function getGameIdByName(gameName) {
     const game = await prisma.game.findFirst({
       where: {title: gameName},
     });
-
     return game.gid;
   } catch (error) {
-    console.log(error.message);
+    return undefined;
   }
-  return null;
 }
 export {checkAnswer, restartGame};

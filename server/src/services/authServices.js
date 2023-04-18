@@ -6,39 +6,55 @@ import bcrypt from 'bcrypt';
 import {PrismaClient} from '@prisma/client';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
-import {sendVerifyEmail} from '../utilities/emailDelivery.js';
-import {SendEmailDto} from '../dtos/SendemailDto.js';
 
 const prisma = new PrismaClient();
 
-function generateToken(userId) {
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const data = {
-    userId: userId,
-  };
-  const token = jwt.sign(data, jwtSecretKey, {expiresIn: '1h'});
-  return token;
-}
 
-function verifyToken(token) {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
+/* //////////////////////////// token jwt //////////////////////// */
 
+function generateToken(userId, userEmail) {
   try {
-    const token = req.header(tokenHeaderKey);
-
-    const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return 'webonlinegame.success.verifyToken';
-    } else {
-      return 'webonlinegame.error.TokenNotVerifyed';
-    }
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const data = { // options that will be in token
+      userId: userId,
+      email: userEmail,
+    };
+    const token = jwt.sign(data, jwtSecretKey, {expiresIn: '5h'});
+    return token;
   } catch (error) {
-    return 'webonlinegame.error.servererror';
+    return 'webonlinegame.server.error';
   }
 }
 
-async function userRegister(registerData) {
+function checkToken(req, res, next) {
+  const response = new ResponseDto();
+  try {
+    const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const token = req.header(tokenHeaderKey);
+    if (token) {
+      jwt.verify(token, jwtSecretKey, (err, decoded) => {
+        if (err) {
+          response.errors = 'webonlinegame.error.TokenNotVerifyed';
+          res.status(403).send(response);
+        } else {
+          req.decoded = decoded;
+          next();
+        }
+      });
+    } else {
+      response.errors = 'webonlinegame.error.NoTokenProvided';
+      res.status(403).send(response);
+    }
+  } catch (error) {
+    response.errors = 'webonlinegame.server.error';
+    res.status(500).send(response);
+  }
+}
+
+/* //////////////////////////// signin and sign up //////////////////////// */
+
+async function signup(registerData) {
   const result = new ResponseDto();
   registerData.username = registerData.username.toLowerCase();
   registerData.email = registerData.email.toLowerCase();
@@ -56,10 +72,10 @@ async function userRegister(registerData) {
     });
 
     if (username != 0) {
-      result.status = 4031; // username is exist
+      result.errors = 'webonlinegame.username.isexist'; // username is exist
       return result;
     } else if (email != 0) {
-      result.status = 4032; // email is exist
+      result.errors = 'webonlinegame.email.isexist'; // email is exist
       return result;
     } else {
       const hash = bcrypt.hashSync(registerData.password, 10);
@@ -72,23 +88,22 @@ async function userRegister(registerData) {
             password: hash,
           },
         });
-        result.status = 200;
+        result.errors = 'webonlinegame.signup.success';
         result.result = user;
       } catch (error) {
-        result.status = 503; // server error
+        result.errors = 'webonlinegame.server.error';
         return result;
       }
     }
   } catch (err) {
-    result.status = 510;
-    console.log(err); // Database connection error
+    result.errors = 'webonlinegame.server.error';
     result.errors = err;
     return result;
   };
   return result;
 };
 
-async function singIn(userData) {
+async function signin(userData) {
   const result = new ResponseDto();
   userData.usernameOrEmail = userData.usernameOrEmail.toLowerCase();
   try {
@@ -100,65 +115,25 @@ async function singIn(userData) {
         ],
       },
     });
-    if (user != null) {
+    if (user != undefined) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
-        const token = generateToken(user.uid);
-        result.status = 200;
+        const token = generateToken(user.uid, user.email);
+        result.errors = 'webonlinegame.signin.success';
         result.result = token;
       } else {
-        result.status = 401;
+        result.errors = 'webonlinegame.signin.invalidcredentials';
       }
     } else {
-      result.status = 401;
+      result.errors = 'webonlinegame.user.notfound';
     }
     return result;
   } catch (error) {
-    result.status = 401;
+    result.errors = 'webonlinegame.server.error';
     return result;
   }
 }
 
 
-function checkToken(req, res, next) {
-  const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const token = req.header(tokenHeaderKey);
-  if (token) {
-    jwt.verify(token, jwtSecretKey, (err, decoded)=> {
-      if (err) {
-        res.status(403).send({success: false, message: 'Failed to authenticate user.'});
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(403).send({success: false, message: 'No Token Provided.'});
-  }
-}
-
-
-async function sendVerifyUserEmail(userEmail) {
-  const result = new ResponseDto();
-  userEmail = userEmail.toLowerCase();
-  try {
-    const user = await prisma.user.findFirst({
-      where: {
-        email: userEmail,
-      },
-    });
-    if (user != null) {
-      sendVerifyEmail(new SendEmailDto('sandbox.smtp.mailtrap.io', userEmail, 'Verify'));
-      result.status = 200;
-    } else {
-      result.status = 401;
-    }
-    return result;
-  } catch (error) {
-    result.status = 500;
-    return result;
-  }
-}
-export {generateToken, verifyToken, userRegister, singIn, checkToken, sendVerifyUserEmail};
+export {generateToken, signup, signin, checkToken};
 

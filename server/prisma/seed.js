@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
+import bcrypt from 'bcrypt';
 import {PrismaClient} from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -25,10 +26,10 @@ async function main() {
 
     update: {},
     create: {
-      username: 'hni',
+      username: 'hani',
       email: 'haniehghsmie@gmail.com',
       fullname: 'hanieh ghassmie',
-      password: 'hni123@',
+      password: bcrypt.hashSync('hni123@', 10),
       play: {},
 
     },
@@ -39,10 +40,10 @@ async function main() {
 
     update: {},
     create: {
-      username: 'sjd',
-      email: 'sajjad2001@gmail.com',
+      username: 'sajd',
+      email: 'sajjadr2001@gmail.com',
       fullname: 'sajjad ghorbani',
-      password: 'sjd123@',
+      password: bcrypt.hashSync('sjd123@', 10),
       play: {},
 
     },
@@ -53,10 +54,10 @@ async function main() {
 
     update: {},
     create: {
-      username: '@amir.1986',
+      username: 'amir_1986',
       email: 'amirhosein@gmail.com',
       fullname: 'amirhosein sadeghi',
-      password: 'amh123@',
+      password: bcrypt.hashSync('amh123@', 10),
       play: {},
 
     },
@@ -66,8 +67,8 @@ async function main() {
 
     update: {},
     create: {
-      userId: 1,
-      gameId: 1,
+      userId: user1.uid,
+      gameId: guessNumber.gid,
       score: 100,
 
     },
@@ -78,8 +79,8 @@ async function main() {
 
     update: {},
     create: {
-      userId: 1,
-      gameId: 1,
+      userId: user1.uid,
+      gameId: guessNumber.gid,
       score: 100,
 
     },
@@ -90,8 +91,8 @@ async function main() {
 
     update: {},
     create: {
-      userId: 2,
-      gameId: 1,
+      userId: user2.uid,
+      gameId: guessNumber.gid,
       score: 50,
 
     },
@@ -102,8 +103,8 @@ async function main() {
 
     update: {},
     create: {
-      userId: 3,
-      gameId: 1,
+      userId: user3.uid,
+      gameId: guessNumber.gid,
       score: 40,
 
     },

@@ -4,13 +4,26 @@ import {Router} from 'express';
 import {ReqTopPlayersDto} from '../src/dtos/getTopPlayersDto.js';
 import {getTopPlayers} from '../src/services/topPlayersService.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
+import {validationResult, check} from 'express-validator';
+
 
 const router = Router();
 
-router.post('/getTopPlayers', async (req, res)=>{
+const countValidation = [check('count').trim()
+    .escape().notEmpty().withMessage('gettopplayers.count.empty').isInt()
+    .withMessage('gettopplayers.count.isNotInt')
+    .custom((value)=> value >= 0? true : false)
+    .withMessage('gettopplayers.count.invalidRange')];
+
+
+router.post('/getTopPlayers', countValidation, async (req, res)=>{
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const response = new ResponseDto(null, errors);
+    return res.status(400).send(response);
+  }
   const data = new ReqTopPlayersDto(req.body.count);
-  const records = await getTopPlayers(data);
-  const response = new ResponseDto(200, records);
+  const response = await getTopPlayers(data);
   res.status(200).send(response);
 });
 

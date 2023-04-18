@@ -20,23 +20,18 @@ const validationRules = [check('guessValue').trim()
 router.post('/guessnumber/checkanswer', checkToken, validationRules, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const response = new ResponseDto(400, null, errors);
-    return res.status(200).send(response);
+    const response = new ResponseDto(null, errors);
+    return res.status(400).send(response);
   }
   const data = new ReqDto(+req.body.guessValue);
-  const result = await checkAnswer(data);
-  if (result.errors) {
-    const response = new ResponseDto(400, null, result);
-    return res.status(200).send(response);
-  }
-  const response = new ResponseDto(200, result);
-  return res.status(200).send(response);
+  const userId = req.decoded.userId;
+  const result = await checkAnswer(data, userId);
+  return res.status(200).send(result);
 });
 
 router.get('/guessnumber/restart-game', checkToken, (req, res)=>{
-  restartGame();
-  const response = new ResponseDto(200, null);
-  res.status(200).send(response);
+  const response = restartGame();
+  res.send(response);
 });
 
 export {router};

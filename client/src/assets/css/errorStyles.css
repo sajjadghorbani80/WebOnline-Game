@@ -1,0 +1,14 @@
+.contentBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.not-found {
+  color: #db1349;
+  font-size: 42pt;
+}
+
+.error {
+  color: #db1349;
+  font-size: 14pt;
+}

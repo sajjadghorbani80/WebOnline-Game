@@ -1,14 +1,25 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
+import {errorHandler} from './errorHandler.js';
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
-const singupBtn = document.getElementById('sing-up-btn');
-const singinBtn = document.getElementById('sing-in-btn');
+const signupBtn = document.getElementById('sign-up-btn');
+const signinBtn = document.getElementById('sign-in-btn');
 const resetPassLink = document.getElementById('resetLink');
 const formSection = document.querySelectorAll('.form-section');
-const singupForm = document.getElementById('signup-section').getElementsByTagName('input');
-const singinForm = document.getElementById('signin-section').getElementsByTagName('input');
+const signupForm = document.getElementById('signup-section').getElementsByTagName('input');
+const signinForm = document.getElementById('signin-section').getElementsByTagName('input');
+const signinError = document.getElementById('signin-error');
+const signupError = document.getElementById('signup-error');
+const switchSigninBtn = document.getElementById('switch-signin-btn');
+const signinsucsess = document.getElementById('signin-sucsess');
+const sendEmailBtn = document.getElementById('sendEmail-btn');
+const emailInput = document.getElementById('email-verify');
+const showMessage = document.getElementById('show-message');
+
+
 // Add an event listener to the buttons container
 
 buttons.addEventListener('click', handleClick);
@@ -39,51 +50,83 @@ function handleClick(child) {
 };
 
 
-function singup() {
+async function signup() {
   const params = {
-    fullname: singupForm[0].value,
-    username: singupForm[1].value,
-    email: singupForm[2].value,
-    password: singupForm[3].value,
+    fullname: signupForm[0].value,
+    username: signupForm[1].value,
+    email: signupForm[2].value,
+    password: signupForm[3].value,
   };
-  const response = fetch('/api/user/userregister', {
+  const response = await fetch('/api/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status == 400) {
-          const firstError = result.errors.errors[0].msg;
-          setErrorMessage(firstError);
-        } else {
-          messageGeneratorByCode(result.result);
-        }
-      });
+  });
+  const data = await response.json();
+  if (response.status == 400) {
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(signupError, firstError);
+  } else {
+    errorHandler(signupError, data.errors);
+    if (data.errors == 'webonlinegame.signup.success') {
+      errorHandler(signupError, data.errors);
+      switchSigninBtn.click();
+      signinsucsess.innerHTML = 'signup success! sign in first';
+    }
+  }
 };
 
-function singin() {
+async function signin() {
   const params = {
-    usernameOrEmail: singinForm[0].value,
-    password: singinForm[1].value,
+    usernameOrEmail: signinForm[0].value,
+    password: signinForm[1].value,
   };
-  const response = fetch('/api/user/userSignIn', {
+  const response = await fetch('/api/user/signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
-  })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
+  });
+  const data = await response.json();
+  if (response.status == 400) {
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(signinError, firstError);
+  } else {
+    errorHandler(signinError, data.errors);
+    if (data.errors == 'webonlinegame.signin.success') {
+      document.cookie = `${window.CONFIG.Token_Header_Key}=${data.result};path=/;`;
+      window.location = '/';
+    }
+  }
 };
 
-singupBtn.addEventListener('click', singup);
-singinBtn.addEventListener('click', singin);
+async function sendEmail() {
+  const params = {
+    email: emailInput.value,
+  };
+  const response = await fetch('/api/user/sendVerifyEmail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (response.status == 400) {
+    const data = await response.json();
+    const firstError = data.errors.errors[0].msg;
+    errorHandler(showMessage, firstError);
+  } else {
+    const data = await response.json();
+    errorHandler(showMessage, data.errors);
+  }
+}
+
+sendEmailBtn.addEventListener('click', sendEmail);
+signupBtn.addEventListener('click', signup);
+signinBtn.addEventListener('click', signin);
 
 
