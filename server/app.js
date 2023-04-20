@@ -10,7 +10,6 @@ import {router as userRouter} from './routes/userRouter.js';
 import {router as authRouter} from './routes/authRouters.js';
 import {logger} from './src/utilities/logger.js';
 
-
 dotenv.config();
 const app = express();
 /* A configurable port can be used if port 80 is in use */
@@ -33,4 +32,4 @@ app.get('*', (req, res)=> {
   res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=404`);
 });
 
-app.listen(port, ()=> logger.info(`backend server running on port ${process.env.NODE_DOCKER_PORT}`));
+app.listen(port, ()=> console.log(`backend server running on port ${process.env.NODE_DOCKER_PORT}`));
