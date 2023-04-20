@@ -56,6 +56,7 @@ async function signup() {
     username: signupForm[1].value,
     email: signupForm[2].value,
     password: signupForm[3].value,
+    repassword: signupForm[4].value,
   };
   const response = await fetch('/api/user/signup', {
     method: 'POST',

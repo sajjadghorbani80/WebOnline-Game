@@ -78,6 +78,10 @@ async function signup(registerData) {
       result.errors = 'webonlinegame.email.isexist'; // email is exist
       return result;
     } else {
+      if (registerData.password != registerData.repassword) {
+        result.errors = 'webonlinegame.password.notmatch';
+        return result;
+      }
       const hash = bcrypt.hashSync(registerData.password, 10);
       try {
         const user = await prisma.user.create({
