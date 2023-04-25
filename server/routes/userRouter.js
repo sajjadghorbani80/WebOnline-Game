@@ -26,8 +26,8 @@ router.get('/getcurrentuserinfo/:id', userIdValidationRules, async (req, res)=>{
     return res.status(400).send(response);
   }
   const userId = req.params.id;
-  const response = await getCurrentUserInfo(userId);
-  return res.status(200).send(response);
+  const resp = await getCurrentUserInfo(+userId);
+  return res.status(200).send(resp);
 });
 
 router.post('/user/resetpass', resetPassValidationRules, async (req, res)=> {

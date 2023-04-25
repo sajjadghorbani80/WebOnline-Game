@@ -24,7 +24,7 @@ function restartGame() {
   }
   chance = 5;
   randomNumber = (Math.random() * 100).toFixed(0);
-  logger.info(randomNumber);
+  console.log(randomNumber);
   response.errors ='webonlinegame.guessnumber.restarted';
   return response;
 }
