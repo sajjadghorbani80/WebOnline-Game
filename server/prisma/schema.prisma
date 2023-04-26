@@ -37,3 +37,10 @@ model Play {
   gameId Int    
   score Int
 }
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
+}
