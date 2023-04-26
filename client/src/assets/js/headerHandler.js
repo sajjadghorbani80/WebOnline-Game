@@ -80,8 +80,11 @@ async function getCurrentUserInfo(userId) {
   return data.result;
 };
 
-function logout() {
+async function logout() {
   document.cookie = `${window.CONFIG.Token_Header_Key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  await fetch(`${window.CONFIG.API_URL}api/logout`, {
+    method: 'GET',
+  });
   window.location = '/';
 }
 

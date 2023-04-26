@@ -77,15 +77,10 @@ router.get('/verify/:token', (req, res)=>{
   });
 });
 
-// router.get('/check/:token', (req, res)=>{
-//   const {token} = req.params;
-//   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
-//     if (err) {
-//       res.send(400)
-//     } else {
-//     }
-//   });
-// });
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.statusCode(200).send();
+});
 
 
 export {router};

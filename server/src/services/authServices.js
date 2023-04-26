@@ -7,6 +7,7 @@ import {PrismaClient} from '@prisma/client';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
 
+
 const prisma = new PrismaClient();
 
 
@@ -25,6 +26,7 @@ function generateToken(userId, userEmail) {
     return 'webonlinegame.server.error';
   }
 }
+
 
 function checkToken(req, res, next) {
   const response = new ResponseDto();

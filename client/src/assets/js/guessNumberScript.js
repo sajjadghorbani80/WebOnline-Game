@@ -27,7 +27,7 @@ function startGame() {
   http.send();
   http.onload = function() {
     const result = JSON.parse(http.response);
-    errorHandler(guessResult, result.errors);
+    errorHandler(guessResult, result.errors, result.result);
   };
 }
 

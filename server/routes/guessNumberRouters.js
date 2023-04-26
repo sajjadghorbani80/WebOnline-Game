@@ -10,6 +10,8 @@ import {ReqDto} from '../src/dtos/guessNumberDto.js';
 import {ResponseDto} from '../src/dtos/responseDto.js';
 import {validationResult, check} from 'express-validator';
 import {checkToken} from '../src/services/authServices.js';
+import {ResDto} from '../src/dtos/guessNumberDto.js';
+
 
 const validationRules = [check('guessValue').trim()
     .escape().notEmpty().withMessage('guessnumber.input.empty').isInt()
@@ -25,13 +27,27 @@ router.post('/guessnumber/checkanswer', checkToken, validationRules, async (req,
   }
   const data = new ReqDto(+req.body.guessValue);
   const userId = req.decoded.userId;
-  const result = await checkAnswer(data, userId);
+  const gameData = req.session.gameData;
+  const result = await checkAnswer(data, userId, gameData.chance, gameData.randomNumber);
+  if (result.errors == 'webonlinegame.guessnumber.success' || result.errors == 'webonlinegame.guessnumber.faild') {
+    req.session.gameData= undefined;
+  } else {
+    req.session.gameData.chance= result.result.chance;
+    req.session.gameData.errors= result.errors;
+    req.session.gameData.guess= result.result.guess;
+  }
   return res.status(200).send(result);
 });
 
 router.get('/guessnumber/restart-game', checkToken, (req, res)=>{
-  const response = restartGame();
-  res.send(response);
+  const session = req.session;
+  if (!(session?.gameData)) {
+    const response = restartGame();
+    req.session.gameData = response.result;
+    return res.send(response);
+  }
+  const response = new ResponseDto(new ResDto(session.gameData.chance, session.gameData.randomNumber, session.gameData.guess), session.gameData.errors);
+  return res.send(response);
 });
 
 export {router};
