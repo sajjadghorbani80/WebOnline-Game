@@ -10,7 +10,7 @@ import {router as userRouter} from './routes/userRouter.js';
 import {router as authRouter} from './routes/authRouters.js';
 import expressSession from 'express-session';
 import {PrismaSessionStore} from '@quixo3/prisma-session-store';
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './src/services/prismaClient.js';
 
 
 dotenv.config();
@@ -34,7 +34,7 @@ app.use( expressSession({
   resave: true,
   saveUninitialized: true,
   store: new PrismaSessionStore(
-      new PrismaClient(),
+      prisma,
       {
         checkPeriod: 2 * 60 * 1000, // ms
         dbRecordIdIsSessionId: true,

@@ -3,12 +3,9 @@
 /* eslint-disable max-len */
 /* eslint-disable new-cap */
 import bcrypt from 'bcrypt';
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
-
-
-const prisma = new PrismaClient();
 
 
 /* //////////////////////////// token jwt //////////////////////// */

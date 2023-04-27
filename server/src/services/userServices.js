@@ -3,8 +3,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
-import {PrismaClient} from '@prisma/client';
-const prisma = new PrismaClient();
+import {prisma} from './prismaClient.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';

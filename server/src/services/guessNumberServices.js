@@ -2,11 +2,9 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ResDto} from '../dtos/guessNumberDto.js';
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './prismaClient.js';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
-import {logger} from '../utilities/logger.js';
-const prisma = new PrismaClient();
 
 const gameId = await getGameIdByName('Guess Number');
 
