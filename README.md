@@ -4,9 +4,8 @@ The Web Online Game is an exercise project to learn programming with the JavaScr
 <br>
 
 ## :hammer_and_wrench: Requirements for run project
-1. Node.js
-2. npm
-3. Docker (for run project with Docker)
+1. Docker
+2. PostgreSql image
 <br>
 
 ## :arrow_forward: Run the project
@@ -16,52 +15,19 @@ The Web Online Game is an exercise project to learn programming with the JavaScr
 ### :dolphin: Run with Docker
 1. install [docker](https://www.docker.com/)
 2. run docker desktop
-3. open cmd/terminal
-4. pull project with this command:
-```bash
-docker run -dp 3000:80 sajjadr2001/webonline-game
-```
-Note: You can use any port instead of port 3000
-
-5. Go to "localhost:your arbitrary port" and here we go:smiley::muscle:
-
-<br><br>
-
-
-### :green_square: Run with Nodejs
-1. Download and install Node.js from [here](https://nodejs.org/en/download/)</li>
-2. Clone the project in your system with this command in terminal:
+3. clone the repo 
 ```bash
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
-3. Open Project folder in terminal
-4. then go to the v3 brench:
+4. then go to the V4 brench:
 ```bash
 git checkout V4
 ```
-5. In terminal go to server folder with this command:
+5. In the root folder of project you can find a config file named .env.
+6. Configure file to your needs or just use the default settings.
+7. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
+8. To start the application just use the command below:
 ```bash
-cd server
+docker compose up -d
 ```
-6. Install dependencies with this command on terminal:</li>
-```bash
-npm i
-```
-
-7. Change server port (optional)<br>
-By default, the server uses port 80. Follow the steps below to change it:<br>
-7-1. Create a file named ".env" (Pay attention to its starting dot) in the server folder.<br>
-7-2. Open it with a Text Editor, then paste the following value inside it and save:<br>
-
-```bash
-PORT=your arbitrary port
-```
-example:
-```bash
-PORT=3000
-```
-8. after that for run project write this command:
-```bash
-node app.js
-```
-9. Go to "localhost" or "localhost:your arbitrary port" and here we go:smiley::muscle:
+8. After successful building go to http://localhost:8080 (with default settings).
