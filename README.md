@@ -22,8 +22,9 @@ git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 4. In the root folder of project you can find a config file named .env.
 5. Configure file to your needs or just use the default settings.
 6. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
-7. To start the application just use the command below:
+7. Also in client > src > assets > js path you can find config.js file that contains API_URL and Token_Header_Key, If you have changed .env file, you must change config.js file accordingly.
+8. To start the application just use the command below:
 ```bash
 docker compose up -d
 ```
-8. After successful building go to http://localhost:8080 (with default settings).
+9. After successful building go to http://localhost:8080 (with default settings).
