@@ -19,14 +19,10 @@ The Web Online Game is an exercise project to learn programming with the JavaScr
 ```bash
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
-4. then go to the V4 brench:
-```bash
-git checkout V4
-```
-5. In the root folder of project you can find a config file named .env.
-6. Configure file to your needs or just use the default settings.
-7. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
-8. To start the application just use the command below:
+4. In the root folder of project you can find a config file named .env.
+5. Configure file to your needs or just use the default settings.
+6. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
+7. To start the application just use the command below:
 ```bash
 docker compose up -d
 ```
