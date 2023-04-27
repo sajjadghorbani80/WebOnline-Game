@@ -22,8 +22,8 @@ In this version, the user section and project features have been added for them.
 
 
 ## :hammer_and_wrench: Requirements for run project
-1. Docker (for run project with Docker)
-2. PostgreSql
+1. Docker
+2. PostgreSql image
 <br>
 
 ## :arrow_forward: Run the project
