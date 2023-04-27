@@ -1,15 +1,5 @@
 # :video_game: Web Online Game Project
-In previous versions, you could run the project by cloning it. But now you can use Docker for the process of creating, implementing, and running the program with the help of containers. Therefore, the goal of this version was to dockerize the project.
-
-<br>
-
-## :seedling: Development stages of this version
-1. Install Docker
-2. Create Docker file
-3. Create Dockerignore
-4. Create Image
-5. Add to DockerHub
-
+The Web Online Game is an exercise project to learn programming with the JavaScript stack and related technologies. In this project, the user can play a game (Guess Number Game) and earn points after registering and entering the site.
 
 <br>
 
@@ -47,7 +37,7 @@ git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 3. Open Project folder in terminal
 4. then go to the v3 brench:
 ```bash
-git checkout v3
+git checkout V4
 ```
 5. In terminal go to server folder with this command:
 ```bash
