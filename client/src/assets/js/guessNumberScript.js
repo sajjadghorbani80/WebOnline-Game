@@ -77,6 +77,7 @@ function sendRequest() {
       const firstError = result.errors.errors[0].msg;
       errorHandler(errorLabel, firstError);
     } else {
+      errorLabel.style.display = 'none';
       if (result.errors =='webonlinegame.guessnumber.success' || result.errors =='webonlinegame.guessnumber.faild') {
         gameDiv.style.display = 'none';
         headline.style.display = 'none';

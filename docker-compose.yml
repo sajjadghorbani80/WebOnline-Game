@@ -7,10 +7,6 @@ services:
     depends_on:
       - postgres
     env_file: ./.env
-    # environment:
-    #   DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@postgres:5432/db_webOnlineGame
-    #   NODE_ENV: development
-    #   PORT: 3000
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     command: sh -c "node ./server/app.js"
@@ -31,5 +27,5 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DB: $POSTGRES_DB
 
-    # volumes:
-    #    - ./server/data:/var/lib/postgresql/data
+    volumes:
+       - ./server/data:/var/lib/postgresql/data

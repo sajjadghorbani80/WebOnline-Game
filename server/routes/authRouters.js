@@ -79,7 +79,7 @@ router.get('/verify/:token', (req, res)=>{
 
 router.get('/logout', (req, res) => {
   req.session.destroy();
-  res.statusCode(200).send();
+  res.status(200).send();
 });
 
 

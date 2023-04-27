@@ -46,7 +46,7 @@ router.get('/guessnumber/restart-game', checkToken, (req, res)=>{
     req.session.gameData = response.result;
     return res.send(response);
   }
-  const response = new ResponseDto(new ResDto(session.gameData.chance, session.gameData.randomNumber, session.gameData.guess), session.gameData.errors);
+  const response = new ResponseDto(new ResDto(session.gameData.chance, session.gameData.randomNumber, session.gameData.guess), session.gameData.errors || 'webonlinegame.guessnumber.restarted' );
   return res.send(response);
 });
 
