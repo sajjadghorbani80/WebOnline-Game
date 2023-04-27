@@ -17,7 +17,8 @@ const RegisterValidationRules = [check('username').trim()
 check('email').trim().escape().notEmpty().withMessage('email.input.empty')
     .isEmail().withMessage('email.input.invalid'),
 check('fullname').trim().notEmpty().withMessage('fullname.input.empty'),
-check('password').escape().notEmpty().withMessage('password.input.empty')];
+check('password').escape().notEmpty().withMessage('password.input.empty'),
+check('repassword').escape().notEmpty().withMessage('repassword.input.empty')];
 
 const loginValidationRules = [check('usernameOrEmail').trim()
     .escape().notEmpty().withMessage('usernameOrEmail.input.empty'),
@@ -36,7 +37,7 @@ router.post('/user/signup', RegisterValidationRules, async (req, res)=>{
     return res.status(400).send(response);
   }
   const requestData = new ReqSignUpDto(req.body.username, req.body.email,
-      req.body.fullname, req.body.password);
+      req.body.fullname, req.body.password, req.body.repassword);
   const signupResult = await signup(requestData);
   res.status(200).send(signupResult);
 });
@@ -76,15 +77,10 @@ router.get('/verify/:token', (req, res)=>{
   });
 });
 
-// router.get('/check/:token', (req, res)=>{
-//   const {token} = req.params;
-//   jwt.verify(token, process.env.JWT_SECRET_KEY, function(err, decoded) {
-//     if (err) {
-//       res.send(400)
-//     } else {
-//     }
-//   });
-// });
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.status(200).send();
+});
 
 
 export {router};

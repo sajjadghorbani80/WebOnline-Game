@@ -3,8 +3,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
-import {PrismaClient} from '@prisma/client';
-const prisma = new PrismaClient();
+import {prisma} from './prismaClient.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
@@ -17,10 +16,11 @@ async function getCurrentUserInfo(userId) {
     rank: 0,
     playCount: 0,
   };
+
   try {
     const user = await prisma.user.findFirst({
       where: {
-        uid: +userId,
+        uid: userId,
       },
       select: {
         uid: true,
@@ -46,24 +46,31 @@ async function getCurrentUserInfo(userId) {
     if (user != undefined) {
       userInfo.fullName = user.fullname;
       userInfo.uid = user.uid;
+
     } else {
       response.errors = 'webonlinegame.user.notfound';
       return response;
+
     }
     if (plays != undefined) {
+
       const playsOfCurrentUser = plays.find((p) => p.userId == userId);
       const userRank = plays.findIndex((p) => p.userId == +userId) + 1;
       userInfo.sumScore = playsOfCurrentUser != undefined? playsOfCurrentUser._sum.score : 0;
       userInfo.playCount = playsOfCurrentUser != undefined? playsOfCurrentUser._count._all : 0;
       userInfo.rank = userRank != -1? userRank: 0;
+
     } else {
       response.errors = 'webonlinegame.play.notfound';
       return response;
     }
+
     response.result = userInfo;
   } catch (error) {
     response.errors = 'webonlinegame.server.error';
+
   }
+
   return response;
 }
 

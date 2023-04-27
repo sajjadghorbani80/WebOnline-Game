@@ -7,13 +7,9 @@ services:
     depends_on:
       - postgres
     env_file: ./.env
-    # environment:
-    #   DATABASE_URL: postgres://webOnlineGame:Sjdhni@1402@postgres:5432/db_webOnlineGame
-    #   NODE_ENV: development
-    #   PORT: 3000
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    command: sh -c "cd ./server && npx prisma generate && node app.js"
+    command: sh -c "node ./server/app.js"
     environment:
       - DB_HOST=postgres
       - DB_USER=$POSTGRES_USER

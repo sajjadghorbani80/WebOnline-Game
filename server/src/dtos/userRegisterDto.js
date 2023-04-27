@@ -5,11 +5,13 @@ class ReqSignUpDto {
   email;
   fullname;
   password;
-  constructor(username, email, fullname, password) {
+  repassword;
+  constructor(username, email, fullname, password, repassword) {
     this.username = username;
     this.email = email;
     this.fullname = fullname;
     this.password = password;
+    this.repassword = repassword;
   }
 }
 

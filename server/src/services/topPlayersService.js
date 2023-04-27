@@ -1,10 +1,9 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 
-const prisma = new PrismaClient();
 
 async function getTopPlayers(params) {
   const response = new ResponseDto();

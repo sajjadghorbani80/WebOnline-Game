@@ -3,11 +3,9 @@
 /* eslint-disable max-len */
 /* eslint-disable new-cap */
 import bcrypt from 'bcrypt';
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
 
 
 /* //////////////////////////// token jwt //////////////////////// */
@@ -25,6 +23,7 @@ function generateToken(userId, userEmail) {
     return 'webonlinegame.server.error';
   }
 }
+
 
 function checkToken(req, res, next) {
   const response = new ResponseDto();
@@ -78,6 +77,10 @@ async function signup(registerData) {
       result.errors = 'webonlinegame.email.isexist'; // email is exist
       return result;
     } else {
+      if (registerData.password != registerData.repassword) {
+        result.errors = 'webonlinegame.password.notmatch';
+        return result;
+      }
       const hash = bcrypt.hashSync(registerData.password, 10);
       try {
         const user = await prisma.user.create({

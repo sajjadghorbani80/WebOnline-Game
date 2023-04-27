@@ -8,7 +8,9 @@ import {router as guessNumber} from './routes/guessNumberRouters.js';
 import {router as topPlayersRouter} from './routes/topPlayersRouter.js';
 import {router as userRouter} from './routes/userRouter.js';
 import {router as authRouter} from './routes/authRouters.js';
-import {logger} from './src/utilities/logger.js';
+import expressSession from 'express-session';
+import {PrismaSessionStore} from '@quixo3/prisma-session-store';
+import {prisma} from './src/services/prismaClient.js';
 
 
 dotenv.config();
@@ -24,7 +26,22 @@ there is no __dirname in ES6 modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use('/', express.static(join(__dirname, '../client')));
-
+app.use( expressSession({
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // ms
+  },
+  secret: process.env.SESSION_SECRET_KEY,
+  resave: true,
+  saveUninitialized: true,
+  store: new PrismaSessionStore(
+      prisma,
+      {
+        checkPeriod: 2 * 60 * 1000, // ms
+        dbRecordIdIsSessionId: true,
+        dbRecordIdFunction: undefined,
+      },
+  ),
+}));
 app.use('/api', guessNumber);
 app.use('/api', topPlayersRouter);
 app.use('/api', userRouter);
@@ -33,4 +50,4 @@ app.get('*', (req, res)=> {
   res.redirect(`http://localhost:${process.env.NODE_LOCAL_PORT}/src/views/error.html?error=404`);
 });
 
-app.listen(port, ()=> logger.info(`backend server running on port ${process.env.NODE_DOCKER_PORT}`));
+app.listen(port, ()=> console.log(`backend server running on port ${process.env.NODE_DOCKER_PORT}`));

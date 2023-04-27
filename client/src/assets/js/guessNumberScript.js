@@ -27,7 +27,7 @@ function startGame() {
   http.send();
   http.onload = function() {
     const result = JSON.parse(http.response);
-    errorHandler(guessResult, result.errors);
+    errorHandler(guessResult, result.errors, result.result);
   };
 }
 
@@ -77,6 +77,7 @@ function sendRequest() {
       const firstError = result.errors.errors[0].msg;
       errorHandler(errorLabel, firstError);
     } else {
+      errorLabel.style.display = 'none';
       if (result.errors =='webonlinegame.guessnumber.success' || result.errors =='webonlinegame.guessnumber.faild') {
         gameDiv.style.display = 'none';
         headline.style.display = 'none';

@@ -42,6 +42,12 @@ function errorHandler(HtmlTag, errorCode, dataObj) {
     case 'fullname.input.empty':
       HtmlTag.innerHTML = 'Full Name can not be empty';
       break;
+    case 'webonlinegame.password.notmatch':
+      HtmlTag.innerHTML = 'password and repassword is not same';
+      break;
+    case 'repassword.input.empty':
+      HtmlTag.innerHTML = 'repassword can not be empty';
+      break;
       // for checkAnswer
     case 'webonlinegame.guessnumber.success':
       HtmlTag.innerHTML = `Yahhhh You won It!! <br> the Number was

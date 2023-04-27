@@ -2,14 +2,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ResDto} from '../dtos/guessNumberDto.js';
-import {PrismaClient} from '@prisma/client';
+import {prisma} from './prismaClient.js';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
-import {logger} from '../utilities/logger.js';
-const prisma = new PrismaClient();
 
-let chance = 0;
-let randomNumber = 0;
 const gameId = await getGameIdByName('Guess Number');
 
 /* Using this function, a random number is
@@ -22,9 +18,10 @@ function restartGame() {
     response.errors = 'webonlinegame.server.error';
     return response;
   }
-  chance = 5;
-  randomNumber = (Math.random() * 100).toFixed(0);
-  logger.info(randomNumber);
+  response.result = {
+    chance: 5,
+    randomNumber: (Math.random() * 100).toFixed(0),
+  };
   response.errors ='webonlinegame.guessnumber.restarted';
   return response;
 }
@@ -34,7 +31,9 @@ This is the logic of the number guessing game
 that Compares the game number with user guess
 and return the game result
 */
-async function checkAnswer(guess, userId) {
+
+async function checkAnswer(guess, userId, chance, randomNumber) {
+  console.log(randomNumber);
   chance--;
   const response = new ResponseDto();
   const result = new ResDto(chance, null, guess.guessValue, null);
