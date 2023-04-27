@@ -44,8 +44,9 @@ git checkout V4
 5. In the root folder of project you can find a config file named .env.
 6. Configure file to your needs or just use the default settings.
 7. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
-8. To start the application just use the command below:
+8. Also in client > src > assets > js path you can find config.js file that contains API_URL and Token_Header_Key, If you have changed .env file, you must change config.js file accordingly.
+9. To start the application just use the command below:
 ```bash
 docker compose up -d
 ```
-8. After successful building go to http://localhost:8080 (with default settings).
+10. After successful building go to http://localhost:8080 (with default settings).
