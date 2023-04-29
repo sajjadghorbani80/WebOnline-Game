@@ -2,7 +2,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import {ResDto} from '../dtos/guessNumberDto.js';
-import {prisma} from './prismaClient.js';
+import {prisma} from './prismaClient';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 

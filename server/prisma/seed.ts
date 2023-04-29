@@ -1,12 +1,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import bcrypt from 'bcrypt';
-import {PrismaClient} from '@prisma/client';
-
-const prisma = new PrismaClient();
+import {prisma} from './../src/services/prismaClient'
 
 async function main() {
-  const guessNumber = await prisma.Game.upsert({
+  const guessNumber = await prisma.game.upsert({
     where: {gid: 1},
 
     update: {},
@@ -21,7 +19,7 @@ async function main() {
     },
   });
 
-  const user1 = await prisma.User.upsert({
+  const user1 = await prisma.user.upsert({
     where: {uid: 1},
 
     update: {},
@@ -35,7 +33,7 @@ async function main() {
     },
   });
 
-  const user2 = await prisma.User.upsert({
+  const user2 = await prisma.user.upsert({
     where: {uid: 2},
 
     update: {},
@@ -49,7 +47,7 @@ async function main() {
     },
   });
 
-  const user3 = await prisma.User.upsert({
+  const user3 = await prisma.user.upsert({
     where: {uid: 3},
 
     update: {},
@@ -62,7 +60,7 @@ async function main() {
 
     },
   });
-  const play = await prisma.Play.upsert({
+  const play = await prisma.play.upsert({
     where: {pid: 1},
 
     update: {},
@@ -74,7 +72,7 @@ async function main() {
     },
   });
 
-  const play1 = await prisma.Play.upsert({
+  const play1 = await prisma.play.upsert({
     where: {pid: 2},
 
     update: {},
@@ -86,7 +84,7 @@ async function main() {
     },
   });
 
-  const play2 = await prisma.Play.upsert({
+  const play2 = await prisma.play.upsert({
     where: {pid: 3},
 
     update: {},
@@ -98,7 +96,7 @@ async function main() {
     },
   });
 
-  const play3 = await prisma.Play.upsert({
+  const play3 = await prisma.play.upsert({
     where: {pid: 4},
 
     update: {},
@@ -121,6 +119,5 @@ main()
       console.error(e);
 
       await prisma.$disconnect();
-
       process.exit(1);
     });
