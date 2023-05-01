@@ -2,10 +2,13 @@
 /* eslint-disable max-len */
 const errorMessage = document.getElementById('error-message');
 
-window.onload = showError();
+window.addEventListener('load', (event) =>{
 
+  showError()
+
+});
 function showError() {
-  const url = new URL(window.location);
+  const url = new URL(window.location.toString());
   const error = url.searchParams.get('error');
   switch (error) {
     case '404':
