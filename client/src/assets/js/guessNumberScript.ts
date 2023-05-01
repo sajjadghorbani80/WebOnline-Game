@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-import {ReqDto} from '../../dtos/guessNumberDto.js';
-import {errorHandler} from './errorHandler.js';
-import {getTokenFromCookies} from '../../../built/assets/js/tokenHandler.js';
+import {ReqDto} from '../../dtos/guessNumberDto';
+import {errorHandler} from './errorHandler';
+import {getTokenFromCookies} from '../../../built/assets/js/tokenHandler';
 const checkAnswerBtn = document.getElementById('submit');
-const input = document.getElementById('guessinput');
+const input = document.getElementById('guessinput') as HTMLInputElement | null;
 const guessResult = document.getElementById('guess-result');
 const gameDiv = document.getElementById('games');
 const headline = document.getElementById('headline');
