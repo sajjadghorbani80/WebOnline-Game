@@ -2,19 +2,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable linebreak-style */
 const resetPassBtn = document.getElementById('resetpass-btn');
-const passwordInput = document.getElementById('password');
-const repasswordInput = document.getElementById('re-password');
+const passwordInput = document.getElementById('password') as HTMLInputElement | null;
+const repasswordInput = document.getElementById('re-password') as HTMLInputElement | null;
 const showMessage = document.getElementById('show-message');
 import {errorHandler} from './errorHandler.js';
+import {resetPassDto} from '../../dtos/resetPassDto.js'
 import {getTokenFromCookies} from '../../../built/assets/js/tokenHandler.js';
 
 async function resetPassword() {
-  const params = {
-    password: passwordInput.value,
-    repassword: repasswordInput.value,
+  const params :resetPassDto = {
+    password: passwordInput?.value,
+    repassword: repasswordInput?.value,
+    token :null
   };
-  const url = new URL(window.location);
-  const token = url.searchParams.get('token');
+  const url = new URL(window.location.toString());
+  const token: string = url.searchParams.get('token');
   params.token = token || getTokenFromCookies(window.CONFIG.Token_Header_Key);
 
   const response = await fetch('/api/user/resetpass', {
