@@ -138,3 +138,7 @@ dist
 
 # volume docker compose
 /server/data
+
+
+# built
+/client/built
