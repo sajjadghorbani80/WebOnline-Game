@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 // eslint-disable-next-line linebreak-style
-import {getTokenFromCookies, parseJwt} from './tokenHandler.js';
+import {getTokenFromCookies, parseJwt} from '../../../built/assets/js/tokenHandler.js';
 import {CONFIG} from './config.js';
 const headerContainer = document.getElementById('includedContent');
 window.CONFIG = CONFIG;
