@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
-function parseJwt(token) {
+function parseJwt(token:string) {
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
@@ -10,7 +10,7 @@ function parseJwt(token) {
   return JSON.parse(jsonPayload);
 }
 
-function getTokenFromCookies(headerKey) {
+function getTokenFromCookies(headerKey:string) {
   const cookie = document.cookie;
   const cookieArray = cookie.split('; ');
   for (const items of cookieArray) {
