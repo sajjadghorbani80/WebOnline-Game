@@ -65,7 +65,9 @@ function sendRequest() {
   const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/checkanswer';
-  const params = new ReqDto(input.value);
+  const params:ReqDto = {
+    guessValue: +input.value
+  };
   http.open('POST', url, true);
 
   http.setRequestHeader('Content-Type', 'application/json');

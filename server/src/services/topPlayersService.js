@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
-import {prisma} from './prismaClient';
+import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 
 

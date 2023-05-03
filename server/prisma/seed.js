@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 import bcrypt from 'bcrypt';
-import {prisma} from './../src/services/prismaClient'
+import {prisma} from '../src/services/prismaClient'
 
 async function main() {
   const guessNumber = await prisma.game.upsert({
