@@ -5,7 +5,7 @@ import {ReqDto} from '../../dtos/guessNumberDto.js';
 import {errorHandler} from './errorHandler.js';
 import {getTokenFromCookies} from './tokenHandler.js';
 const checkAnswerBtn = document.getElementById('submit');
-const input = document.getElementById('guessinput');
+const input = document.getElementById('guessinput') as HTMLInputElement | null;
 const guessResult = document.getElementById('guess-result');
 const gameDiv = document.getElementById('games');
 const headline = document.getElementById('headline');
