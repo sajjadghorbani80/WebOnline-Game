@@ -7,7 +7,7 @@ const repasswordInput = document.getElementById('re-password') as HTMLInputEleme
 const showMessage = document.getElementById('show-message');
 import {errorHandler} from './errorHandler.js';
 import {resetPassDto} from '../../dtos/resetPassDto.js'
-import {getTokenFromCookies} from '../../../built/assets/js/tokenHandler.js';
+import {getTokenFromCookies} from './tokenHandler.js';
 
 async function resetPassword() {
   const params :resetPassDto = {

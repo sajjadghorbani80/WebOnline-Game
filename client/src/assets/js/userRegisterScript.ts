@@ -16,7 +16,7 @@ const signupError = document.getElementById('signup-error');
 const switchSigninBtn = document.getElementById('switch-signin-btn');
 const signinsucsess = document.getElementById('signin-sucsess');
 const sendEmailBtn = document.getElementById('sendEmail-btn');
-const emailInput = document.getElementById('email-verify');
+const emailInput = document.getElementById('email-verify') as HTMLInputElement | null;
 const showMessage = document.getElementById('show-message');
 
 
@@ -99,7 +99,7 @@ async function signin() {
     errorHandler(signinError, data.errors);
     if (data.errors == 'webonlinegame.signin.success') {
       document.cookie = `${window.CONFIG.Token_Header_Key}=${data.result};path=/;`;
-      window.location = '/';
+      window.location.href = '/';
     }
   }
 };
