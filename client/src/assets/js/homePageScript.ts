@@ -5,8 +5,9 @@
 import {errorHandler} from './errorHandler.js';
 const topPlayerSection = document.getElementById('topPlayerSection');
 const errorLable = document.getElementById('error-lable');
-window.onload = showTopPlayers();
-
+window.addEventListener('load', (event) =>{
+  showTopPlayers()
+});
 async function getTopPlayers(count) {
   const params = {
     count,

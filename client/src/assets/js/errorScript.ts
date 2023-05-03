@@ -3,9 +3,7 @@
 const errorMessage = document.getElementById('error-message');
 
 window.addEventListener('load', (event) =>{
-
   showError()
-
 });
 function showError() {
   const url = new URL(window.location.toString());
