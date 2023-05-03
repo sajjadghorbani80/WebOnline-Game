@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
 // eslint-disable-next-line linebreak-style
-import {getTokenFromCookies, parseJwt} from '../../../built/assets/js/tokenHandler.js';
+import {getTokenFromCookies, parseJwt} from './tokenHandler.js';
 import {CONFIG} from './config.js';
 const headerContainer = document.getElementById('includedContent');
 window.CONFIG = CONFIG;
@@ -68,7 +68,7 @@ async function headerLoader() {
   }
 }
 
-async function getCurrentUserInfo(userId) {
+async function getCurrentUserInfo(userId:string) {
   const response = await fetch(`${window.CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
     method: 'GET',
   });
@@ -85,6 +85,6 @@ async function logout() {
   await fetch(`${window.CONFIG.API_URL}api/logout`, {
     method: 'GET',
   });
-  window.location = '/';
+  window.location.href = '/';
 }
 
