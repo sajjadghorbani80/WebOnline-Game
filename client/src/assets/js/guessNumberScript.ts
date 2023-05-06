@@ -41,7 +41,7 @@ gameBtn.addEventListener('click', () => {
 
 /* //////////////////////////// form validation //////////////////////// */
 
-function formValidation(value) {
+function formValidation(value: string) {
   value = value.trim();
   if (value == null || value == '' || value == undefined) {
     errorHandler(errorLabel, 'guessnumber.input.empty');

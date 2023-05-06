@@ -8,7 +8,7 @@ const errorLable = document.getElementById('error-lable');
 window.addEventListener('load', (event) =>{
   showTopPlayers()
 });
-async function getTopPlayers(count) {
+async function getTopPlayers(count: number) {
   const params = {
     count,
   };
@@ -70,9 +70,6 @@ async function showTopPlayers() {
           </div>
         </div>`;
       }
-      players.result.forEach((player) => {
-
-      });
       // change position of first and second player
       const secondPlayer = document.querySelector('div.topPlayerBox:nth-child(3)');
       secondPlayer.parentNode.insertBefore(secondPlayer,

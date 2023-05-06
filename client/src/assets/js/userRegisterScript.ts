@@ -26,7 +26,7 @@ buttons.addEventListener('click', handleClick);
 resetPassLink.addEventListener('click', handleClick);
 // When a child element of `buttons` is clicked
 // eslint-disable-next-line require-jsdoc
-function handleClick(child) {
+function handleClick(child:any) {
   // Check to see if its a button or span
   if (child.target.matches('button')||child.target.matches('span')) {
     // For every element in the `sections` node list use `classList`
@@ -119,10 +119,10 @@ async function sendEmail() {
   if (response.status == 400) {
     const data = await response.json();
     const firstError = data.errors.errors[0].msg;
-    errorHandler(showMessage, firstError);
+    errorHandler(showMessage, firstError, null);
   } else {
     const data = await response.json();
-    errorHandler(showMessage, data.errors);
+    errorHandler(showMessage, data.errors, null);
   }
 }
 

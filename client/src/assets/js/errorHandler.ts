@@ -2,7 +2,7 @@
 /* eslint-disable require-jsdoc */
 import {ResDto} from './../../dtos/dataObjects.js'
 
-function errorHandler(HtmlTag: HTMLElement, errorCode: string, dataObj: ResDto) {
+function errorHandler(HtmlTag: HTMLElement, errorCode: string, dataObj: ResDto | null= null) {
   HtmlTag.style.display = 'block';
   switch (errorCode) {
     // for signin errors
