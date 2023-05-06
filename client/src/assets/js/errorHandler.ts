@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+import {ResDto} from './../../dtos/dataObjects.js'
 
-function errorHandler(HtmlTag, errorCode, dataObj) {
+function errorHandler(HtmlTag: HTMLElement, errorCode: string, dataObj: ResDto) {
   HtmlTag.style.display = 'block';
   switch (errorCode) {
     // for signin errors
@@ -86,7 +87,7 @@ function errorHandler(HtmlTag, errorCode, dataObj) {
       // for checktoken
     case 'webonlinegame.error.TokenNotVerifyed':
     case 'webonlinegame.error.NoTokenProvided':
-      window.location = '/src/views/userRegister.html';
+      window.location.href = '/src/views/userRegister.html';
       break;
       // they are global error
     case 'webonlinegame.server.error':
