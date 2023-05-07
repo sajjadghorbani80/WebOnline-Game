@@ -4,10 +4,9 @@
 import {getTokenFromCookies, parseJwt} from './tokenHandler.js';
 import {CONFIG} from './config.js';
 const headerContainer = document.getElementById('includedContent');
-window.CONFIG = CONFIG;
 headerLoader();
 async function headerLoader() {
-  const tokenInCookies = getTokenFromCookies(window.CONFIG.Token_Header_Key);
+  const tokenInCookies = getTokenFromCookies(CONFIG.Token_Header_Key);
   if (tokenInCookies) {
     const tokenData = parseJwt(tokenInCookies);
     const userData = await getCurrentUserInfo(tokenData.userId);
@@ -69,7 +68,7 @@ async function headerLoader() {
 }
 
 async function getCurrentUserInfo(userId:string) {
-  const response = await fetch(`${window.CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
+  const response = await fetch(`${CONFIG.API_URL}api/getcurrentuserinfo/${userId}`, {
     method: 'GET',
   });
   const data = await response.json();
@@ -81,8 +80,8 @@ async function getCurrentUserInfo(userId:string) {
 };
 
 async function logout() {
-  document.cookie = `${window.CONFIG.Token_Header_Key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-  await fetch(`${window.CONFIG.API_URL}api/logout`, {
+  document.cookie = `${CONFIG.Token_Header_Key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  await fetch(`${CONFIG.API_URL}api/logout`, {
     method: 'GET',
   });
   window.location.href = '/';

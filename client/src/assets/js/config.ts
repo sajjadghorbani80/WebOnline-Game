@@ -3,4 +3,7 @@ const CONFIG = {
   Token_Header_Key: 'Token',
 };
 
+Object.freeze(CONFIG)
+
 export {CONFIG};
+  

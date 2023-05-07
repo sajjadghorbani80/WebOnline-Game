@@ -3,6 +3,8 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 import {errorHandler} from './errorHandler.js';
+import {CONFIG} from './config.js';
+
 // Cache out buttons container, and all of the sections
 const buttons = document.querySelector('.buttons');
 const signupBtn = document.getElementById('sign-up-btn');
@@ -98,7 +100,7 @@ async function signin() {
   } else {
     errorHandler(signinError, data.errors);
     if (data.errors == 'webonlinegame.signin.success') {
-      document.cookie = `${window.CONFIG.Token_Header_Key}=${data.result};path=/;`;
+      document.cookie = `${CONFIG.Token_Header_Key}=${data.result};path=/;`;
       window.location.href = '/';
     }
   }

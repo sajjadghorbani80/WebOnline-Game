@@ -4,6 +4,8 @@
 import {ReqDto} from '../../dtos/guessNumberDto.js';
 import {errorHandler} from './errorHandler.js';
 import {getTokenFromCookies} from './tokenHandler.js';
+import {CONFIG} from './config.js';
+
 const checkAnswerBtn = document.getElementById('submit');
 const input = document.getElementById('guessinput') as HTMLInputElement | null;
 const guessResult = document.getElementById('guess-result');
@@ -14,6 +16,7 @@ const form = document.getElementById('form');
 const gameBtn = document.getElementById('gameBtn');
 const gameEvent = document.getElementById('gameEvent');
 const errorLabel = document.getElementById('errorMessage');
+
 /* //////////////////////////// Event Handeling //////////////////////// */
 
 function startGame() {
@@ -21,8 +24,8 @@ function startGame() {
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/restart-game';
   http.open('GET', url, true);
-  const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
-  http.setRequestHeader(window.CONFIG.Token_Header_Key, token);
+  const token = getTokenFromCookies(CONFIG.Token_Header_Key);
+  http.setRequestHeader(CONFIG.Token_Header_Key, token);
   http.setRequestHeader('Content-Type', 'application/json');
   http.send();
   http.onload = function() {
@@ -62,7 +65,7 @@ function formValidation(value: string) {
 /* //////////////////////////// Call API //////////////////////// */
 
 function sendRequest() {
-  const token = getTokenFromCookies(window.CONFIG.Token_Header_Key);
+  const token = getTokenFromCookies(CONFIG.Token_Header_Key);
   const http = new XMLHttpRequest();
   const url = '/api/guessnumber/checkanswer';
   const params:ReqDto = {
@@ -71,7 +74,7 @@ function sendRequest() {
   http.open('POST', url, true);
 
   http.setRequestHeader('Content-Type', 'application/json');
-  http.setRequestHeader(window.CONFIG.Token_Header_Key, token);
+  http.setRequestHeader(CONFIG.Token_Header_Key, token);
   http.send(JSON.stringify(params));
   http.onload = function() {
     const result = JSON.parse(http.response);

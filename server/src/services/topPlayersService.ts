@@ -1,16 +1,17 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-/* eslint-disable linebreak-style */
 import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
+import { userInfoDto,getUserDto } from '../dtos/getTopPlayersDto.js';
 
-
-async function getTopPlayers(params) {
-  const response = new ResponseDto();
-  const userIds = [];
-  const finalResult = [];
+async function getTopPlayers(count:number) {
+  const finalResult: Array<userInfoDto> = [];
+  const response: ResponseDto<Array<userInfoDto>> = {
+    errors:'',
+    result:finalResult
+  };
+  const userIds: Array<number> = [];
   let plays = null;
-  let users = null;
+  let users: Array<getUserDto> = null;
   // select sum of score group by userId
   try {
     plays = await prisma.play.groupBy({
@@ -26,7 +27,7 @@ async function getTopPlayers(params) {
       _count: {
         _all: true,
       },
-      take: params.count != undefined? +params.count: 3,
+      take: count != undefined? count: 3,
     });
     if (plays == undefined) {
       // get users id for get their info
@@ -60,7 +61,7 @@ async function getTopPlayers(params) {
       // get users id for get their info
       plays.forEach((element) => {
         const user = users.find((u) => u.uid== element.userId);
-        const userInfo = {
+        const userInfo: userInfoDto = {
           uid: user.uid,
           userName: user.username,
           fullName: user.fullname,
