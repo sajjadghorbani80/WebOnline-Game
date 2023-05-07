@@ -1,17 +1,11 @@
 {
-    "extends": "@tsconfig/node16/tsconfig.json",
-    "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "Node 16",
-  
-    "compilerOptions": {
-      "lib": ["es2021"],
-      "module": "ES2020",
-      "target": "es2021",
-  
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "moduleResolution": "node"
-    }
-  }
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "ES6",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "noImplicitAny": true
+  },
+  "include": ["./*","./src/**/*","./routes/*","./prisma/*"]
+}

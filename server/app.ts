@@ -13,7 +13,7 @@ import {PrismaSessionStore} from '@quixo3/prisma-session-store';
 import {prisma} from './src/services/prismaClient.js';
 
 
-dotenv.config();
+dotenv.config({path:'./../.env'});
 const app = express();
 /* A configurable port can be used if port 80 is in use */
 const port = process.env.NODE_DOCKER_PORT || 80;
