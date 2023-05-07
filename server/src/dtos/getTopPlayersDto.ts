@@ -9,7 +9,8 @@ interface userInfoDto {
   userName: string;
   fullName: string;
   sumScore: number;
-  PlayCount: number;
+  playCount: number;
+  rank?:number
 }
 
 interface getUserDto {

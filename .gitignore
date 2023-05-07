@@ -142,3 +142,4 @@ dist
 
 # built
 /client/built
+/server/built
