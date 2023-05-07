@@ -8,5 +8,5 @@ export interface ReqDto {
 export interface ResDto {
   chance : number;
   randomNumber : number;
-  guess : number;
+  guess? : number;
 }
