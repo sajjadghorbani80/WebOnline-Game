@@ -8,6 +8,8 @@ const showMessage = document.getElementById('show-message');
 import {errorHandler} from './errorHandler.js';
 import {resetPassDto} from '../../dtos/resetPassDto.js'
 import {getTokenFromCookies} from './tokenHandler.js';
+import {CONFIG} from './config.js';
+
 
 async function resetPassword() {
   const params :resetPassDto = {
@@ -17,7 +19,7 @@ async function resetPassword() {
   };
   const url = new URL(window.location.toString());
   const token: string = url.searchParams.get('token');
-  params.token = token || getTokenFromCookies(window.CONFIG.Token_Header_Key);
+  params.token = token || getTokenFromCookies(CONFIG.Token_Header_Key);
 
   const response = await fetch('/api/user/resetpass', {
     method: 'POST',
