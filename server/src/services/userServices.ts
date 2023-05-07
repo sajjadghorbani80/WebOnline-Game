@@ -1,20 +1,23 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
-/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 import {prisma} from './prismaClient.js';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
+import { userInfoDto } from '../dtos/getTopPlayersDto.js';
 
 
-async function getCurrentUserInfo(userId) {
-  const response = new ResponseDto();
-  const userInfo = {
+async function getCurrentUserInfo(userId: number) {
+  const response: ResponseDto<userInfoDto> = {
+    result:null, errors:null
+  };
+  const userInfo: userInfoDto= {
     sumScore: 0,
     rank: 0,
     playCount: 0,
+    uid: 0,
+    userName: '',
+    fullName: ''
   };
 
   try {
@@ -46,20 +49,16 @@ async function getCurrentUserInfo(userId) {
     if (user != undefined) {
       userInfo.fullName = user.fullname;
       userInfo.uid = user.uid;
-
     } else {
       response.errors = 'webonlinegame.user.notfound';
       return response;
-
     }
     if (plays != undefined) {
-
       const playsOfCurrentUser = plays.find((p) => p.userId == userId);
       const userRank = plays.findIndex((p) => p.userId == +userId) + 1;
       userInfo.sumScore = playsOfCurrentUser != undefined? playsOfCurrentUser._sum.score : 0;
       userInfo.playCount = playsOfCurrentUser != undefined? playsOfCurrentUser._count._all : 0;
       userInfo.rank = userRank != -1? userRank: 0;
-
     } else {
       response.errors = 'webonlinegame.play.notfound';
       return response;
@@ -68,29 +67,31 @@ async function getCurrentUserInfo(userId) {
     response.result = userInfo;
   } catch (error) {
     response.errors = 'webonlinegame.server.error';
-
   }
 
   return response;
 }
 
-async function resetPassword(token, password, repassword) {
-  const result = new ResponseDto();
+async function resetPassword(token: string, password: string, repassword: string) {
+  const response: ResponseDto<null> = {result:null,errors:null};
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  const tokenData = jwt.verify(token, jwtSecretKey, (err, decoded) => {
+  let tokenData: string | boolean | jwt.JwtPayload;
+  jwt.verify(token, jwtSecretKey, (err, decoded) => {
     if (err) {
-      return false;
+      tokenData = false;
+      return;
     } else {
-      return decoded;
+      tokenData = decoded;
+      return;
     }
   });
   if (tokenData == false) {
-    result.errors = 'webonlinegame.token.unauthorize';
-    return result;
+    response.errors = 'webonlinegame.token.unauthorize';
+    return response;
   }
   if (password == repassword) {
     try {
-      const updateUser = await prisma.user.update({
+      await prisma.user.update({
         where: {
           email: tokenData.email,
         },
@@ -98,14 +99,14 @@ async function resetPassword(token, password, repassword) {
           password: bcrypt.hashSync(password, 10),
         },
       });
-      result.errors = 'webonlinegame.resetpass.success';
+      response.errors = 'webonlinegame.resetpass.success';
     } catch (error) {
-      result.errors = 'webonlinegame.server.error';
-      return result;
+      response.errors = 'webonlinegame.server.error';
+      return response;
     }
   } else {
-    result.errors = 'webonlinegame.resetpass.passwordMisMatch';
+    response.errors = 'webonlinegame.resetpass.passwordMisMatch';
   }
-  return result;
+  return response;
 }
 export {getCurrentUserInfo, resetPassword};
