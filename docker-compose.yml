@@ -9,7 +9,7 @@ services:
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    command: sh -c "node ./server/app.js"
+    command: sh -c "node ./server/built/app.js"
     environment:
       - DB_HOST=postgres
       - DB_USER=$POSTGRES_USER
