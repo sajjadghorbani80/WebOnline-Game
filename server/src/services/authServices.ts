@@ -6,14 +6,17 @@ import bcrypt from 'bcrypt';
 import {prisma} from './prismaClient.js';
 import {ResponseDto} from '../dtos/responseDto.js';
 import jwt from 'jsonwebtoken';
-
+import { Request, Response, NextFunction } from 'express';
+import { tokenData } from '../dtos/tokenDto.js';
+import { ReqSignUpDto , ReqSignInDto} from '../dtos/userRegisterDto.js';
+import { User } from '@prisma/client';
 
 /* //////////////////////////// token jwt //////////////////////// */
 
-function generateToken(userId, userEmail) {
+function generateToken(userId:number, userEmail:string) {
   try {
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
-    const data = { // options that will be in token
+    const data:tokenData = { // options that will be in token
       userId: userId,
       email: userEmail,
     };
@@ -25,12 +28,16 @@ function generateToken(userId, userEmail) {
 }
 
 
-function checkToken(req, res, next) {
-  const response = new ResponseDto();
+function checkToken(req: Request & { decoded:string | jwt.JwtPayload }, res: Response, next: NextFunction) {
+  const response: ResponseDto<null> = {
+    result:null,
+    errors: null
+  };
   try {
     const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const token = req.header(tokenHeaderKey);
+    req.headers 
     if (token) {
       jwt.verify(token, jwtSecretKey, (err, decoded) => {
         if (err) {
@@ -53,8 +60,8 @@ function checkToken(req, res, next) {
 
 /* //////////////////////////// signin and sign up //////////////////////// */
 
-async function signup(registerData) {
-  const result = new ResponseDto();
+async function signup(registerData: ReqSignUpDto) {
+  const response : ResponseDto<User> = {result:null, errors:null};
   registerData.username = registerData.username.toLowerCase();
   registerData.email = registerData.email.toLowerCase();
   try {
@@ -71,15 +78,15 @@ async function signup(registerData) {
     });
 
     if (username != 0) {
-      result.errors = 'webonlinegame.username.isexist'; // username is exist
-      return result;
+      response.errors = 'webonlinegame.username.isexist'; // username is exist
+      return response;
     } else if (email != 0) {
-      result.errors = 'webonlinegame.email.isexist'; // email is exist
-      return result;
+      response.errors = 'webonlinegame.email.isexist'; // email is exist
+      return response;
     } else {
       if (registerData.password != registerData.repassword) {
-        result.errors = 'webonlinegame.password.notmatch';
-        return result;
+        response.errors = 'webonlinegame.password.notmatch';
+        return response;
       }
       const hash = bcrypt.hashSync(registerData.password, 10);
       try {
@@ -91,23 +98,23 @@ async function signup(registerData) {
             password: hash,
           },
         });
-        result.errors = 'webonlinegame.signup.success';
-        result.result = user;
+        response.errors = 'webonlinegame.signup.success';
+        response.result = user;
       } catch (error) {
-        result.errors = 'webonlinegame.server.error';
-        return result;
+        response.errors = 'webonlinegame.server.error';
+        return response;
       }
     }
   } catch (err) {
-    result.errors = 'webonlinegame.server.error';
-    result.errors = err;
-    return result;
+    response.errors = 'webonlinegame.server.error';
+    response.errors = err;
+    return response;
   };
-  return result;
+  return response;
 };
 
-async function signin(userData) {
-  const result = new ResponseDto();
+async function signin(userData: ReqSignInDto) {
+  const response: ResponseDto<string> = {result: null, errors: null}
   userData.usernameOrEmail = userData.usernameOrEmail.toLowerCase();
   try {
     const user = await prisma.user.findFirst({
@@ -122,18 +129,18 @@ async function signin(userData) {
       const res = bcrypt.compareSync(userData.password, user.password); // true
       if (res) {
         const token = generateToken(user.uid, user.email);
-        result.errors = 'webonlinegame.signin.success';
-        result.result = token;
+        response.errors = 'webonlinegame.signin.success';
+        response.result = token;
       } else {
-        result.errors = 'webonlinegame.signin.invalidcredentials';
+        response.errors = 'webonlinegame.signin.invalidcredentials';
       }
     } else {
-      result.errors = 'webonlinegame.user.notfound';
+      response.errors = 'webonlinegame.user.notfound';
     }
-    return result;
+    return response;
   } catch (error) {
-    result.errors = 'webonlinegame.server.error';
-    return result;
+    response.errors = 'webonlinegame.server.error';
+    return response;
   }
 }
 

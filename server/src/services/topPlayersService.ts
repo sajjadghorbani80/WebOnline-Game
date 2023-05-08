@@ -6,7 +6,7 @@ import { userInfoDto,getUserDto } from '../dtos/getTopPlayersDto.js';
 async function getTopPlayers(count:number) {
   const finalResult: Array<userInfoDto> = [];
   const response: ResponseDto<Array<userInfoDto>> = {
-    errors:'',
+    errors:null,
     result:finalResult
   };
   const userIds: Array<number> = [];
@@ -66,7 +66,7 @@ async function getTopPlayers(count:number) {
           userName: user.username,
           fullName: user.fullname,
           sumScore: element._sum.score,
-          PlayCount: element._count._all,
+          playCount: element._count._all,
         };
         finalResult.push(userInfo);
       });

@@ -4,10 +4,10 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-tabs */
 import nodemailer from 'nodemailer';
-import {PrismaClient} from '@prisma/client';
+import { prisma } from '../services/prismaClient.js';
 import jwt from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
-const prisma = new PrismaClient();
+import {sendEmailDto} from '../dtos/SendemailDto.js';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -21,11 +21,11 @@ const transporter = nodemailer.createTransport({
 
 /* //////////////////////////// Email verification //////////////////////// */
 
-function sendEmail(mailConfigurations) {
+function sendEmail(mailConfigurations: sendEmailDto) {
   try {
     transporter.sendMail(mailConfigurations, function(error, info) {
       if (error) {
-        throw Error(error);
+        throw Error(error.message);
       }
     });
     return 'webonlinegame.verifyemail.sent';
@@ -35,8 +35,8 @@ function sendEmail(mailConfigurations) {
 }
 
 
-async function sendVerifyUserEmail(userEmail) {
-  const result = new ResponseDto();
+async function sendVerifyUserEmail(userEmail:string) {
+  const response: ResponseDto<null> = {result:null, errors:null};
   userEmail = userEmail.toLowerCase();
   try {
     const user = await prisma.user.findFirst({
@@ -45,13 +45,13 @@ async function sendVerifyUserEmail(userEmail) {
       },
     });
     if (user == undefined) {
-      result.errors = 'webonlinegame.user.notfound';
-      return result;
+      response.errors = 'webonlinegame.user.notfound';
+      return response;
     }
     try {
       const secretkey = process.env.JWT_SECRET_KEY;
       const token = jwt.sign({email: userEmail}, secretkey, {expiresIn: '10m'});
-      const mailConfigurations = {
+      const mailConfigurations: sendEmailDto = {
 
         // It should be a string of sender/server email
         from: process.env.SMTP_EMAIL_ADDRESS,
@@ -67,14 +67,14 @@ async function sendVerifyUserEmail(userEmail) {
 
       };
       const resEmail = sendEmail(mailConfigurations);
-      result.errors = resEmail;
+      response.errors = resEmail;
     } catch (error) {
-      result.errors = 'webonlinegame.verifyemail.notsent';
+      response.errors = 'webonlinegame.verifyemail.notsent';
     }
-    return result;
+    return response;
   } catch (error) {
-    result.errors = 'webonlinegame.server.error';
-    return result;
+    response.errors = 'webonlinegame.server.error';
+    return response;
   }
 }
 
