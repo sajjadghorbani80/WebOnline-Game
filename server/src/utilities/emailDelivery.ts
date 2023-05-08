@@ -7,7 +7,7 @@ import nodemailer from 'nodemailer';
 import { prisma } from '../services/prismaClient.js';
 import jwt from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
-import {sendEmailDto} from '../dtos/SendemailDto.js';
+import {sendEmailDto} from '../dtos/sendEmailDto.js';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
