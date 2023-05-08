@@ -5,6 +5,7 @@ import {ResDto} from '../dtos/guessNumberDto.js';
 import {prisma} from './prismaClient.js';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
+import { error } from 'console';
 
 const gameId = await getGameIdByName('Guess Number');
 
@@ -35,35 +36,39 @@ that Compares the game number with user guess
 and return the game result
 */
 
-async function checkAnswer(guess, userId, chance, randomNumber) {
+async function checkAnswer(guess : number, userId : number, chance : number, randomNumber : number) {
   console.log(randomNumber);
   chance--;
-  const response = new ResponseDto();
-  const result = new ResDto(chance, null, guess.guessValue, null);
+  const response : ResponseDto<ResDto> = {
+    result : {
+      chance : chance,
+      randomNumber : null,
+      guess : guess
+    },
+    errors : ''
+  }
 
-  if (guess.guessValue == randomNumber) {
+  if (guess == randomNumber) {
     response.errors = 'webonlinegame.guessnumber.success';
-    result.randomNumber = randomNumber;
+    response.result.randomNumber = randomNumber;
     const score = calculateScore(chance);
     const saveRes = await saveRecord(new PlayDto(userId, gameId, score));
     if (saveRes === true) {
-      response.result = result;
       return response;
     } else {
-      chance++;
+      response.result.chance = chance++;
       response.errors = 'webonlinegame.server.error';
       return response;
     }
-  } else if (guess.guessValue < randomNumber) {
+  } else if (guess < randomNumber) {
     response.errors = 'webonlinegame.guessnumber.tolow';
   } else {
     response.errors = 'webonlinegame.guessnumber.tohigh';
   }
   if (chance <= 0) {
     response.errors = 'webonlinegame.guessnumber.faild';
-    result.randomNumber = randomNumber;
+    response.result.randomNumber = randomNumber;
   }
-  response.result = result;
   return response;
 }
 
