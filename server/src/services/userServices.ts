@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import {ResponseDto} from '../dtos/responseDto.js';
 import { userInfoDto } from '../dtos/getTopPlayersDto.js';
+import {tokenData } from '../dtos/tokenDto.js'
 
 
 async function getCurrentUserInfo(userId: number) {
@@ -75,13 +76,13 @@ async function getCurrentUserInfo(userId: number) {
 async function resetPassword(token: string, password: string, repassword: string) {
   const response: ResponseDto<null> = {result:null,errors:null};
   const jwtSecretKey = process.env.JWT_SECRET_KEY;
-  let tokenData: string | boolean | jwt.JwtPayload;
-  jwt.verify(token, jwtSecretKey, (err, decoded) => {
+  let tokenData: tokenData | false;
+  jwt.verify(token, jwtSecretKey, (err, decoded : tokenData) => {
     if (err) {
       tokenData = false;
       return;
     } else {
-      tokenData = decoded;
+      tokenData = {userId : decoded.userId, email : decoded.email};
       return;
     }
   });

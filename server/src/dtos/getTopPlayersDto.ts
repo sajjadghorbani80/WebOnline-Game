@@ -1,9 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
-interface ReqTopPlayersDto {
-  count:number
-}
 interface userInfoDto {
   uid: number;
   userName: string;
