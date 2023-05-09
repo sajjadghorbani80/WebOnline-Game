@@ -15,4 +15,4 @@ interface getUserDto {
   fullname: string;
   username: string;
 }
-export {ReqTopPlayersDto,userInfoDto,getUserDto};
+export {userInfoDto,getUserDto};
