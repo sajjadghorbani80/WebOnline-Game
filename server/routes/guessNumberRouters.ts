@@ -9,10 +9,7 @@ import {ResponseDto} from '../src/dtos/responseDto.js';
 import {validationResult, check} from 'express-validator';
 import {checkToken} from '../src/services/authServices.js';
 import {ResDto} from '../src/dtos/guessNumberDto.js';
-import { error } from 'winston';
 import { tokenData } from '../src/dtos/tokenDto.js';
-import { log } from 'console';
-
 
 const validationRules = [check('guessValue').trim()
     .escape().notEmpty().withMessage('guessnumber.input.empty').isInt()
@@ -41,13 +38,9 @@ router.post('/guessnumber/checkanswer', checkToken, validationRules, async (req 
 });
 
 router.get('/guessnumber/restart-game', checkToken, (req : Request , res : Response)=>{
-  const session = req.session;
-  console.log(req.session.gameData);
-  
+  const session = req.session;  
   if (!(session.gameData)) {
-    const response = restartGame();
-    console.log(response.errors);
-    
+    const response = restartGame();    
     req.session.gameData = {
       chance: response.result.chance,
       randomNumber: response.result.randomNumber,
