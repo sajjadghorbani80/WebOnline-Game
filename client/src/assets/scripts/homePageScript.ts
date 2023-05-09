@@ -64,7 +64,7 @@ async function showTopPlayers() {
               <i class="fa-solid fa-rotate-right" style="color: #ff9300;font-size: 20pt;margin-right: 10%;"></i>
               <div class="scoreDetails">
                 <p style="font-size: 10pt;">Times:</p>
-                <p>${player.PlayCount}</p>
+                <p>${player.playCount}</p>
               </div>
             </div>
           </div>
