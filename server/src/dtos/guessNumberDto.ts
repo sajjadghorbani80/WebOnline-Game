@@ -3,6 +3,6 @@
 /* eslint-disable linebreak-style */
 export interface ResDto {
   chance : number;
-  randomNumber : number;
+  randomNumber? : number;
   guess? : number;
 }
