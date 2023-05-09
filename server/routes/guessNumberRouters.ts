@@ -11,6 +11,7 @@ import {checkToken} from '../src/services/authServices.js';
 import {ResDto} from '../src/dtos/guessNumberDto.js';
 import { error } from 'winston';
 import { tokenData } from '../src/dtos/tokenDto.js';
+import { log } from 'console';
 
 
 const validationRules = [check('guessValue').trim()
@@ -41,19 +42,23 @@ router.post('/guessnumber/checkanswer', checkToken, validationRules, async (req 
 
 router.get('/guessnumber/restart-game', checkToken, (req : Request , res : Response)=>{
   const session = req.session;
-  if (!(session?.gameData)) {
+  console.log(req.session.gameData);
+  
+  if (!(session.gameData)) {
     const response = restartGame();
+    console.log(response.errors);
+    
     req.session.gameData = {
       chance: response.result.chance,
-      randomNumber: response.result.chance,
+      randomNumber: response.result.randomNumber,
       guess: response.result.guess,
       errors: response.errors
     };
+    response.result = null;
     return res.send(response);
   }
   const response : ResponseDto<ResDto> = { result : {
     chance : session.gameData.chance,
-    randomNumber: session.gameData.randomNumber,
     guess : session.gameData.guess
   },
     errors : session.gameData.errors || 'webonlinegame.guessnumber.restarted'
