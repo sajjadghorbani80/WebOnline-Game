@@ -5,23 +5,28 @@ import {ResDto} from '../dtos/guessNumberDto.js';
 import {prisma} from './prismaClient.js';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
+import { error } from 'console';
 
-const gameId = await getGameIdByName('Guess Number');
+let gameId : number = null ;
+async() => {await getGameIdByName('Guess Number').then((value)=> gameId = value)}
 
 /* Using this function, a random number is
  created according to the user's behavior.
  Before this random number was generated when
  the server was running */
 function restartGame() {
-  const response = new ResponseDto();
+  const response : ResponseDto<ResDto> =
+  {
+    result : {
+    chance : 5,
+    randomNumber: +(Math.random() * 100).toFixed(0)},
+    errors : ''
+  };
+
   if (!gameId) {
     response.errors = 'webonlinegame.server.error';
     return response;
   }
-  response.result = {
-    chance: 5,
-    randomNumber: (Math.random() * 100).toFixed(0),
-  };
   response.errors ='webonlinegame.guessnumber.restarted';
   return response;
 }
@@ -32,39 +37,43 @@ that Compares the game number with user guess
 and return the game result
 */
 
-async function checkAnswer(guess, userId, chance, randomNumber) {
+async function checkAnswer(guess : number, userId : number, chance : number, randomNumber : number) {
   console.log(randomNumber);
   chance--;
-  const response = new ResponseDto();
-  const result = new ResDto(chance, null, guess.guessValue, null);
+  const response : ResponseDto<ResDto> = {
+    result : {
+      chance : chance,
+      randomNumber : null,
+      guess : guess
+    },
+    errors : ''
+  }
 
-  if (guess.guessValue == randomNumber) {
+  if (guess == randomNumber) {
     response.errors = 'webonlinegame.guessnumber.success';
-    result.randomNumber = randomNumber;
+    response.result.randomNumber = randomNumber;
     const score = calculateScore(chance);
-    const saveRes = await saveRecord(new PlayDto(userId, gameId, score));
+    const saveRes = await saveRecord({userId : userId, gameId : gameId, score : score});
     if (saveRes === true) {
-      response.result = result;
       return response;
     } else {
-      chance++;
+      response.result.chance = chance++;
       response.errors = 'webonlinegame.server.error';
       return response;
     }
-  } else if (guess.guessValue < randomNumber) {
+  } else if (guess < randomNumber) {
     response.errors = 'webonlinegame.guessnumber.tolow';
   } else {
     response.errors = 'webonlinegame.guessnumber.tohigh';
   }
   if (chance <= 0) {
     response.errors = 'webonlinegame.guessnumber.faild';
-    result.randomNumber = randomNumber;
+    response.result.randomNumber = randomNumber;
   }
-  response.result = result;
   return response;
 }
 
-async function saveRecord(playDto) {
+async function saveRecord(playDto : PlayDto) {
   try {
     const play = await prisma.play.create({
       data: {
@@ -79,11 +88,11 @@ async function saveRecord(playDto) {
   }
 }
 
-function calculateScore(chance) {
+function calculateScore(chance : number) {
   return (chance + 1) * 10;
 }
 
-async function getGameIdByName(gameName) {
+async function getGameIdByName(gameName : string) {
   try {
     const game = await prisma.game.findFirst({
       where: {title: gameName},
