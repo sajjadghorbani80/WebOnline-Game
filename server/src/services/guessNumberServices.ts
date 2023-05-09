@@ -5,10 +5,9 @@ import {ResDto} from '../dtos/guessNumberDto.js';
 import {prisma} from './prismaClient.js';
 import {PlayDto} from '../dtos/playDto.js';
 import {ResponseDto} from '../dtos/responseDto.js';
-import { error } from 'console';
 
-let gameId : number = null ;
-async() => {await getGameIdByName('Guess Number').then((value)=> gameId = value)}
+let gameId : number = await getGameIdByName('Guess Number') ;
+
 
 /* Using this function, a random number is
  created according to the user's behavior.
