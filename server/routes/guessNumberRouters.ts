@@ -45,7 +45,7 @@ router.get('/guessnumber/restart-game', checkToken, (req : Request , res : Respo
     const response = restartGame();
     req.session.gameData = {
       chance: response.result.chance,
-      randomNumber: response.result.chance,
+      randomNumber: response.result.randomNumber,
       guess: response.result.guess,
       errors: response.errors
     };
