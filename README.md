@@ -19,12 +19,46 @@ The Web Online Game is an exercise project to learn programming with the JavaScr
 ```bash
 git clone https://github.com/sajjadghorbani80/WebOnline-Game.git
 ```
-4. In the root folder of project you can find a config file named .env.
-5. Configure file to your needs or just use the default settings.
-6. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
-7. Also in client > src > assets > js path you can find config.js file that contains API_URL and Token_Header_Key, If you have changed .env file, you must change config.js file accordingly.
-8. To start the application just use the command below:
+4. Go to Client folder
+```bash
+cd client
+```
+5. Install requirements
+```bash
+npm i
+```
+6. Compile TS files to JS
+```bash
+npx tsc
+```
+7. Go to Server floder
+```bash
+cd ../server
+```
+8. Install requirements
+```bash
+npm i
+```
+9. Compile TS files to JS
+```bash
+npx tsc
+```
+10. In the root folder of project you can find a config file named .env.
+11. Configure file to your needs or just use the default settings.
+12. In the server folder, you can find .env file that contains the PostgreSql connection string. Change its value according to your configuration.
+13. Also in client > src > assets > js path you can find config.js file that contains API_URL and Token_Header_Key, If you have changed .env file, you must change config.js file accordingly.
+14. To start the application just use the command below:
 ```bash
 docker compose up -d
 ```
-9. After successful building go to http://localhost:8080 (with default settings).
+15. Intialize DataBase
+
+15.1. Create DataBase
+```bash
+npx prisma db push
+```
+15.2. Add sample Data
+```bash
+sudo npx ts-node --esm prisma/seed.ts
+```
+16. After successful building go to http://localhost:8080 (with default settings).
