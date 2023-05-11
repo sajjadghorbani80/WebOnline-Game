@@ -59,6 +59,6 @@ npx prisma db push
 ```
 15.2. Add sample Data
 ```bash
-npx prisma db seed
+sudo npx ts-node --esm prisma/seed.ts
 ```
 16. After successful building go to http://localhost:8080 (with default settings).
