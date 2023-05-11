@@ -52,17 +52,11 @@ npx tsc
 docker compose up -d
 ```
 15. Intialize DataBase
-
-
-15.1. Go to Server floder
-```bash
-cd ../server
-```
-15.2. Create DataBase
+15.1. Create DataBase
 ```bash
 npx prisma db push
 ```
-15.3. Add sample Data
+15.2. Add sample Data
 ```bash
 npx prisma db seed
 ```
