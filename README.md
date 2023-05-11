@@ -51,7 +51,7 @@ npx tsc
 ```bash
 docker compose up -d
 ```
-15. Intialize DataBase
+15. Intialize DataBase <br>
 15.1. Create DataBase
 ```bash
 npx prisma db push
